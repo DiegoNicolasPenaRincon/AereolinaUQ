@@ -9,7 +9,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cliente extends Persona {
-    //lista de tiquetes comprados
-
+public class Tiquete {
+    private Ruta ruta;
+    private double precio;
+    private claseVuelo claseVuelo;
+    //Lista de sillas seleccionadas
 }

@@ -2,20 +2,17 @@ package co.edu.uniquindio.aerolineauq.controller;
 
 import co.edu.uniquindio.aerolineauq.controller.service.IModelFactoryService;
 import co.edu.uniquindio.aerolineauq.exceptions.EmpleadoException;
-import co.edu.uniquindio.aerolineauq.mapping.dto.EmpleadoDto;
 import co.edu.uniquindio.aerolineauq.mapping.mappers.BancoMapper;
-import co.edu.uniquindio.aerolineauq.model.Banco;
-import co.edu.uniquindio.aerolineauq.model.Empleado;
-import co.edu.uniquindio.aerolineauq.model.*;
-import co.edu.uniquindio.aerolineauq.exceptions.*;
+import co.edu.uniquindio.aerolineauq.model.Aerolinea;
 import co.edu.uniquindio.aerolineauq.utils.BancoUtils;
-import co.edu.uniquindio.aerolineauq.utils.Persistencia;
+//import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 
 import java.io.IOException;
 import java.util.List;
-
+/*
 public class ModelFactoryController implements IModelFactoryService, Runnable {
-    Banco banco;
+    /*
+    Aerolinea aerolinea;
     BancoMapper mapper = BancoMapper.INSTANCE;
 
     Thread hilo1GuardarXml;
@@ -57,7 +54,7 @@ public class ModelFactoryController implements IModelFactoryService, Runnable {
 
         //Siempre se debe verificar si la raiz del recurso es null
 
-        if(banco == null){
+        if(aerolinea == null){
             cargarDatosBase();
             guardarResourceXML();
         }
@@ -65,9 +62,9 @@ public class ModelFactoryController implements IModelFactoryService, Runnable {
     }
 
     private void cargarDatosDesdeArchivos() {
-        banco = new Banco();
+        aerolinea = new Aerolinea();
         try {
-            Persistencia.cargarDatosArchivos(banco);
+            Persistencia.cargarDatosArchivos(aerolinea);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -83,27 +80,27 @@ public class ModelFactoryController implements IModelFactoryService, Runnable {
     }
 
     private void cargarDatosBase() {
-        banco = BancoUtils.inicializarDatos();
+        aerolinea = BancoUtils.inicializarDatos();
     }
 
-    public Banco getBanco() {
-        return banco;
+    public Aerolinea getBanco() {
+        return aerolinea;
     }
 
-    public void setBanco(Banco banco) {
-        this.banco = banco;
+    public void setBanco(Aerolinea aerolinea) {
+        this.aerolinea = aerolinea;
     }
 
 
     @Override
     public List<EmpleadoDto> obtenerEmpleados() {
-       return  mapper.getEmpleadosDto(banco.getListaEmpleados());
+       return  mapper.getEmpleadosDto(aerolinea.getListaEmpleados());
     }
 
     @Override
     public boolean agregarEmpleado(EmpleadoDto empleadoDto) {
         try{
-            if(!banco.verificarEmpleadoExistente(empleadoDto.cedula())) {
+            if(!aerolinea.verificarEmpleadoExistente(empleadoDto.cedula())) {
                 Empleado empleado = mapper.empleadoDtoToEmpleado(empleadoDto);
                 getBanco().agregarEmpleado(empleado);
                 registrarAccionesSistema("Empleado agregado: "+ empleado.getNombre(),1,"agregarEmpleado");
@@ -142,7 +139,7 @@ public class ModelFactoryController implements IModelFactoryService, Runnable {
     }
 
     private void cargarResourceXML() {
-        banco = Persistencia.cargarRecursoBancoXML();
+        aerolinea = Persistencia.cargarRecursoBancoXML();
     }
 
     private void guardarResourceXML() {
@@ -151,11 +148,11 @@ public class ModelFactoryController implements IModelFactoryService, Runnable {
     }
 
     private void cargarResourceBinario() {
-        banco = Persistencia.cargarRecursoBancoBinario();
+        aerolinea = Persistencia.cargarRecursoBancoBinario();
     }
 
     private void guardarResourceBinario() {
-        Persistencia.guardarRecursoBancoBinario(banco);
+        Persistencia.guardarRecursoBancoBinario(aerolinea);
     }
 
     public void registrarAccionesSistema(String mensaje, int nivel, String accion) {
@@ -171,7 +168,7 @@ public class ModelFactoryController implements IModelFactoryService, Runnable {
         Thread hiloActual = Thread.currentThread();
         ocupar();
         if(hiloActual == hilo1GuardarXml){
-            Persistencia.guardarRecursoBancoXML(banco);
+            Persistencia.guardarRecursoBancoXML(aerolinea);
             liberar();
         }
         if(hiloActual == hilo2SalvarLog){
@@ -195,4 +192,6 @@ public class ModelFactoryController implements IModelFactoryService, Runnable {
             throw new RuntimeException(e);
         }
     }
-}
+
+     */
+

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="17.0.9" class="java.beans.XMLDecoder">
- <object class="co.edu.uniquindio.aerolineauq.model.Banco" id="Banco0">
+ <object class="co.edu.uniquindio.aerolineauq.model.Aerolinea" id="Banco0">
   <void property="listaClientes">
    <void method="add">
     <object class="co.edu.uniquindio.aerolineauq.model.Cliente">

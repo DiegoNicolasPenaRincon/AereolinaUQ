@@ -1,6 +1,5 @@
 package co.edu.uniquindio.aerolineauq;
 
-import co.edu.uniquindio.aerolineauq.viewController.BancoViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

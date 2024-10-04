@@ -1,7 +1,6 @@
 package co.edu.uniquindio.aerolineauq;
 
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
-import co.edu.uniquindio.aerolineauq.mapping.dto.EmpleadoDto;
 
 import java.util.List;
 

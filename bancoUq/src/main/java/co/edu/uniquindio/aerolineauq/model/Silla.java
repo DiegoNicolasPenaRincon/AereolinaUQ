@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cliente extends Persona {
-    //lista de tiquetes comprados
-
+public class Silla {
+    private String fila;
+    private String posicion;
+    private boolean esDisponible;
 }

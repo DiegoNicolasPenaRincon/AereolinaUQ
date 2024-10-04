@@ -1,10 +1,6 @@
 package co.edu.uniquindio.aerolineauq.controller;
 
-import co.edu.uniquindio.aerolineauq.controller.service.IEmpleadoControllerService;
-import co.edu.uniquindio.aerolineauq.mapping.dto.EmpleadoDto;
-
-import java.util.List;
-
+/*
 public class EmpleadoController implements IEmpleadoControllerService {
     ModelFactoryController modelFactoryController;
 
@@ -36,3 +32,5 @@ public class EmpleadoController implements IEmpleadoControllerService {
         modelFactoryController.registrarAccionesSistema(mensaje, nivel, accion);
     }
 }
+
+ */

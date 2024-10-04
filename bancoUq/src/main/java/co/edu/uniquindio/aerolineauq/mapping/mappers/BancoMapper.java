@@ -1,8 +1,4 @@
 package co.edu.uniquindio.aerolineauq.mapping.mappers;
-import co.edu.uniquindio.aerolineauq.mapping.dto.ClienteDto;
-import co.edu.uniquindio.aerolineauq.mapping.dto.EmpleadoDto;
-import co.edu.uniquindio.aerolineauq.model.Cliente;
-import co.edu.uniquindio.aerolineauq.model.Empleado;
 import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -13,6 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface BancoMapper {
+    /*
     BancoMapper INSTANCE = Mappers.getMapper(BancoMapper.class);
 
     @Named("empleadoToEmpleadoDto")
@@ -31,5 +28,5 @@ public interface BancoMapper {
     @IterableMapping(qualifiedByName = "cunetaToCuentaDto")
     ClienteDto clienteToClienteDto(Cliente cliente);
 
-
+*/
 }
