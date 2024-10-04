@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/bancoUq/bancoUq.iml" filepath="$PROJECT_DIR$/bancoUq/bancoUq.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/banco_javafx.iml" filepath="$PROJECT_DIR$/.idea/banco_javafx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/AerolineaUq.iml" filepath="$PROJECT_DIR$/.idea/AerolineaUq.iml" />
     </modules>
   </component>
 </project>
