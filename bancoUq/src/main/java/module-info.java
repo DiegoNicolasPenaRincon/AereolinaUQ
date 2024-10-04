@@ -6,13 +6,13 @@ module co.edu.uniquindio.banco.bancouq {
     requires java.desktop;
     requires java.logging;
 
-    opens co.edu.uniquindio.banco.bancouq to javafx.fxml;
-    exports co.edu.uniquindio.banco.bancouq;
-    exports co.edu.uniquindio.banco.bancouq.viewController;
-    opens co.edu.uniquindio.banco.bancouq.viewController to javafx.fxml;
-    exports co.edu.uniquindio.banco.bancouq.controller;
-    exports co.edu.uniquindio.banco.bancouq.mapping.dto;
-    exports co.edu.uniquindio.banco.bancouq.mapping.mappers;
-    exports co.edu.uniquindio.banco.bancouq.model;
-    opens co.edu.uniquindio.banco.bancouq.controller to javafx.fxml;
+    opens co.edu.uniquindio.aerolineauq to javafx.fxml;
+    exports co.edu.uniquindio.aerolineauq;
+    exports co.edu.uniquindio.aerolineauq.viewController;
+    opens co.edu.uniquindio.aerolineauq.viewController to javafx.fxml;
+    exports co.edu.uniquindio.aerolineauq.controller;
+    exports co.edu.uniquindio.aerolineauq.mapping.dto;
+    exports co.edu.uniquindio.aerolineauq.mapping.mappers;
+    exports co.edu.uniquindio.aerolineauq.model;
+    opens co.edu.uniquindio.aerolineauq.controller to javafx.fxml;
 }

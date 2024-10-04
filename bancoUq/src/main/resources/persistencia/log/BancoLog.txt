@@ -1,16 +1,16 @@
-Apr 09, 2024 7:28:58 PM co.edu.uniquindio.banco.bancouq.utils.ArchivoUtil guardarRegistroLog
+Apr 09, 2024 7:28:58 PM utils.co.edu.uniquindio.aerolineauq.ArchivoUtil guardarRegistroLog
 INFO: inicioSesión,Inicio de sesión,2024-04-09
-Apr 09, 2024 7:31:41 PM co.edu.uniquindio.banco.bancouq.utils.ArchivoUtil guardarRegistroLog
+Apr 09, 2024 7:31:41 PM utils.co.edu.uniquindio.aerolineauq.ArchivoUtil guardarRegistroLog
 INFO: inicioSesión,Inicio de sesión,2024-04-09
-Apr 09, 2024 7:32:05 PM co.edu.uniquindio.banco.bancouq.utils.ArchivoUtil guardarRegistroLog
+Apr 09, 2024 7:32:05 PM utils.co.edu.uniquindio.aerolineauq.ArchivoUtil guardarRegistroLog
 INFO: agregarEmpleado,Empleado agregado: Anita,2024-04-09
-Apr 09, 2024 7:32:07 PM co.edu.uniquindio.banco.bancouq.utils.ArchivoUtil guardarRegistroLog
+Apr 09, 2024 7:32:07 PM utils.co.edu.uniquindio.aerolineauq.ArchivoUtil guardarRegistroLog
 INFO: Agregar empleado,Empleado agregado,2024-04-09
-Apr 09, 2024 7:33:31 PM co.edu.uniquindio.banco.bancouq.utils.ArchivoUtil guardarRegistroLog
+Apr 09, 2024 7:33:31 PM utils.co.edu.uniquindio.aerolineauq.ArchivoUtil guardarRegistroLog
 INFO: inicioSesión,Inicio de sesión,2024-04-09
-Apr 09, 2024 7:35:01 PM co.edu.uniquindio.banco.bancouq.utils.ArchivoUtil guardarRegistroLog
+Apr 09, 2024 7:35:01 PM utils.co.edu.uniquindio.aerolineauq.ArchivoUtil guardarRegistroLog
 INFO: inicioSesión,Inicio de sesión,2024-04-09
-Apr 09, 2024 7:35:06 PM co.edu.uniquindio.banco.bancouq.utils.ArchivoUtil guardarRegistroLog
+Apr 09, 2024 7:35:06 PM utils.co.edu.uniquindio.aerolineauq.ArchivoUtil guardarRegistroLog
 SEVERE: agregarEmpleado,El empleado con cedula: 125454 ya existe,2024-04-09
-Apr 23, 2024 6:35:41 PM co.edu.uniquindio.banco.bancouq.utils.ArchivoUtil guardarRegistroLog
+Apr 23, 2024 6:35:41 PM utils.co.edu.uniquindio.aerolineauq.ArchivoUtil guardarRegistroLog
 INFO: inicioSesión,Inicio de sesión,2024-04-23

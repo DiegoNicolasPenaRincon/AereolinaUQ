@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="17.0.9" class="java.beans.XMLDecoder">
- <object class="co.edu.uniquindio.banco.bancouq.model.Banco" id="Banco0">
+ <object class="co.edu.uniquindio.aerolineauq.model.Banco" id="Banco0">
   <void property="listaClientes">
    <void method="add">
-    <object class="co.edu.uniquindio.banco.bancouq.model.Cliente">
+    <object class="co.edu.uniquindio.aerolineauq.model.Cliente">
      <void property="apellido">
       <string>arias</string>
      </void>
@@ -28,7 +28,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="co.edu.uniquindio.banco.bancouq.model.Cliente">
+    <object class="co.edu.uniquindio.aerolineauq.model.Cliente">
      <void property="apellido">
       <string>Perez</string>
      </void>
@@ -53,7 +53,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="co.edu.uniquindio.banco.bancouq.model.Cliente">
+    <object class="co.edu.uniquindio.aerolineauq.model.Cliente">
      <void property="apellido">
       <string>Arias</string>
      </void>
@@ -80,7 +80,7 @@
   </void>
   <void property="listaEmpleados">
    <void method="add">
-    <object class="co.edu.uniquindio.banco.bancouq.model.Empleado">
+    <object class="co.edu.uniquindio.aerolineauq.model.Empleado">
      <void property="apellido">
       <string>arias</string>
      </void>
@@ -111,7 +111,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="co.edu.uniquindio.banco.bancouq.model.Empleado">
+    <object class="co.edu.uniquindio.aerolineauq.model.Empleado">
      <void property="apellido">
       <string>alzate</string>
      </void>
@@ -142,7 +142,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="co.edu.uniquindio.banco.bancouq.model.Empleado">
+    <object class="co.edu.uniquindio.aerolineauq.model.Empleado">
      <void property="apellido">
       <string>perez</string>
      </void>
@@ -173,7 +173,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="co.edu.uniquindio.banco.bancouq.model.Empleado">
+    <object class="co.edu.uniquindio.aerolineauq.model.Empleado">
      <void property="apellido">
       <string>perez</string>
      </void>
@@ -204,7 +204,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="co.edu.uniquindio.banco.bancouq.model.Empleado">
+    <object class="co.edu.uniquindio.aerolineauq.model.Empleado">
      <void property="apellido">
       <string>alzate</string>
      </void>
