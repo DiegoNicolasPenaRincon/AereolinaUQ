@@ -2,12 +2,13 @@ package co.edu.uniquindio.aerolineauq.controller;
 
 import co.edu.uniquindio.aerolineauq.controller.service.IBancoControllerService;
 
-public class BancoController implements IBancoControllerService {
+public class AerolineaController implements IBancoControllerService {
 
     ModelFactoryController modelFactoryController;
 
-    public BancoController(){
+    public AerolineaController(){
         System.out.println("Llamando al singleton desde BancoServiceController");
-        modelFactoryController = ModelFactoryController.getInstance();
+
+       // modelFactoryController = ModelFactoryController.getInstance();
     }
 }

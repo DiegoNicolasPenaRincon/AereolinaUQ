@@ -1,4 +1,4 @@
-module co.edu.uniquindio.banco.bancouq {
+module co.edu.uniquindio.aerolineauq {
     requires javafx.controls;
     requires javafx.fxml;
     requires org.controlsfx.controls;
@@ -13,5 +13,6 @@ module co.edu.uniquindio.banco.bancouq {
     exports co.edu.uniquindio.aerolineauq.mapping.dto;
     exports co.edu.uniquindio.aerolineauq.mapping.mappers;
     exports co.edu.uniquindio.aerolineauq.model;
+    exports co.edu.uniquindio.aerolineauq.ViewController;
     opens co.edu.uniquindio.aerolineauq.controller to javafx.fxml;
 }
