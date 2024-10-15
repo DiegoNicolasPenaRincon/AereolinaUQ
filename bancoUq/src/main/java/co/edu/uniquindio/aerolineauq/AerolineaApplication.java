@@ -1,6 +1,5 @@
 package co.edu.uniquindio.aerolineauq;
 
-import co.edu.uniquindio.aerolineauq.ViewController.BancoViewController;
 import co.edu.uniquindio.aerolineauq.ViewController.InicioViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +17,7 @@ public class AerolineaApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         this.primaryStage = stage;
-        this.primaryStage.setTitle("Banco UQ");
+        this.primaryStage.setTitle("Aerolinea UQ");
         mostrarVentanaPrincipal();
     }
 

@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.aerolineauq.ViewController.InicioViewController">
-   <children>
-      <ComboBox layoutX="33.0" layoutY="61.0" prefWidth="150.0" />
-      <Label layoutX="33.0" layoutY="44.0" prefHeight="17.0" prefWidth="47.0" text="Origen:" />
-      <Label layoutX="244.0" layoutY="44.0" text="Destino:" />
-      <ComboBox layoutX="244.0" layoutY="61.0" prefWidth="150.0" />
-      <DatePicker layoutX="33.0" layoutY="119.0" />
-      <DatePicker layoutX="244.0" layoutY="119.0" />
-      <Label layoutX="33.0" layoutY="102.0" text="Ida:" />
-      <Label layoutX="247.0" layoutY="102.0" text="Vuelta:" />
-      <Spinner layoutX="33.0" layoutY="187.0" />
-      <Label layoutX="43.0" layoutY="169.0" text="Número de Personas:" />
-   </children>
+<AnchorPane prefHeight="655.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.aerolineauq.ViewController.InicioViewController">
+    <children>
+        <TabPane layoutX="8.0" layoutY="8.0" prefHeight="642.0" prefWidth="865.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.topAnchor="8.0">
+            <tabs>
+                <Tab style="-fx-background-color: #FFB923;" text="Iniciar Sesión">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane layoutX="6.0" layoutY="6.0" orientation="VERTICAL" prefHeight="579.0" prefWidth="706.0">
+                                    <items>
+                                        <fx:include source="InicioSesionView.fxml" />
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab style="-fx-background-color: #FFB923;" text="Registrarse">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="613.0" prefWidth="813.0">
+                            <children>
+                                <SplitPane layoutX="6.0" layoutY="6.0" orientation="VERTICAL" prefHeight="603.0" prefWidth="767.0">
+                                    <items>
+                                        <fx:include source="RegistroView.fxml" />
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
 </AnchorPane>

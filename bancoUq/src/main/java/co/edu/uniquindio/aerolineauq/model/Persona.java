@@ -18,4 +18,5 @@ public class Persona {
     private String direccion;
     private LocalDate fechaNacimiento;
     private String correo;
+    private String contrasenia;
 }
