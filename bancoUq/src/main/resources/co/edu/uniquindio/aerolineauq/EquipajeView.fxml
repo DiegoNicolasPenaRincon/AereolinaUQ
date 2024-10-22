@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="607.0" prefWidth="757.0" style="-fx-background-color: #FFB923;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.aerolineauq.ViewController.EquipajeController">
+    <children>
+        <Pane layoutX="47.0" layoutY="36.0" prefHeight="535.0" prefWidth="663.0" style="-fx-background-color: white;">
+            <children>
+                <Label layoutX="220.0" layoutY="30.0" prefHeight="34.0" prefWidth="225.0" text="Registro de equipaje">
+                    <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="23.0" />
+                    </font>
+                </Label>
+                <Label layoutX="219.0" layoutY="82.0" text="Tipo de Equipaje:">
+                    <font>
+                        <Font name="Bell MT Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="56.0" layoutY="215.0">
+                    <font>
+                        <Font name="Bell MT Bold" size="12.0" />
+                    </font>
+                </Label>
+                <Button fx:id="btnRegistrar" layoutX="275.0" layoutY="366.0" mnemonicParsing="false" onAction="#registrarEquipaje" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #FFB923;" text="Registrar" textFill="WHITE">
+                    <font>
+                        <Font name="Lucida Fax Demibold" size="12.0" />
+                    </font>
+                </Button>
+                <Label layoutX="212.0" layoutY="140.0" text="Vuelo asociado:">
+                    <font>
+                        <Font name="Bell MT Bold" size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtNumeroVuelo" layoutX="212.0" layoutY="165.0" prefHeight="30.0" prefWidth="240.0" promptText="Ingrese su numero de vuelo" />
+                <Label layoutX="219.0" layoutY="207.0" text="Mascota:">
+                    <font>
+                        <Font name="Bell MT Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="218.0" layoutY="266.0" text="Peso mascota:">
+                    <font>
+                        <Font name="Bell MT Bold" size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtPesoMascota" layoutX="212.0" layoutY="294.0" prefHeight="30.0" prefWidth="240.0" promptText="Ingrese el peso de su mascota" />
+            <CheckBox fx:id="ckMascotaSi" layoutX="226.0" layoutY="239.0" mnemonicParsing="false" text="Si" />
+            <CheckBox fx:id="ckMascotaNo" layoutX="333.0" layoutY="239.0" mnemonicParsing="false" text="No" />
+            <ComboBox fx:id="cbTipoEquipaje" layoutX="212.0" layoutY="109.0" prefHeight="25.0" prefWidth="204.0" promptText="Seleccione el tipo" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
