@@ -1,5 +1,7 @@
 package co.edu.uniquindio.aerolineauq.Listas;
 
+import co.edu.uniquindio.aerolineauq.model.Usuario;
+
 import java.util.Iterator;
 
 public class ListaSimple<T> implements Iterable<T> {
@@ -33,9 +35,8 @@ public class ListaSimple<T> implements Iterable<T> {
         tamanio++;
     }
 
-
     //Agregar al final de la lista
-    public void agregarfinal(T valorNodo) {
+    public void agregar(T valorNodo) {
 
         Nodo<T> nodo = new Nodo<>(valorNodo);
 
@@ -229,7 +230,7 @@ public class ListaSimple<T> implements Iterable<T> {
         /**
          * Constructor de la clase Iterador
          *
-         * @param aux Primer Nodo de la lista
+         * @param nodo Primer Nodo de la lista
          */
         public IteradorListaSimple(Nodo<T> nodo) {
             this.nodo = nodo;
@@ -281,5 +282,17 @@ public class ListaSimple<T> implements Iterable<T> {
 
     public void setTamanio(int tamanio) {
         this.tamanio = tamanio;
+    }
+
+    public Usuario buscarUsuarioPorId(String id) {
+        Nodo actual = nodoPrimero;
+        while (actual != null) {
+            Usuario usuario= (Usuario) actual.getValorNodo();
+            if (usuario.getId().equals(id)) {
+                return usuario;
+            }
+            actual = actual.getSiguienteNodo();
+        }
+        return null;
     }
 }

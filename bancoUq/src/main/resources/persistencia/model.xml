@@ -3,7 +3,7 @@
  <object class="co.edu.uniquindio.aerolineauq.model.Aerolinea" id="Banco0">
   <void property="listaClientes">
    <void method="add">
-    <object class="co.edu.uniquindio.aerolineauq.model.Cliente">
+    <object class="co.edu.uniquindio.aerolineauq.model.Usuario">
      <void property="apellido">
       <string>arias</string>
      </void>
@@ -28,7 +28,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="co.edu.uniquindio.aerolineauq.model.Cliente">
+    <object class="co.edu.uniquindio.aerolineauq.model.Usuario">
      <void property="apellido">
       <string>Perez</string>
      </void>
@@ -53,7 +53,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="co.edu.uniquindio.aerolineauq.model.Cliente">
+    <object class="co.edu.uniquindio.aerolineauq.model.Usuario">
      <void property="apellido">
       <string>Arias</string>
      </void>

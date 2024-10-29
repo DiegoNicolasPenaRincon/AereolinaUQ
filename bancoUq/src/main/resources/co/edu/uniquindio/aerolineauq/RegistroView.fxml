@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="607.0" prefWidth="757.0" style="-fx-background-color: #FFB923;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="607.0" prefWidth="757.0" style="-fx-background-color: #FFB923;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.aerolineauq.ViewController.RegistroViewController">
     <children>
         <Pane layoutX="47.0" layoutY="36.0" prefHeight="535.0" prefWidth="663.0" style="-fx-background-color: white;">
             <children>
@@ -24,17 +24,12 @@
                     </font>
                 </Label>
                 <TextField fx:id="txtID" layoutX="35.0" layoutY="92.0" prefHeight="30.0" prefWidth="240.0" promptText="Ingrese su ID" />
-                <Label layoutX="56.0" layoutY="215.0">
-                    <font>
-                        <Font name="Bell MT Bold" size="12.0" />
-                    </font>
-                </Label>
                 <Label layoutX="355.0" layoutY="200.0" prefWidth="74.0" text="Contraseña:">
                     <font>
                         <Font name="Bell MT Bold" size="14.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnRegistrarse" layoutX="282.0" layoutY="447.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #FFB923;" text="Registrarse" textFill="WHITE">
+                <Button fx:id="btnRegistrarse" layoutX="282.0" layoutY="447.0" mnemonicParsing="false" onAction="#RegistrarUsuario" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #FFB923;" text="Registrarse" textFill="WHITE">
                     <font>
                         <Font name="Lucida Fax Demibold" size="12.0" />
                     </font>

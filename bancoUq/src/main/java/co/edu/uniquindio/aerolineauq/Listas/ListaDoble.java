@@ -59,7 +59,7 @@ public class ListaDoble<T> implements Iterable<T> {
     /**
      * Agrega un valor en la lista en una posici�n espec�fica
      * @param indice �ndice donde se va a guardar el dato
-     * @param nuevo El valor a guardar
+     * @param dato El valor a guardar
      */
     public void agregar(T dato, int indice) {
 
@@ -360,7 +360,7 @@ public class ListaDoble<T> implements Iterable<T> {
 
         /**
          * Constructor de la clase Iterador
-         * @param aux Primer Nodo de la lista
+         * @param nodo Primer Nodo de la lista
          */
         public IteradorListaDoble(NodoDoble<T> nodo) {
             this.nodo = nodo;

@@ -9,7 +9,7 @@ public class Nodo<T> {
     /**
      * Constructor de la clase Nodo
      *
-     * @param dato Elemento que se guarda en el Nodo
+     * @param valorNodo Elemento que se guarda en el Nodo
      */
     public Nodo(T valorNodo) {
         this.valorNodo = valorNodo;

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="575.0" prefWidth="706.0" style="-fx-background-color: #FFB923;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="575.0" prefWidth="706.0" style="-fx-background-color: #FFB923;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.aerolineauq.ViewController.InicioSesionViewController">
     <children>
         <Pane layoutX="23.0" layoutY="17.0" prefHeight="537.0" prefWidth="659.0" style="-fx-background-color: white;">
             <children>
@@ -28,13 +28,12 @@
                         <Font name="Bell MT Bold" size="12.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtContrasenia" layoutX="56.0" layoutY="262.0" prefHeight="30.0" prefWidth="323.0" promptText="Ingrese la contraseña" />
                 <Label layoutX="56.0" layoutY="229.0" text="Contraseña:">
                     <font>
                         <Font name="Bell MT Bold" size="16.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnIngresar" layoutX="138.0" layoutY="440.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #FFB923;" text="Ingresar" textFill="WHITE">
+                <Button fx:id="btnIngresar" layoutX="138.0" layoutY="440.0" mnemonicParsing="false" onAction="#Ingresar" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #FFB923;" text="Ingresar" textFill="WHITE">
                     <font>
                         <Font name="Lucida Fax Regular" size="12.0" />
                     </font>
@@ -44,7 +43,7 @@
                         <Font name="Lucida Fax Regular" size="12.0" />
                     </font>
                 </Button>
-                <PasswordField fx:id="PassFieldcontrasenia" layoutX="56.0" layoutY="262.0" prefHeight="30.0" prefWidth="323.0" promptText="ingrese la contraseña" />
+                <PasswordField fx:id="txtContrasenia" layoutX="56.0" layoutY="262.0" prefHeight="30.0" prefWidth="323.0" promptText="ingrese la contraseña" />
             </children>
         </Pane>
     </children>

@@ -256,7 +256,7 @@ public class ListaSimpleCircular<T> implements Iterable<T> {
 
         /**
          * Constructor de la clase Iterador
-         * @param aux Primer Nodo de la lista
+         * @param nodo Primer Nodo de la lista
          */
         public IteradorListaSimple(Nodo<T> nodo) {
             this.nodo = nodo;
