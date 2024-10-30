@@ -9,7 +9,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
-public class EquipajeController {
+public class EquipajeViewController {
 
     @FXML
     private ResourceBundle resources;
