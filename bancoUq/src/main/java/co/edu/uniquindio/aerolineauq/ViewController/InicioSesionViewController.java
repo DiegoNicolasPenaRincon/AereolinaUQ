@@ -1,5 +1,6 @@
 package co.edu.uniquindio.aerolineauq.ViewController;
 
+import co.edu.uniquindio.aerolineauq.AerolineaApplication;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +10,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class InicioSesionViewController {
+
+    private AerolineaApplication aplicacion;
 
     @FXML
     private Button btnIngresar;
@@ -24,6 +27,10 @@ public class InicioSesionViewController {
 
     private ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
 
+
+    public void setAplicacion(AerolineaApplication aplicacion) {
+        this.aplicacion = aplicacion;
+    }
 
 
     @FXML
@@ -46,11 +53,12 @@ public class InicioSesionViewController {
         } else {
             mostrarAlerta("Error", "ID o contraseña incorrecta", Alert.AlertType.ERROR);
         }
+        aplicacion.mostrarVentanaCompras();
     }
 
     @FXML
-    void onSalir(ActionEvent event) {
-        // Código para cerrar la aplicación o regresar a la pantalla anterior
+    void irRegistro(ActionEvent event) {
+        aplicacion.mostrarVentanaRegistro();
     }
 
     private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {

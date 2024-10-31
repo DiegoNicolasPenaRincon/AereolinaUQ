@@ -1,5 +1,6 @@
 package co.edu.uniquindio.aerolineauq.ViewController;
 
+import co.edu.uniquindio.aerolineauq.AerolineaApplication;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,6 +35,12 @@ public class RegistroViewController {
 
     private ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
 
+    private AerolineaApplication aplicacion;
+
+    public void setAplicacion(AerolineaApplication aplicacion){
+        this.aplicacion=aplicacion;
+    }
+
     @FXML
     void RegistrarUsuario(ActionEvent event) {
         String id = txtID.getText();
@@ -56,6 +63,11 @@ public class RegistroViewController {
         limpiarCampos();
     }
 
+    @FXML
+    void irRegreso(ActionEvent event){
+        aplicacion.mostrarVentanaPrincipal();
+    }
+
     private void limpiarCampos() {
         txtID.clear();
         txtNombre.clear();
@@ -73,4 +85,5 @@ public class RegistroViewController {
         alerta.setContentText(mensaje);
         alerta.showAndWait();
     }
+
 }

@@ -2,6 +2,7 @@ package co.edu.uniquindio.aerolineauq.controller;
 
 import co.edu.uniquindio.aerolineauq.model.Aerolinea;
 import co.edu.uniquindio.aerolineauq.model.Usuario;
+import co.edu.uniquindio.aerolineauq.utils.AerolineaUtils;
 
 import java.time.LocalDate;
 
@@ -10,7 +11,8 @@ public class ModelFactoryController {
     private Aerolinea aerolinea;
 
     private ModelFactoryController() {
-        aerolinea = new Aerolinea(); // Inicializa la clase de lógica de negocio
+        aerolinea = AerolineaUtils.inicializarDatos();
+        System.out.println("Datos inicializados");// Inicializa la clase de lógica de negocio
     }
 
     public static ModelFactoryController getInstance() {

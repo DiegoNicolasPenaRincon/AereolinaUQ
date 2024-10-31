@@ -29,7 +29,7 @@
                         <Font name="Bell MT Bold" size="14.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnRegistrarse" layoutX="282.0" layoutY="447.0" mnemonicParsing="false" onAction="#RegistrarUsuario" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #FFB923;" text="Registrarse" textFill="WHITE">
+                <Button fx:id="btnRegistrarse" layoutX="282.0" layoutY="423.0" mnemonicParsing="false" onAction="#RegistrarUsuario" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #FFB923;" text="Registrarse" textFill="WHITE">
                     <font>
                         <Font name="Lucida Fax Demibold" size="12.0" />
                     </font>
@@ -65,6 +65,11 @@
                </font>
             </Label>
             <DatePicker fx:id="txtFecha" layoutX="355.0" layoutY="95.0" prefHeight="25.0" prefWidth="240.0" />
+            <Button fx:id="btnRegresar" layoutX="282.0" layoutY="483.0" mnemonicParsing="false" onAction="#irRegreso" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #FFB923;" text="Regresar" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Fax Demibold" size="12.0" />
+               </font>
+            </Button>
             </children>
         </Pane>
     </children>

@@ -1,5 +1,6 @@
 package co.edu.uniquindio.aerolineauq.ViewController;
 
+import co.edu.uniquindio.aerolineauq.AerolineaApplication;
 import co.edu.uniquindio.aerolineauq.model.Ruta;
 import co.edu.uniquindio.aerolineauq.model.claseVuelo;
 import javafx.fxml.FXML;
@@ -27,5 +28,11 @@ public class CompraViewController {
 
     @FXML
     private DatePicker dateSalida;
+
+    private AerolineaApplication aplicacion;
+
+    public void setAplicacion(AerolineaApplication aplicacion) {
+        this.aplicacion = aplicacion;
+    }
 
 }
