@@ -15,5 +15,6 @@ public class Tiquete {
     private double precio;
     private claseVuelo claseVuelo;
     private Silla silla;
+    private TipoViaje tipoViaje;
     //Lista de sillas seleccionadas
 }

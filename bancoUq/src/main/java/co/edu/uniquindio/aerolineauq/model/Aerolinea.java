@@ -13,6 +13,7 @@ public class Aerolinea implements Serializable {
     ListaSimple<Usuario> listaUsuarios = new ListaSimple<>();
     ListaSimple<Tripulante> listaTripulantes = new ListaSimple<>();
     ListaSimple<Tiquete> listaTiquetes=new ListaSimple<>();
+    public Usuario usuario;
 
 
     public void registrarUsuario(Usuario usuario) {
@@ -22,6 +23,7 @@ public class Aerolinea implements Serializable {
     // Método para validar el inicio de sesión
     public boolean validarInicioSesion(String id, String contrasenia) {
         Usuario usuario = buscarUsuarioPorId(id);
+        this.usuario=usuario;
         if (usuario != null && usuario.getContrasenia().equals(contrasenia)) {
             return true; // Inicio de sesión válido
         }

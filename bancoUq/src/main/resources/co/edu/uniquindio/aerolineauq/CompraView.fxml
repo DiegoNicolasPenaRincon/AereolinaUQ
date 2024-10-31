@@ -14,7 +14,7 @@
       <Label layoutX="67.0" layoutY="87.0" text="Ruta" />
       <Label layoutX="65.0" layoutY="122.0" text="Clase" />
       <Label layoutX="38.0" layoutY="182.0" text="Fecha de Salida" />
-      <Label layoutX="309.0" layoutY="182.0" text="Fecha de Regreso" />
+      <Label fx:id="labelRegreso" layoutX="309.0" layoutY="182.0" text="Fecha de Regreso" />
       <ComboBox fx:id="comboRuta" layoutX="120.0" layoutY="83.0" prefHeight="25.0" prefWidth="236.0" />
       <ComboBox fx:id="comboClase" layoutX="120.0" layoutY="118.0" prefWidth="150.0" />
       <DatePicker fx:id="dateSalida" layoutX="131.0" layoutY="178.0" />

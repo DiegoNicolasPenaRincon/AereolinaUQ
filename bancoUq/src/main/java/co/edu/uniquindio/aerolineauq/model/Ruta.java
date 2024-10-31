@@ -12,8 +12,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Ruta {
-    private String origen;
-    private String destino;
+    private final String origen="Ciudad de Mexico";
+    private Destino destino;
     private LocalDate duracion;
     private LocalDate horaSalida;
 }

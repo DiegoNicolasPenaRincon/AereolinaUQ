@@ -1,5 +1,6 @@
 package co.edu.uniquindio.aerolineauq.Listas;
 
+import co.edu.uniquindio.aerolineauq.model.Aerolinea;
 import co.edu.uniquindio.aerolineauq.model.Usuario;
 
 import java.util.Iterator;
