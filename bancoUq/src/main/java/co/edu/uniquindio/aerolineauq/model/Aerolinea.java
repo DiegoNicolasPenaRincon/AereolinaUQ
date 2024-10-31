@@ -1,28 +1,19 @@
 package co.edu.uniquindio.aerolineauq.model;
 
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
+@Getter
+@Setter
 public class Aerolinea implements Serializable {
 
     ListaSimple<Usuario> listaUsuarios = new ListaSimple<>();
     ListaSimple<Tripulante> listaTripulantes = new ListaSimple<>();
+    ListaSimple<Tiquete> listaTiquetes=new ListaSimple<>();
 
-    public ListaSimple<Usuario> getListaUsuarios() {
-        return listaUsuarios;
-    }
-
-    public void setListaUsuarios(ListaSimple<Usuario> listaUsuarios) {
-        this.listaUsuarios = listaUsuarios;
-    }
-
-    public ListaSimple<Tripulante> getListaTripulantes() {
-        return listaTripulantes;
-    }
-
-    public void setListaTripulantes(ListaSimple<Tripulante> listaTripulantes) {
-        this.listaTripulantes = listaTripulantes;
-    }
 
     public void registrarUsuario(Usuario usuario) {
         listaUsuarios.agregar(usuario);

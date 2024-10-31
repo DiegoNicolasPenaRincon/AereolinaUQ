@@ -10,8 +10,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Tiquete {
+    private Usuario usuario;
     private Ruta ruta;
     private double precio;
     private claseVuelo claseVuelo;
+    private Silla silla;
     //Lista de sillas seleccionadas
 }

@@ -4,23 +4,26 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <AnchorPane prefHeight="373.0" prefWidth="579.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.aerolineauq.ViewController.CompraViewController">
    <children>
       <Label layoutX="262.0" layoutY="31.0" text="Compra Tickets" />
       <Label layoutX="67.0" layoutY="87.0" text="Ruta" />
       <Label layoutX="65.0" layoutY="122.0" text="Clase" />
-      <Label layoutX="38.0" layoutY="153.0" text="Fecha de Salida" />
-      <Label layoutX="32.0" layoutY="182.0" text="Fecha de Regreso" />
-      <ComboBox fx:id="comboRuta" layoutX="120.0" layoutY="83.0" prefWidth="150.0" />
+      <Label layoutX="38.0" layoutY="182.0" text="Fecha de Salida" />
+      <Label layoutX="309.0" layoutY="182.0" text="Fecha de Regreso" />
+      <ComboBox fx:id="comboRuta" layoutX="120.0" layoutY="83.0" prefHeight="25.0" prefWidth="236.0" />
       <ComboBox fx:id="comboClase" layoutX="120.0" layoutY="118.0" prefWidth="150.0" />
-      <DatePicker fx:id="dateSalida" layoutX="133.0" layoutY="149.0" />
-      <DatePicker fx:id="dateRegreso" layoutX="134.0" layoutY="178.0" />
+      <DatePicker fx:id="dateSalida" layoutX="131.0" layoutY="178.0" />
+      <DatePicker fx:id="dateRegreso" layoutX="404.0" layoutY="178.0" />
       <Label layoutX="34.0" layoutY="218.0" text="Cantidad de Personas" />
       <Spinner fx:id="SpinPersonas" layoutX="174.0" layoutY="214.0" prefHeight="25.0" prefWidth="88.0" />
-      <Button fx:id="btnCompra" layoutX="251.0" layoutY="293.0" mnemonicParsing="false" text="Realizar Compra" />
+      <Button fx:id="btnCompra" layoutX="374.0" layoutY="293.0" mnemonicParsing="false" text="Realizar Compra" />
+      <Button fx:id="btnAsientos" layoutX="111.0" layoutY="293.0" mnemonicParsing="false" text="Seleccionar Asientos" />
+      <RadioButton fx:id="radioIdaVuelta" layoutX="37.0" layoutY="155.0" mnemonicParsing="false" text="Ida y Vuelta" />
+      <RadioButton fx:id="radioIda" layoutX="152.0" layoutY="155.0" mnemonicParsing="false" text="Solo ida" />
    </children>
 </AnchorPane>
