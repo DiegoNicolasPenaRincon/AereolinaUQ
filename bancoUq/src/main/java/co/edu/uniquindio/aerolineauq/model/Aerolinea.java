@@ -2,14 +2,11 @@ package co.edu.uniquindio.aerolineauq.model;
 
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Iterator;
 
-@Getter
-@Setter
+
 public class Aerolinea implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -17,6 +14,11 @@ public class Aerolinea implements Serializable {
     ListaSimple<Tripulante> listaTripulantes = new ListaSimple<>();
     ListaSimple<Tiquete> listaTiquetes=new ListaSimple<>();
     public Usuario usuario;
+
+    public ListaSimple<Usuario> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
 
     public void registrarAccionesSistema(String mensaje, int nivel, String accion) {
         Persistencia.guardaRegistroLog(mensaje, nivel, accion);
