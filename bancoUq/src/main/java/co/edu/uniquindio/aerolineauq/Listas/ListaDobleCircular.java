@@ -1,6 +1,9 @@
 package co.edu.uniquindio.aerolineauq.Listas;
 
-public class ListaDobleCircular<T> {
+import java.io.Serializable;
+
+public class ListaDobleCircular<T> implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private NodoDoble<T> nodoPrimero;
     private NodoDoble<T> nodoUltimo;

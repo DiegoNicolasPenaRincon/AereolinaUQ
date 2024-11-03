@@ -5,11 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Equipaje {
+public class Equipaje implements Serializable {
+    private static final long serialVersionUID = 1L;
     private double peso;
     private double costoAdicional;
     private boolean esMascota;

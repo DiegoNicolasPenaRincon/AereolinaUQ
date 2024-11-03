@@ -2,6 +2,7 @@ package co.edu.uniquindio.aerolineauq.ViewController;
 
 import co.edu.uniquindio.aerolineauq.AerolineaApplication;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
+import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -54,6 +55,7 @@ public class InicioSesionViewController {
             mostrarAlerta("Error", "ID o contraseña incorrecta", Alert.AlertType.ERROR);
         }
         aplicacion.mostrarVentanaCompras();
+        registrarAccionesSistema("Ingresar", 1, "Se ingreso ");
     }
 
     @FXML
@@ -67,6 +69,9 @@ public class InicioSesionViewController {
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
         alerta.showAndWait();
+    }
+    public void registrarAccionesSistema(String mensaje, int nivel, String accion) {
+        Persistencia.guardaRegistroLog(mensaje, nivel, accion);
     }
 
 }

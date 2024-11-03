@@ -1,0 +1,46 @@
+nov. 02, 2024 8:04:35 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el usuario gsg,Registro usuario,2024-11-02
+nov. 02, 2024 8:04:39 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se limpiaron los campos ,Limpiar campos,2024-11-02
+nov. 02, 2024 9:50:03 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el usuario ssdsbghd,Registro usuario,2024-11-02
+nov. 02, 2024 9:50:12 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se limpiaron los campos ,Limpiar campos,2024-11-02
+nov. 02, 2024 9:52:23 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el usuario roro,Registro usuario,2024-11-02
+nov. 02, 2024 9:52:24 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se limpiaron los campos ,Limpiar campos,2024-11-02
+nov. 02, 2024 9:58:04 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el usuario rwer,Registro usuario,2024-11-02
+nov. 02, 2024 9:58:05 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se limpiaron los campos ,Limpiar campos,2024-11-02
+nov. 02, 2024 10:00:09 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el usuario soofii,Registro usuario,2024-11-02
+nov. 02, 2024 10:00:10 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se limpiaron los campos ,Limpiar campos,2024-11-02
+nov. 02, 2024 10:02:25 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el usuario sofia,Registro usuario,2024-11-02
+nov. 02, 2024 10:02:27 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se limpiaron los campos ,Limpiar campos,2024-11-02
+nov. 02, 2024 10:02:29 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se volvio al login ,Volver atras,2024-11-02
+nov. 02, 2024 10:07:24 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-02
+nov. 02, 2024 10:09:00 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el usuario fffw,Registro usuario,2024-11-02
+nov. 02, 2024 10:09:00 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se limpiaron los campos ,Limpiar campos,2024-11-02
+nov. 02, 2024 10:13:21 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-02
+nov. 02, 2024 10:14:31 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el usuario roro,Registro usuario,2024-11-02
+nov. 02, 2024 10:14:32 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se limpiaron los campos ,Limpiar campos,2024-11-02
+nov. 02, 2024 11:02:17 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-02
+nov. 02, 2024 11:03:18 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el usuario juli,Registro usuario,2024-11-02
+nov. 02, 2024 11:03:24 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se limpiaron los campos ,Limpiar campos,2024-11-02
+nov. 02, 2024 11:07:01 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-02

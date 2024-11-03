@@ -3,9 +3,13 @@ package co.edu.uniquindio.aerolineauq.Listas;
 import co.edu.uniquindio.aerolineauq.model.Aerolinea;
 import co.edu.uniquindio.aerolineauq.model.Usuario;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
-public class ListaSimple<T> implements Iterable<T> {
+public class ListaSimple<T> implements Iterable<T> , Serializable {
+    private static final long serialVersionUID = 1L;
 
     private Nodo<T> nodoPrimero;
     private Nodo<T> nodoUltimo;
@@ -221,6 +225,13 @@ public class ListaSimple<T> implements Iterable<T> {
     @Override
     public Iterator<T> iterator() {
         return new IteradorListaSimple(nodoPrimero);
+    }
+
+
+    public void addAll(ArrayList<T> elementos) {
+        for (T elemento : elementos) {
+            this.agregar(elemento);
+        }
     }
 
     protected class IteradorListaSimple implements Iterator<T> {

@@ -3,6 +3,8 @@ package co.edu.uniquindio.aerolineauq.ViewController;
 import co.edu.uniquindio.aerolineauq.AerolineaApplication;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
 import co.edu.uniquindio.aerolineauq.model.claseVuelo;
+import co.edu.uniquindio.aerolineauq.model.Ruta;
+import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -61,7 +63,7 @@ public class CompraViewController {
 
         actualizarVisibilidadDateRegreso();
 
-        comboRuta.getItems().addAll(Ruta.values());
+     //   comboRuta.getItems().addAll(Ruta.values());
         comboClase.getItems().addAll(Arrays.toString(claseVuelo.values()));
 
         SpinPersonas.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1));
@@ -111,6 +113,9 @@ public class CompraViewController {
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
+    }
+    public void registrarAccionesSistema(String mensaje, int nivel, String accion) {
+        Persistencia.guardaRegistroLog(mensaje, nivel, accion);
     }
 
 }
