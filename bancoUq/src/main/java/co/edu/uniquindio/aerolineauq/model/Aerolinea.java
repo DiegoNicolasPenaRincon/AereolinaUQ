@@ -13,6 +13,7 @@ public class Aerolinea implements Serializable {
     ListaSimple<Usuario> listaUsuarios = new ListaSimple<>();
     ListaSimple<Tripulante> listaTripulantes = new ListaSimple<>();
     ListaSimple<Tiquete> listaTiquetes=new ListaSimple<>();
+    ListaSimple<Ruta> rutasAerolinea=new ListaSimple<>();
     public Usuario usuario;
 
 
