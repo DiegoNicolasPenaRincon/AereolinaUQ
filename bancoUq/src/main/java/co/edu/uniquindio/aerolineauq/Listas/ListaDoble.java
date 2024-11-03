@@ -1,8 +1,10 @@
 package co.edu.uniquindio.aerolineauq.Listas;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
-public class ListaDoble<T> implements Iterable<T> {
+public class ListaDoble<T> implements Iterable<T> , Serializable {
+    private static final long serialVersionUID = 1L;
 
     private NodoDoble<T> nodoPrimero;
     private NodoDoble<T> nodoUltimo;

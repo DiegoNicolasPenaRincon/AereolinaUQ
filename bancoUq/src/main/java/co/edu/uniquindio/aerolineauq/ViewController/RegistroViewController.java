@@ -2,6 +2,7 @@ package co.edu.uniquindio.aerolineauq.ViewController;
 
 import co.edu.uniquindio.aerolineauq.AerolineaApplication;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
+import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -57,6 +58,7 @@ public class RegistroViewController {
         }
 
         modelFactoryController.registrarUsuario(id, nombre, apellido, correo, direccion, contrasenia, fechaNacimiento);
+        registrarAccionesSistema("Registro usuario", 1, "Se registro el usuario "+ nombre);
 
         mostrarAlerta("Éxito", "Usuario registrado correctamente", Alert.AlertType.INFORMATION);
 
@@ -66,6 +68,7 @@ public class RegistroViewController {
     @FXML
     void irRegreso(ActionEvent event){
         aplicacion.mostrarVentanaPrincipal();
+        registrarAccionesSistema("Volver atras", 1, "Se volvio al login ");
     }
 
     private void limpiarCampos() {
@@ -76,6 +79,7 @@ public class RegistroViewController {
         txtDireccion.clear();
         txtContrasenia.clear();
         txtFecha.setValue(null);
+        registrarAccionesSistema("Limpiar campos", 1, "Se limpiaron los campos ");
     }
 
     private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
@@ -84,6 +88,9 @@ public class RegistroViewController {
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
         alerta.showAndWait();
+    }
+    public void registrarAccionesSistema(String mensaje, int nivel, String accion) {
+        Persistencia.guardaRegistroLog(mensaje, nivel, accion);
     }
 
 }

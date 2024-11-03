@@ -10,8 +10,6 @@ module co.edu.uniquindio.aerolineauq {
     opens co.edu.uniquindio.aerolineauq to javafx.fxml;
     exports co.edu.uniquindio.aerolineauq;
     exports co.edu.uniquindio.aerolineauq.controller;
-    exports co.edu.uniquindio.aerolineauq.mapping.dto;
-    exports co.edu.uniquindio.aerolineauq.mapping.mappers;
     exports co.edu.uniquindio.aerolineauq.model;
     exports co.edu.uniquindio.aerolineauq.ViewController;
     exports co.edu.uniquindio.aerolineauq.Listas;

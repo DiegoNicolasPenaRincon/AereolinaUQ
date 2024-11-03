@@ -1,6 +1,9 @@
 package co.edu.uniquindio.aerolineauq.Listas;
 
-public class NodoDoble<T> {
+import java.io.Serializable;
+
+public class NodoDoble<T> implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private NodoDoble<T> siguienteNodo;
     private NodoDoble<T> anteriorNodo;

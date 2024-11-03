@@ -1,8 +1,10 @@
 package co.edu.uniquindio.aerolineauq.Listas;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
-public class ListaSimpleCircular<T> implements Iterable<T> {
+public class ListaSimpleCircular<T> implements Iterable<T> , Serializable {
+    private static final long serialVersionUID = 1L;
 
     private Nodo<T> nodoPrimero;
     private Nodo<T> nodoUltimo;

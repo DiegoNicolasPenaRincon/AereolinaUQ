@@ -5,11 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tiquete {
+public class Tiquete implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Usuario usuario;
     private Ruta ruta;
     private double precio;
