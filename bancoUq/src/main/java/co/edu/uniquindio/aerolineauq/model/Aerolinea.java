@@ -14,6 +14,8 @@ public class Aerolinea implements Serializable {
     ListaSimple<Tripulante> listaTripulantes = new ListaSimple<>();
     ListaSimple<Tiquete> listaTiquetes=new ListaSimple<>();
     ListaSimple<Ruta> rutasAerolinea=new ListaSimple<>();
+    ListaSimple<Avion> listaAviones=new ListaSimple<>();
+
     public Usuario usuario;
 
     public ListaSimple<Usuario> getListaUsuarios() {
@@ -65,7 +67,67 @@ public class Aerolinea implements Serializable {
 
         return usuarioEncontrado;
     }
+/*
+    public void asignarTripulacion(Avion avion) {
+        String tipoAvion = avion.getTipoAvion();
+        ListaSimple<Tripulante> tripulacionAsignada = new ListaSimple<>();
 
+        int numAuxiliares = 0;
 
+        // Determinar la cantidad de auxiliares de vuelo necesarios
+        if (tipoAvion.equalsIgnoreCase("Airbus A320")) {
+            numAuxiliares = 3;
+        } else if (tipoAvion.equalsIgnoreCase("Airbus A330") || tipoAvion.equalsIgnoreCase("Boeing 787")) {
+            numAuxiliares = 7;
+        }
 
+        // Buscar y asignar el piloto y copiloto
+        for (Tripulante tripulante : listaTripulantes) {
+            if (tripulante.getRolTripulante().equalsIgnoreCase("Piloto")) {
+                tripulacionAsignada.agregar(tripulante);
+                break; // Solo necesitamos un piloto
+            }
+        }
+
+        for (Tripulante tripulante : listaTripulantes) {
+            if (tripulante.getRolTripulante().equalsIgnoreCase("Copiloto")) {
+                tripulacionAsignada.agregar(tripulante);
+                break; // Solo necesitamos un copiloto
+            }
+        }
+
+        // Buscar y asignar los auxiliares de vuelo necesarios
+        int auxiliaresAgregados = 0;
+        for (Tripulante tripulante : listaTripulantes) {
+            if (tripulante.getRolTripulante().equalsIgnoreCase("Auxiliar de vuelo") && auxiliaresAgregados < numAuxiliares) {
+                tripulacionAsignada.agregar(tripulante);
+                auxiliaresAgregados++;
+            }
+        }
+
+        // Aquí puedes asignar la lista `tripulacionAsignada` al vuelo o al avión, según sea necesario
+        System.out.println("Tripulación asignada para el avión " + tipoAvion + ": " + tripulacionAsignada);
+    }
+
+ */
+
+    public void setListaUsuarios(ListaSimple<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
+
+    public ListaSimple<Tripulante> getListaTripulantes() {
+        return listaTripulantes;
+    }
+
+    public void setListaTripulantes(ListaSimple<Tripulante> listaTripulantes) {
+        this.listaTripulantes = listaTripulantes;
+    }
+
+    public ListaSimple<Avion> getListaAviones() {
+        return listaAviones;
+    }
+
+    public void setListaAviones(ListaSimple<Avion> listaAviones) {
+        this.listaAviones = listaAviones;
+    }
 }

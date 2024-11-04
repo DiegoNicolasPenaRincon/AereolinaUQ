@@ -32,6 +32,7 @@ public class Nodo<T> implements Serializable {
     }
 
 
+
     //Metodos get y set de la clase Nodo
 
     public Nodo<T> getSiguienteNodo() {
