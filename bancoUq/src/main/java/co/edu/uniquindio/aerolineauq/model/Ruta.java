@@ -18,4 +18,5 @@ public class Ruta implements Serializable {
     private Destino destino;
     private LocalDate duracion;
     private LocalDate horaSalida;
+    private Avion avionAsignado;
 }

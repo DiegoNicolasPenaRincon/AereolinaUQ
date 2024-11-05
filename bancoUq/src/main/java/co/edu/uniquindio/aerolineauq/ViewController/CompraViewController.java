@@ -6,8 +6,13 @@ import co.edu.uniquindio.aerolineauq.model.claseVuelo;
 import co.edu.uniquindio.aerolineauq.model.Ruta;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 public class CompraViewController {
@@ -25,7 +30,7 @@ public class CompraViewController {
     private ComboBox<String> comboClase;
 
     @FXML
-    private ComboBox<String> comboRuta;
+    private ComboBox<String> comboDestinos;
 
     @FXML
     private DatePicker dateRegreso;
@@ -46,6 +51,9 @@ public class CompraViewController {
     
     private AerolineaApplication aplicacion;
 
+    private String tipoAvionSeleccionado="Airbus A320";
+    private String claseVueloSeleccionada;
+
     private ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
 
 
@@ -58,14 +66,15 @@ public class CompraViewController {
         toggleGroupViaje = new ToggleGroup();
         radioIda.setToggleGroup(toggleGroupViaje);
         radioIdaVuelta.setToggleGroup(toggleGroupViaje);
-
         toggleGroupViaje.selectedToggleProperty().addListener((observable, oldValue, newValue) -> actualizarVisibilidadDateRegreso());
-
         actualizarVisibilidadDateRegreso();
-
-     //   comboRuta.getItems().addAll(Ruta.values());
-        comboClase.getItems().addAll(Arrays.toString(claseVuelo.values()));
-
+        comboDestinos.getItems().addAll("Monterrey", "Cancún", "Buenos Aires", "Los Angeles", "Bogotá", "Panamá");
+        comboDestinos.getSelectionModel().selectFirst();
+        for (claseVuelo clase : claseVuelo.values()) {
+            comboClase.getItems().add(clase.toString());
+        }
+        radioIda.setSelected(true);
+        comboClase.getSelectionModel().selectFirst();
         SpinPersonas.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1));
     }
 
@@ -77,7 +86,7 @@ public class CompraViewController {
     @FXML
     public void realizarCompra() {
         // Validación de campos requeridos
-        if (comboRuta.getValue() == null || comboClase.getValue() == null ||
+        if (comboDestinos.getValue() == null || comboClase.getValue() == null ||
                 dateSalida.getValue() == null || SpinPersonas.getValue() == null ||
                 (radioIdaVuelta.isSelected() && dateRegreso.getValue() == null)) {
 
@@ -86,8 +95,10 @@ public class CompraViewController {
         }
 
         // Obtener datos de la compra
-        String ruta = comboRuta.getValue();
+        String ruta = comboDestinos.getValue();
         String clase = comboClase.getValue();
+        System.out.println(comboClase.getValue());
+        claseVueloSeleccionada=comboClase.getValue();
         int cantidadPersonas = SpinPersonas.getValue();
         String tipoViaje = radioIdaVuelta.isSelected() ? "Ida y vuelta" : "Solo ida";
         String fechaSalida = dateSalida.getValue().toString();
@@ -106,6 +117,27 @@ public class CompraViewController {
                 "Fecha de salida: " + fechaSalida + "\n" +
                 "Fecha de regreso: " + fechaRegreso);
     }
+
+    @FXML
+    private void seleccionarAsiento() {
+        System.out.println(comboClase.getValue());
+        claseVueloSeleccionada=comboClase.getValue();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/aerolineauq/AsientosView.fxml"));
+            Parent root = loader.load();
+
+            AsientosViewController controller = loader.getController();
+            controller.inicializarAsientos(tipoAvionSeleccionado, claseVueloSeleccionada); // Pasa el tipo y clase de avión seleccionados
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Seleccionar Asiento");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
