@@ -23,12 +23,7 @@
                         <Font name="Bell MT Bold" size="14.0" />
                     </font>
                 </Label>
-                <Label layoutX="56.0" layoutY="215.0">
-                    <font>
-                        <Font name="Bell MT Bold" size="12.0" />
-                    </font>
-                </Label>
-                <Button fx:id="btnRegistrar" layoutX="275.0" layoutY="366.0" mnemonicParsing="false" onAction="#registrarEquipaje" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #FFB923;" text="Registrar" textFill="WHITE">
+                <Button fx:id="btnRegistrar" layoutX="275.0" layoutY="386.0" mnemonicParsing="false" onAction="#registrarEquipaje" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #FFB923;" text="Registrar" textFill="WHITE">
                     <font>
                         <Font name="Lucida Fax Demibold" size="12.0" />
                     </font>
@@ -38,7 +33,7 @@
                         <Font name="Bell MT Bold" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtNumeroVuelo" layoutX="212.0" layoutY="165.0" prefHeight="30.0" prefWidth="240.0" promptText="Ingrese su numero de vuelo" />
+                <TextField fx:id="txtNumeroVuelo" layoutX="212.0" layoutY="165.0" prefHeight="30.0" prefWidth="240.0" promptText="Ingrese su número de vuelo" />
                 <Label layoutX="219.0" layoutY="207.0" text="Mascota:">
                     <font>
                         <Font name="Bell MT Bold" size="14.0" />
@@ -49,10 +44,15 @@
                         <Font name="Bell MT Bold" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtPesoMascota" layoutX="212.0" layoutY="294.0" prefHeight="30.0" prefWidth="240.0" promptText="Ingrese el peso de su mascota" />
-            <CheckBox fx:id="ckMascotaSi" layoutX="226.0" layoutY="239.0" mnemonicParsing="false" text="Si" />
-            <CheckBox fx:id="ckMascotaNo" layoutX="333.0" layoutY="239.0" mnemonicParsing="false" text="No" />
-            <ComboBox fx:id="cbTipoEquipaje" layoutX="212.0" layoutY="109.0" prefHeight="25.0" prefWidth="204.0" promptText="Seleccione el tipo" />
+                <TextField fx:id="txtPesoMascota" layoutX="212.0" layoutY="294.0" prefHeight="30.0" prefWidth="240.0" promptText="Ingrese el peso de su mascota" disable="true"/>
+                <CheckBox fx:id="ckMascotaSi" layoutX="226.0" layoutY="239.0" mnemonicParsing="false" text="Sí" />
+                <CheckBox fx:id="ckMascotaNo" layoutX="333.0" layoutY="239.0" mnemonicParsing="false" text="No" />
+                <Label layoutX="219.0" layoutY="334.0" text="Peso Equipaje:">
+                    <font>
+                        <Font name="Bell MT Bold" size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtPesoEquipaje" layoutX="211.0" layoutY="358.0" prefHeight="30.0" prefWidth="240.0" promptText="Ingrese el peso de su equipaje" />
             </children>
         </Pane>
     </children>
