@@ -5,6 +5,7 @@ import co.edu.uniquindio.aerolineauq.model.Usuario;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -219,6 +220,21 @@ public class ListaSimple<T> implements Iterable<T> , Serializable {
         }
 
         return -1;
+    }
+
+    /**
+     * Castea la lista a una coleccion
+     * @return
+     */
+    public Collection<T> toCollection() {
+        Collection<T> c=new ArrayList<>();
+        Nodo<T> aux=nodoPrimero;
+        while(aux!=null)
+        {
+            c.add(aux.getValorNodo());
+            aux = aux.getSiguienteNodo();
+        }
+        return c;
     }
 
 

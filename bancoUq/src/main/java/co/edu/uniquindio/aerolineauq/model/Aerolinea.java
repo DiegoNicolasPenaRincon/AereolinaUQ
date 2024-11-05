@@ -2,11 +2,14 @@ package co.edu.uniquindio.aerolineauq.model;
 
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Iterator;
 
-
+@Getter
+@Setter
 public class Aerolinea implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -14,11 +17,9 @@ public class Aerolinea implements Serializable {
     ListaSimple<Tripulante> listaTripulantes = new ListaSimple<>();
     ListaSimple<Tiquete> listaTiquetes=new ListaSimple<>();
     ListaSimple<Ruta> rutasAerolinea=new ListaSimple<>();
-    public Usuario usuario;
+    ListaSimple<Avion> avionesDisponibles=new ListaSimple<>();
 
-    public ListaSimple<Usuario> getListaUsuarios() {
-        return listaUsuarios;
-    }
+    public Usuario usuario;
 
 
     public void registrarAccionesSistema(String mensaje, int nivel, String accion) {
@@ -65,6 +66,30 @@ public class Aerolinea implements Serializable {
 
         return usuarioEncontrado;
     }
+
+    public ListaSimple<Avion> filtrarNacionalesInternacionales(int estado) {
+        ListaSimple<Avion> listaFiltrada = new ListaSimple<>();
+        for(int i=0;i<avionesDisponibles.getTamanio();i++)
+        {
+            if(estado==1)
+            {
+                if(avionesDisponibles.obtenerValorNodo(i).getTipoAvion().equals(TipoAvion.INTERNACIONAL))
+                {
+                    listaFiltrada.agregar(avionesDisponibles.obtenerValorNodo(i));
+                }
+            }
+            else
+            {
+                if(avionesDisponibles.obtenerValorNodo(i).getTipoAvion().equals(TipoAvion.NACIONAL))
+                {
+                    listaFiltrada.agregar(avionesDisponibles.obtenerValorNodo(i));
+                }
+            }
+        }
+        return listaFiltrada;
+    }
+
+
 
 
 
