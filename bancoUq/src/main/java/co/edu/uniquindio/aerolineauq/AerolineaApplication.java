@@ -27,7 +27,7 @@ public class AerolineaApplication extends Application {
     public void mostrarVentanaPrincipal() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(AerolineaApplication.class.getResource("/co/edu/uniquindio/aerolineauq/InicioSesionView.fxml"));
+            loader.setLocation(AerolineaApplication.class.getResource("/co/edu/uniquindio/aerolineauq/InicioSesion.fxml"));
             Parent root= loader.load();
             InicioSesionViewController inicioSesionViewController=loader.getController();
             inicioSesionViewController.setAplicacion(this);

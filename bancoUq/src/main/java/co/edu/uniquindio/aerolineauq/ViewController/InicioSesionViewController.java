@@ -3,12 +3,12 @@ package co.edu.uniquindio.aerolineauq.ViewController;
 import co.edu.uniquindio.aerolineauq.AerolineaApplication;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 public class InicioSesionViewController {
 
@@ -18,13 +18,49 @@ public class InicioSesionViewController {
     private Button btnIngresar;
 
     @FXML
-    private Button btnSalir;
+    private Button btnRegistrarse;
+
+    @FXML
+    private Button btnRegistro;
+
+    @FXML
+    private DatePicker dateNacimiento;
+
+    @FXML
+    private TextField txtApellido;
 
     @FXML
     private PasswordField txtContrasenia;
 
     @FXML
+    private PasswordField txtContraseniaNueva;
+
+    @FXML
+    private TextField txtCorreo;
+
+    @FXML
+    private TextField txtDireccion;
+
+    @FXML
     private TextField txtID;
+
+    @FXML
+    private TextField txtIDNueva;
+
+    @FXML
+    private TextField txtNombre;
+
+    @FXML
+    private AnchorPane sideForm;
+
+    @FXML
+    private Button btnExisteCuenta;
+
+    @FXML
+    private AnchorPane SideInicio;
+
+    @FXML
+    private AnchorPane SideSign;
 
     private ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
 
@@ -60,7 +96,35 @@ public class InicioSesionViewController {
 
     @FXML
     void irRegistro(ActionEvent event) {
-        aplicacion.mostrarVentanaRegistro();
+        TranslateTransition slider =new TranslateTransition();
+
+        if(event.getSource() == btnRegistrarse){
+            slider.setNode(sideForm);
+            slider.setToX(300);
+            slider.setDuration(Duration.seconds(.5));
+            SideInicio.setVisible(false);
+
+            slider.setOnFinished((ActionEvent e) ->{
+
+                btnExisteCuenta.setVisible(true);
+                btnRegistrarse.setVisible(false);
+            });
+
+            slider.play();
+        } else if(event.getSource() == btnExisteCuenta){
+            slider.setNode(sideForm);
+            slider.setToX(0);
+            slider.setDuration(Duration.seconds(.5));
+            SideInicio.setVisible(true);
+
+            slider.setOnFinished((ActionEvent e) ->{
+
+                btnExisteCuenta.setVisible(false);
+                btnRegistrarse.setVisible(true);
+            });
+
+            slider.play();
+        }
     }
 
     private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
