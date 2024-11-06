@@ -2,14 +2,11 @@ package co.edu.uniquindio.aerolineauq.model;
 
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Iterator;
 
-@Getter
-@Setter
+
 public class Aerolinea implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -17,9 +14,13 @@ public class Aerolinea implements Serializable {
     ListaSimple<Tripulante> listaTripulantes = new ListaSimple<>();
     ListaSimple<Tiquete> listaTiquetes=new ListaSimple<>();
     ListaSimple<Ruta> rutasAerolinea=new ListaSimple<>();
-    ListaSimple<Avion> avionesDisponibles=new ListaSimple<>();
+    ListaSimple<Avion> listaAviones=new ListaSimple<>();
 
     public Usuario usuario;
+
+    public ListaSimple<Usuario> getListaUsuarios() {
+        return listaUsuarios;
+    }
 
 
     public void registrarAccionesSistema(String mensaje, int nivel, String accion) {
@@ -67,30 +68,31 @@ public class Aerolinea implements Serializable {
         return usuarioEncontrado;
     }
 
-    public ListaSimple<Avion> filtrarNacionalesInternacionales(int estado) {
-        ListaSimple<Avion> listaFiltrada = new ListaSimple<>();
-        for(int i=0;i<avionesDisponibles.getTamanio();i++)
-        {
-            if(estado==1)
-            {
-                if(avionesDisponibles.obtenerValorNodo(i).getTipoAvion().equals(TipoAvion.INTERNACIONAL))
-                {
-                    listaFiltrada.agregar(avionesDisponibles.obtenerValorNodo(i));
-                }
-            }
-            else
-            {
-                if(avionesDisponibles.obtenerValorNodo(i).getTipoAvion().equals(TipoAvion.NACIONAL))
-                {
-                    listaFiltrada.agregar(avionesDisponibles.obtenerValorNodo(i));
-                }
-            }
-        }
-        return listaFiltrada;
+    public void registrarEquipaje(Tiquete tiquete, double peso, boolean esMascota, double pesoMascota, String categoriaViaje) {
+        Equipaje equipaje = new Equipaje(peso, esMascota, pesoMascota, categoriaViaje, tiquete.getClaseVuelo());
+        tiquete.setEquipaje(equipaje);
+        registrarAccionesSistema("Equipaje registrado para tiquete: " + tiquete, 1, "Registro Equipaje");
     }
 
 
 
+    public void setListaUsuarios(ListaSimple<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
 
+    public ListaSimple<Tripulante> getListaTripulantes() {
+        return listaTripulantes;
+    }
 
+    public void setListaTripulantes(ListaSimple<Tripulante> listaTripulantes) {
+        this.listaTripulantes = listaTripulantes;
+    }
+
+    public ListaSimple<Avion> getListaAviones() {
+        return listaAviones;
+    }
+
+    public void setListaAviones(ListaSimple<Avion> listaAviones) {
+        this.listaAviones = listaAviones;
+    }
 }

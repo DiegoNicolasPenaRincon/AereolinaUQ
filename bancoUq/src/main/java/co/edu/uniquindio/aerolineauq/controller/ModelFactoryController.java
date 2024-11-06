@@ -2,6 +2,8 @@ package co.edu.uniquindio.aerolineauq.controller;
 
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.model.Aerolinea;
+import co.edu.uniquindio.aerolineauq.model.Equipaje;
+import co.edu.uniquindio.aerolineauq.model.Tiquete;
 import co.edu.uniquindio.aerolineauq.model.Usuario;
 import co.edu.uniquindio.aerolineauq.utils.AerolineaUtils;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
@@ -122,5 +124,28 @@ public class ModelFactoryController {
         });
         thread.start();
     }
+    /*
+
+    public void registrarEquipaje(String numeroVuelo, double pesoEquipaje, boolean esMascota, double pesoMascota, String categoriaViaje) {
+        Tiquete tiquete = buscarTiquetePorNumero(numeroVuelo);
+        if (tiquete != null) {
+            aerolinea.registrarEquipaje(tiquete, pesoEquipaje, esMascota, pesoMascota, categoriaViaje);
+        } else {
+            System.out.println("Tiquete no encontrado para el número de vuelo: " + numeroVuelo);
+        }
+    }
+
+    private Tiquete buscarTiquetePorNumero(String numeroVuelo) {
+        for (Tiquete tiquete : aerolinea.getTiquetes()) {
+            if (tiquete.getRuta().getVuelo().getNumeroVuelo().equals(numeroVuelo)) {
+                return tiquete;
+            }
+        }
+        return null;
+    }
+
+
+     */
+
 
 }

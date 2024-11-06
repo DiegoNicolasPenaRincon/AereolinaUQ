@@ -323,4 +323,113 @@ public class ListaSimple<T> implements Iterable<T> , Serializable {
         }
         return null;
     }
+    // Añadir un elemento en una posición específica
+    public void add(int index, T element) {
+        if (index < 0 || index > tamanio) {
+            throw new IndexOutOfBoundsException("Índice fuera de rango");
+        }
+
+        Nodo<T> nuevoNodo = new Nodo<>(element);
+
+        if (index == 0) {
+            nuevoNodo.setSiguienteNodo(nodoPrimero);
+            nodoPrimero = nuevoNodo;
+            if (tamanio == 0) {
+                nodoUltimo = nuevoNodo;
+            }
+        } else {
+            Nodo<T> previo = obtenerNodo(index - 1);
+            nuevoNodo.setSiguienteNodo(previo.getSiguienteNodo());
+            previo.setSiguienteNodo(nuevoNodo);
+            if (nuevoNodo.getSiguienteNodo() == null) {
+                nodoUltimo = nuevoNodo;
+            }
+        }
+
+        tamanio++;
+    }
+
+    // Agregar todos los elementos de una lista al final de ListaSimple
+    public void addAll(List<T> elements) {
+        for (T element : elements) {
+            this.agregar(element);
+        }
+    }
+    // Tamaño de la lista
+    public int size() {
+        return tamanio;
+    }
+
+    // Verificar si la lista está vacía
+    public boolean isEmpty() {
+        return tamanio == 0;
+    }
+
+    // Verificar si la lista contiene un elemento
+    public boolean contains(T dato) {
+        for (T elemento : this) {
+            if (elemento.equals(dato)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Obtener un elemento en una posición específica
+    public T get(int index) {
+        return obtenerValorNodo(index);
+    }
+
+    // Eliminar un elemento en una posición específica
+    public T remove(int index) {
+        if (index < 0 || index >= tamanio) {
+            throw new IndexOutOfBoundsException("Índice fuera de rango");
+        }
+
+        if (index == 0) {
+            return eliminarPrimero();
+        }
+
+        Nodo<T> previo = obtenerNodo(index - 1);
+        Nodo<T> actual = previo.getSiguienteNodo();
+        T valor = actual.getValorNodo();
+        previo.setSiguienteNodo(actual.getSiguienteNodo());
+
+        if (actual == nodoUltimo) {
+            nodoUltimo = previo;
+        }
+        tamanio--;
+        return valor;
+    }
+
+    // Vaciar la lista
+    public void clear() {
+        nodoPrimero = null;
+        nodoUltimo = null;
+        tamanio = 0;
+    }
+
+    // Obtener el índice de un elemento
+    public int indexOf(T dato) {
+        int index = 0;
+        for (T elemento : this) {
+            if (elemento.equals(dato)) {
+                return index;
+            }
+            index++;
+        }
+        return -1;
+    }
+
+    // Convertir la lista a un array
+    public Object[] toArray() {
+        Object[] array = new Object[tamanio];
+        int i = 0;
+        for (T elemento : this) {
+            array[i++] = elemento;
+        }
+        return array;
+    }
+
+
 }

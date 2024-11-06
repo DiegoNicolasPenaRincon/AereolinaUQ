@@ -1,8 +1,7 @@
 package co.edu.uniquindio.aerolineauq.utils;
 
 import co.edu.uniquindio.aerolineauq.model.Aerolinea;
-import co.edu.uniquindio.aerolineauq.model.Avion;
-import co.edu.uniquindio.aerolineauq.model.TipoAvion;
+import co.edu.uniquindio.aerolineauq.model.Tripulante;
 import co.edu.uniquindio.aerolineauq.model.Usuario;
 
 import java.time.LocalDate;
@@ -32,73 +31,81 @@ public class AerolineaUtils {
         usuario1.setFechaNacimiento(LocalDate.ofEpochDay(25-07-2003));
         aerolinea.getListaUsuarios().agregar(usuario1);
 
-        Avion avion1=new Avion();
-        Avion avion2=new Avion();
-        Avion avion3=new Avion();
-        Avion avion4=new Avion();
-        Avion avion5=new Avion();
-        Avion avion6=new Avion();
+       // Tripulacion
 
-        avion1.setNombre("airbus A320");
-        avion1.setCantidadPasajerosEconomica(138);
-        avion1.setCantidadPasajerosEjecutiva(12);
-        avion1.setCantidadPasajerosActualEconomica(0);
-        avion1.setCantidadPasajerosActualEjecutiva(0);
-        avion1.setCapacidadCarga(190000);
-        avion1.setCargaActual(0);
-        avion1.setTipoAvion(TipoAvion.NACIONAL);
+        //Pilotos
+        Tripulante piloto1 = new Tripulante();
+        piloto1.setId("001");
+        piloto1.setNombre("Juan");
+        piloto1.setDireccion("Calle 123");
+        piloto1.setFechaNacimiento( LocalDate.of(1980, 5, 21));
+        piloto1.setCorreo("juan.perez@correo.com");
+        piloto1.setEstudios("Aviación");
+        piloto1.setRolTripulante("Piloto");
+        aerolinea.getListaTripulantes().agregar(piloto1);
 
-        avion2.setNombre("airbus A320");
-        avion2.setCantidadPasajerosEconomica(138);
-        avion2.setCantidadPasajerosEjecutiva(12);
-        avion2.setCantidadPasajerosActualEconomica(0);
-        avion2.setCantidadPasajerosActualEjecutiva(0);
-        avion2.setCapacidadCarga(190000);
-        avion2.setCargaActual(0);
-        avion2.setTipoAvion(TipoAvion.NACIONAL);
 
-        avion3.setNombre("airbus A330");
-        avion3.setCantidadPasajerosEconomica(222);
-        avion3.setCantidadPasajerosEjecutiva(30);
-        avion3.setCantidadPasajerosActualEconomica(0);
-        avion3.setCantidadPasajerosActualEjecutiva(0);
-        avion3.setCapacidadCarga(520000);
-        avion3.setCargaActual(0);
-        avion3.setTipoAvion(TipoAvion.INTERNACIONAL);
+        Tripulante piloto2 = new Tripulante();
+        piloto2.setId("002");
+        piloto2.setNombre("Ana");
+        piloto2.setDireccion("Calle 13");
+        piloto2.setFechaNacimiento( LocalDate.of(1983, 3, 23));
+        piloto2.setCorreo("ana1@correo.com");
+        piloto2.setEstudios("Aviación");
+        piloto2.setRolTripulante("Piloto");
+        aerolinea.getListaTripulantes().agregar(piloto2);
 
-        avion4.setNombre("airbus A330");
-        avion4.setCantidadPasajerosEconomica(222);
-        avion4.setCantidadPasajerosEjecutiva(30);
-        avion4.setCantidadPasajerosActualEconomica(0);
-        avion4.setCantidadPasajerosActualEjecutiva(0);
-        avion4.setCapacidadCarga(520000);
-        avion4.setCargaActual(0);
-        avion4.setTipoAvion(TipoAvion.INTERNACIONAL);
+        //Copilotos
+        Tripulante copiloto1 = new Tripulante();
+        copiloto1.setId("003");
+        copiloto1.setNombre("Camilo");
+        copiloto1.setDireccion("Calle 56");
+        copiloto1.setFechaNacimiento( LocalDate.of(1985, 8, 14));
+        copiloto1.setCorreo("camila@correo.com");
+        copiloto1.setEstudios("Aviación");
+        copiloto1.setRolTripulante("Copiloto");
+        aerolinea.getListaTripulantes().agregar(copiloto1);
 
-        avion5.setNombre("Boeing 787");
-        avion5.setCantidadPasajerosEconomica(222);
-        avion5.setCantidadPasajerosEjecutiva(28);
-        avion5.setCantidadPasajerosActualEconomica(0);
-        avion5.setCantidadPasajerosActualEjecutiva(0);
-        avion5.setCapacidadCarga(500000);
-        avion5.setCargaActual(0);
-        avion5.setTipoAvion(TipoAvion.INTERNACIONAL);
+        Tripulante copiloto2 = new Tripulante();
+        copiloto2.setId("004");
+        copiloto2.setNombre("Camila");
+        copiloto2.setDireccion("Calle 72");
+        copiloto2.setFechaNacimiento( LocalDate.of(1986, 8, 14));
+        copiloto2.setCorreo("camil1a@correo.com");
+        copiloto2.setEstudios("Aviación");
+        copiloto2.setRolTripulante("Copiloto");
+        aerolinea.getListaTripulantes().agregar(copiloto2);
 
-        avion6.setNombre("Boeing 787");
-        avion6.setCantidadPasajerosEconomica(222);
-        avion6.setCantidadPasajerosEjecutiva(28);
-        avion6.setCantidadPasajerosActualEconomica(0);
-        avion6.setCantidadPasajerosActualEjecutiva(0);
-        avion6.setCapacidadCarga(500000);
-        avion6.setCargaActual(0);
-        avion6.setTipoAvion(TipoAvion.INTERNACIONAL);
+        // Auxiliares
+        Tripulante aux1 = new Tripulante();
+        aux1.setId("005");
+        aux1.setNombre("Luis");
+        aux1.setDireccion("Calle 12");
+        aux1.setFechaNacimiento( LocalDate.of(1985, 8, 14));
+        aux1.setCorreo("luis@correo.com");
+        aux1.setEstudios("Tripulante de Cabina");
+        aux1.setRolTripulante("Auxiliar de vuelo");
+        aerolinea.getListaTripulantes().agregar(aux1);
 
-        aerolinea.getAvionesDisponibles().agregar(avion1);
-        aerolinea.getAvionesDisponibles().agregar(avion2);
-        aerolinea.getAvionesDisponibles().agregar(avion3);
-        aerolinea.getAvionesDisponibles().agregar(avion4);
-        aerolinea.getAvionesDisponibles().agregar(avion5);
-        aerolinea.getAvionesDisponibles().agregar(avion6);
+        Tripulante aux2 = new Tripulante();
+        aux2.setId("006");
+        aux2.setNombre("Maria");
+        aux2.setDireccion("Calle 56");
+        aux2.setFechaNacimiento( LocalDate.of(1985, 8, 14));
+        aux2.setCorreo("maria@correo.com");
+        aux2.setEstudios("Tripulante de Cabina");
+        aux2.setRolTripulante("Auxiliar de vuelo");
+        aerolinea.getListaTripulantes().agregar(aux2);
+
+        Tripulante aux3 = new Tripulante();
+        aux3.setId("007");
+        aux3.setNombre("Ana");
+        aux3.setDireccion("Calle 78");
+        aux3.setFechaNacimiento( LocalDate.of(1985, 8, 14));
+        aux3.setCorreo("ana@correo.com");
+        aux3.setEstudios("Tripulante de Cabina");
+        aux3.setRolTripulante("Copiloto");
+        aerolinea.getListaTripulantes().agregar(aux3);
 
         return aerolinea;
     }
