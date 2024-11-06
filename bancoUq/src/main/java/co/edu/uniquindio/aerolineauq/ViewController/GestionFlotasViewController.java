@@ -6,10 +6,7 @@ import co.edu.uniquindio.aerolineauq.model.Avion;
 import co.edu.uniquindio.aerolineauq.model.Ruta;
 import co.edu.uniquindio.aerolineauq.model.Tripulante;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 
 import java.util.Collection;
 
@@ -41,6 +38,10 @@ public class GestionFlotasViewController {
     @FXML
 
     private TableView<Tripulante> listaTripulantes;
+
+    @FXML
+
+    private TableColumn<>
 
     @FXML
 
