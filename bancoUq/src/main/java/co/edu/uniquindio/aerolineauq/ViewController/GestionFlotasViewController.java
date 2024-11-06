@@ -4,9 +4,12 @@ import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
 import co.edu.uniquindio.aerolineauq.model.Avion;
 import co.edu.uniquindio.aerolineauq.model.Ruta;
+import co.edu.uniquindio.aerolineauq.model.Tripulante;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 
 import java.util.Collection;
 
@@ -26,6 +29,18 @@ public class GestionFlotasViewController {
 
     @FXML
     private ComboBox<Ruta> rutaComboBox;
+
+    @FXML
+
+    private Label avionMostrarlbl;
+
+    @FXML
+
+    private Label avionLbl;
+
+    @FXML
+
+    private TableView<Tripulante> listaTripulantes;
 
     @FXML
 
