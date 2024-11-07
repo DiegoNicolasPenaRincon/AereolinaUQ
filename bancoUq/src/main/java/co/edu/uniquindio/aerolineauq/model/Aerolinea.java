@@ -38,6 +38,7 @@ public class Aerolinea implements Serializable {
 
     public void registrarUsuario(Usuario usuario) {
         listaUsuarios.agregar(usuario);
+        Persistencia.guardaRegistroLog("Se ha registrado al usuario"+usuario.getNombre()+"con ID:"+usuario.getId(), 1, "Registro Usuario");
     }
 
     // metodo para validar el inicio de sesión

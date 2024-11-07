@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="17.0.10" class="java.beans.XMLDecoder">
+<java version="17.0.9" class="java.beans.XMLDecoder">
  <object class="co.edu.uniquindio.aerolineauq.model.Aerolinea" id="Aerolinea0">
   <void property="listaUsuarios">
    <void property="tamanio">
-    <int>4</int>
+    <int>5</int>
    </void>
   </void>
  </object>
