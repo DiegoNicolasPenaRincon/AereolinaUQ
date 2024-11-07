@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -14,8 +15,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Ruta implements Serializable {
     private static final long serialVersionUID = 1L;
-    private final String origen="Ciudad de Mexico";
+    private final Destino origen=Destino.CDMX;
     private Destino destino;
-    private LocalDate duracion;
-    private LocalDate horaSalida;
+    private LocalTime duracion;
+    private LocalTime horaSalida;
+    private LocalTime horaRegreso;
 }

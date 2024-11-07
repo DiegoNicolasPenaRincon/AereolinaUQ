@@ -11,10 +11,10 @@ import java.util.ArrayList;
 
 public class Persistencia {
 
-    public static final String RUTA_ARCHIVO_MODELO_BANCO_XML = "bancoUq/src/main/resources/persistencia/model.xml";
-    public static final String RUTA_ARCHIVO_LOG = "bancoUq/src/main/resources/persistencia/log/AeroLog.txt";
-    public static final String RUTA_ARCHIVO_MODELO_BINARIO = "bancoUq/src/main/resources/persistencia/model.dat";
-    public static final String RUTA_ARCHIVO_USUARIOS = "bancoUq/src/main/resources/persistencia/usuarios.txt";
+    public static final String RUTA_ARCHIVO_MODELO_BANCO_XML = "src/main/resources/persistencia/model.xml";
+    public static final String RUTA_ARCHIVO_LOG = "src/main/resources/persistencia/log/AeroLog.txt";
+    public static final String RUTA_ARCHIVO_MODELO_BINARIO = "src/main/resources/persistencia/model.dat";
+    public static final String RUTA_ARCHIVO_USUARIOS = "src/main/resources/persistencia/usuarios.txt";
 
 
 

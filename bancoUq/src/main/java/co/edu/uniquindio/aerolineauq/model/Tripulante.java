@@ -17,9 +17,9 @@ public class Tripulante  implements Serializable {
     private LocalDate fechaNacimiento;
     private String correo;
     private String estudios;
-    private String rolTripulante;
+    private RolTripulante rolTripulante;
 
-    public Tripulante(String id, String nombre, String direccion, LocalDate fechaNacimiento, String correo, String estudios, String rolTripulante) {
+    public Tripulante(String id, String nombre, String direccion, LocalDate fechaNacimiento, String correo, String estudios, RolTripulante rolTripulante) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -80,12 +80,11 @@ public class Tripulante  implements Serializable {
         this.estudios = estudios;
     }
 
-    public String getRolTripulante() {
+    public RolTripulante getRolTripulante() {
         return rolTripulante;
     }
 
-    public void setRolTripulante(String rolTripulante) {
+    public void setRolTripulante(RolTripulante rolTripulante) {
         this.rolTripulante = rolTripulante;
     }
-
 }

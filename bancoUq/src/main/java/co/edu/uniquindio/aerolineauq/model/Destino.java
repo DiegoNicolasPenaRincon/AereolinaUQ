@@ -6,7 +6,8 @@ public enum Destino {
     Buenos_Aires,
     Los_Ángeles,
     Bogotá,
-    Panamá
+    Panamá,
+    CDMX
 
 
 }

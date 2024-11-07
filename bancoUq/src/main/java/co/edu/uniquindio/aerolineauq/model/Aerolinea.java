@@ -13,6 +13,8 @@ public class Aerolinea implements Serializable {
     ListaSimple<Usuario> listaUsuarios = new ListaSimple<>();
     ListaSimple<Tripulante> listaTripulantes = new ListaSimple<>();
     ListaSimple<Tiquete> listaTiquetes=new ListaSimple<>();
+    ListaSimple<Ruta> rutasAerolinea=new ListaSimple<>();
+    ListaSimple<Avion> listaAviones=new ListaSimple<>();
 
     public ListaSimple<Ruta> getRutasAerolinea() {
         return rutasAerolinea;
@@ -21,9 +23,6 @@ public class Aerolinea implements Serializable {
     public void setRutasAerolinea(ListaSimple<Ruta> rutasAerolinea) {
         this.rutasAerolinea = rutasAerolinea;
     }
-
-    ListaSimple<Ruta> rutasAerolinea=new ListaSimple<>();
-    ListaSimple<Avion> listaAviones=new ListaSimple<>();
 
     public Usuario usuario;
 
