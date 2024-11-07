@@ -60,3 +60,11 @@ nov. 06, 2024 7:23:44 A. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil gua
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-06
 nov. 06, 2024 3:10:06 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-06
+nov. 06, 2024 8:51:30 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Registro Usuario,Se ha registrado al usuarioDanielcon ID:6666,2024-11-06
+nov. 06, 2024 8:51:30 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el usuario Daniel,Registro usuario,2024-11-06
+nov. 06, 2024 8:51:32 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se limpiaron los campos ,Limpiar campos,2024-11-06
+nov. 06, 2024 8:52:03 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-06

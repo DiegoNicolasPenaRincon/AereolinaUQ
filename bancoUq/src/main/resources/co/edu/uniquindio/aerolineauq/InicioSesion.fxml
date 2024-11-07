@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.aerolineauq.ViewController.InicioSesionViewController">
    <children>
       <AnchorPane prefHeight="332.0" prefWidth="245.0">
@@ -25,7 +24,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnRegistro" layoutX="30.0" layoutY="349.0" mnemonicParsing="false" onAction="#Ingresar" prefHeight="25.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@loginDesign.css" text="Registrarse" />
+                  <Button fx:id="btnRegistro" layoutX="30.0" layoutY="349.0" mnemonicParsing="false" onAction="#RegistrarUsuario" prefHeight="25.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@loginDesign.css" text="Registrarse" />
                   <TextField fx:id="txtNombre" layoutX="30.0" layoutY="118.0" prefHeight="25.0" prefWidth="220.0" promptText="Nombre" />
                   <TextField fx:id="txtApellido" layoutX="30.0" layoutY="152.0" prefHeight="25.0" prefWidth="220.0" promptText="Apellidos" />
                   <TextField fx:id="txtDireccion" layoutX="30.0" layoutY="231.0" prefHeight="25.0" prefWidth="220.0" promptText="Dirección" />

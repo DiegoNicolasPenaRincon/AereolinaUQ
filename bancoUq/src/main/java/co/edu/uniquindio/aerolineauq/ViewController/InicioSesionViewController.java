@@ -10,6 +10,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
+import java.time.LocalDate;
+
 public class InicioSesionViewController {
 
     private AerolineaApplication aplicacion;
@@ -125,6 +127,40 @@ public class InicioSesionViewController {
 
             slider.play();
         }
+    }
+
+    @FXML
+    void RegistrarUsuario(ActionEvent event) {
+        String id = txtIDNueva.getText();
+        String nombre = txtNombre.getText();
+        String apellido = txtApellido.getText();
+        String correo = txtCorreo.getText();
+        String direccion = txtDireccion.getText();
+        String contrasenia = txtContraseniaNueva.getText();
+        LocalDate fechaNacimiento = dateNacimiento.getValue();
+
+        if (id.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || direccion.isEmpty() || contrasenia.isEmpty() || fechaNacimiento == null) {
+            mostrarAlerta("Error", "Todos los campos son obligatorios", Alert.AlertType.ERROR);
+            return;
+        }
+
+        modelFactoryController.registrarUsuario(id, nombre, apellido, correo, direccion, contrasenia, fechaNacimiento);
+        registrarAccionesSistema("Registro usuario", 1, "Se registro el usuario "+ nombre);
+
+        mostrarAlerta("Éxito", "Usuario registrado correctamente", Alert.AlertType.INFORMATION);
+
+        limpiarCampos();
+    }
+
+    private void limpiarCampos() {
+        txtIDNueva.clear();
+        txtNombre.clear();
+        txtApellido.clear();
+        txtCorreo.clear();
+        txtDireccion.clear();
+        txtContraseniaNueva.clear();
+        dateNacimiento.setValue(null);
+        registrarAccionesSistema("Limpiar campos", 1, "Se limpiaron los campos ");
     }
 
     private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
