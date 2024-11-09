@@ -2,6 +2,7 @@ package co.edu.uniquindio.aerolineauq;
 
 import co.edu.uniquindio.aerolineauq.ViewController.CompraViewController;
 import co.edu.uniquindio.aerolineauq.ViewController.InicioSesionViewController;
+import co.edu.uniquindio.aerolineauq.ViewController.MenuViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,9 +34,9 @@ public class AerolineaApplication extends Application {
             primaryStage.setTitle("Aerolinea UQ");
             primaryStage.setScene(scene);
             primaryStage.show();
-            primaryStage.setWidth(primaryStage.getWidth());
-            primaryStage.setHeight(primaryStage.getHeight());
-
+            primaryStage.setWidth(600);
+            primaryStage.setHeight(405);
+            primaryStage.centerOnScreen();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,6 +56,26 @@ public class AerolineaApplication extends Application {
             primaryStage.show();
             primaryStage.setWidth(primaryStage.getWidth());
             primaryStage.setHeight(primaryStage.getHeight());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void mostrarVentanaMenu(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/aerolineauq/MenuView.fxml"));
+            Parent root = loader.load();
+
+            MenuViewController menuViewController = loader.getController();
+            menuViewController.setAplicacion(this);
+
+            Scene scene = new Scene(root);
+            primaryStage.setTitle("Menú de Usuario");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            primaryStage.setWidth(1100);
+            primaryStage.setHeight(600);
+            primaryStage.centerOnScreen();
         } catch (Exception e) {
             e.printStackTrace();
         }

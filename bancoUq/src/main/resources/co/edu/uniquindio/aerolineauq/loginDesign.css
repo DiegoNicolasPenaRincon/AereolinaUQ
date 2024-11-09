@@ -41,3 +41,62 @@
     -fx-background-color: #fff;
     -fx-text-fill: #000;
 }
+
+.anchor-central {
+    -fx-background-color: linear-gradient(to bottom right, #2a7fa0, #4ba3cd);
+    -fx-border-radius: 8px;
+    -fx-padding: 20px;
+}
+
+/* Estilo para botones de acción dentro de anchorCompras */
+.compra-btn {
+    -fx-background-color: linear-gradient(to bottom right, #22949a, #2b7fbc);
+    -fx-background-radius: 5px;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.compra-btn:hover {
+    -fx-background-color: #1f8a7d;
+}
+
+/* Estilo para ComboBox, DatePicker y Spinner */
+.control-estilo {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #22949a;
+    -fx-border-radius: 4px;
+    -fx-padding: 1px;
+    -fx-font-size: 13px;
+    -fx-text-fill: #333;
+}
+
+/* Estilo para etiquetas dentro de anchorCompras */
+.label-estilo {
+    -fx-text-fill: #286155;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* Tabla */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-border-color: linear-gradient(to bottom right, #22949a, #2b7fbc);
+    -fx-border-radius: 5px;
+    -fx-border-width: 1.5px;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(to bottom right, #22949a, #2b7fbc);
+    -fx-background-insets: 0 0 0 0;
+}
+
+.table-view .column-header, .filter{
+    -fx-background-color: transparent;
+    -fx-size: 40px;
+}
+
+.table-view .column-header .label{
+    -fx-text-fill: #fff;
+}

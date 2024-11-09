@@ -4,75 +4,152 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.aerolineauq.ViewController.MenuViewController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <BorderPane layoutX="155.0" layoutY="118.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <left>
-                  <AnchorPane prefHeight="600.0" prefWidth="243.0" styleClass="gradient" stylesheets="@loginDesign.css" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="600.0" prefWidth="1100.0" stylesheets="@loginDesign.css">
+         <!-- Panel Izquierdo (Menú de Navegación) -->
+         <left>
+            <AnchorPane prefWidth="250.0" styleClass="gradient" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="AnchorNavegacion" layoutX="0.0" layoutY="0.0" prefHeight="200.0" prefWidth="250.0" style="-fx-padding: 20;">
                      <children>
-                        <AnchorPane layoutX="14.0" layoutY="139.0" prefHeight="600.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <AnchorPane layoutX="-2.0" layoutY="1.0" prefHeight="87.0" prefWidth="243.0">
-                                 <children>
-                                    <ImageView fitHeight="133.0" fitWidth="120.0" layoutX="62.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@imagenes/AEROLINEA_UQ-removebg-preview.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </AnchorPane>
-                              <Button layoutX="16.0" layoutY="494.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" styleClass="nav-btn" stylesheets="@loginDesign.css" text="Cerrar Sesión">
-                                 <graphic>
-                                    <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@imagenes/salir.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button layoutX="15.0" layoutY="210.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@loginDesign.css" text="Comprar Tiquetes" />
-                              <Button layoutX="16.0" layoutY="315.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@loginDesign.css" text="Perfil" />
-                              <Button layoutX="16.0" layoutY="263.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@loginDesign.css" text="Ver Historial de Compras" />
-                           </children>
-                        </AnchorPane>
+                        <!-- Logo -->
+                        <ImageView fitHeight="133.0" fitWidth="120.0" layoutX="65.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@imagenes/AEROLINEA_UQ-removebg-preview.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
-               </left>
-               <center>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <!-- Botones de Navegación -->
+                  <Button fx:id="btnComprarTiquetes" layoutX="20.0" layoutY="210.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Comprar Tiquetes" />
+                  <Button fx:id="btnVerHistorial" layoutX="20.0" layoutY="260.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Ver Historial de Compras" />
+                  <Button fx:id="btnPerfil" layoutX="20.0" layoutY="310.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Perfil" />
+                  <Button fx:id="btnCerrarSesion" layoutX="20.0" layoutY="480.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="35.0" prefWidth="135.0" styleClass="nav-btn" text="Cerrar Sesión">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@imagenes/salir.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </left>
+         <!-- Panel Central (Área de Compra de Tiquetes) -->
+         <center>
+            <AnchorPane prefHeight="600.0" prefWidth="851.0" stylesheets="@loginDesign.css" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="AnchorCompras" prefHeight="600.0" prefWidth="850.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <AnchorPane layoutX="163.0" layoutY="175.0" prefHeight="549.3333333333334" prefWidth="856.6666666666666" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        <Label layoutX="275.0" layoutY="24.0" text="Compra Tickets" />
-                        <Label layoutX="77.0" layoutY="97.0" text="Destino" />
-                        <Label layoutX="75.0" layoutY="132.0" text="Clase" />
-                        <Label layoutX="48.0" layoutY="192.0" text="Fecha de Salida" />
-                        <Label fx:id="labelRegreso" layoutX="319.0" layoutY="192.0" text="Fecha de Regreso" />
-                        <ComboBox fx:id="comboDestinos" layoutX="130.0" layoutY="93.0" prefHeight="25.0" prefWidth="236.0" />
-                        <ComboBox fx:id="comboClase" layoutX="130.0" layoutY="128.0" prefWidth="150.0" />
-                        <DatePicker fx:id="dateSalida" layoutX="141.0" layoutY="188.0" />
-                        <DatePicker fx:id="dateRegreso" layoutX="417.0" layoutY="188.0" prefHeight="25.0" prefWidth="157.0" />
-                        <Label layoutX="44.0" layoutY="228.0" text="Cantidad de Personas" />
-                        <Spinner fx:id="SpinPersonas" layoutX="184.0" layoutY="224.0" prefHeight="25.0" prefWidth="88.0" />
-                        <Button fx:id="btnCompra" layoutX="384.0" layoutY="303.0" mnemonicParsing="false" text="Realizar Compra" />
-                        <Button fx:id="btnAsientos" layoutX="121.0" layoutY="303.0" mnemonicParsing="false" onAction="#seleccionarAsiento" text="Seleccionar Asientos" />
-                        <RadioButton fx:id="radioIdaVuelta" layoutX="47.0" layoutY="165.0" mnemonicParsing="false" text="Ida y Vuelta" />
-                        <RadioButton fx:id="radioIda" layoutX="162.0" layoutY="165.0" mnemonicParsing="false" text="Solo ida" />
-                        <Label layoutX="81.0" layoutY="67.0" text="Salida" />
-                        <Label layoutX="130.0" layoutY="67.0" text="Ciudad de Mexico" />
-                     </children></AnchorPane>
-               </center>
-            </BorderPane>
-         </children>
-      </AnchorPane>
+
+                        <!-- Opciones de Compra -->
+                        <Label layoutX="50.0" layoutY="100.0" styleClass="label-estilo" text="Origen" />
+                        <ComboBox fx:id="comboCiudadOrigen" disable="true" layoutX="130.0" layoutY="95.0" prefWidth="200.0" promptText="Ciudad de Mexico" styleClass="control-estilo" />
+
+                        <Label layoutX="50.0" layoutY="150.0" styleClass="label-estilo" text="Destino" />
+                        <ComboBox fx:id="comboDestinos" layoutX="130.0" layoutY="145.0" prefWidth="200.0" styleClass="control-estilo" />
+
+                        <Label layoutX="50.0" layoutY="200.0" styleClass="label-estilo" text="Clase" />
+                        <ComboBox fx:id="comboClase" layoutX="130.0" layoutY="195.0" prefWidth="200.0" styleClass="control-estilo" />
+
+                        <!-- Tipo de Viaje (Radio Buttons) -->
+                        <RadioButton fx:id="radioIdaVuelta" layoutX="50.0" layoutY="250.0" mnemonicParsing="false" styleClass="label-estilo" text="Ida y Vuelta" />
+                        <RadioButton fx:id="radioIda" layoutX="180.0" layoutY="250.0" mnemonicParsing="false" styleClass="label-estilo" text="Solo ida" />
+
+                        <!-- Fechas de Viaje -->
+                        <Label layoutX="50.0" layoutY="300.0" styleClass="label-estilo" text="Fecha de Salida" />
+                        <DatePicker fx:id="dateSalidaViaje" layoutX="180.0" layoutY="295.0" styleClass="control-estilo" />
+
+                        <Label fx:id="labelRegreso" layoutX="400.0" layoutY="300.0" styleClass="label-estilo" text="Fecha de Regreso" />
+                        <DatePicker fx:id="dateRegresoViaje" layoutX="520.0" layoutY="295.0" styleClass="control-estilo" />
+
+                        <!-- Cantidad de Personas -->
+                        <Label layoutX="50.0" layoutY="350.0" styleClass="label-estilo" text="Cantidad de Personas" />
+                        <Spinner fx:id="SpinPersonas" layoutX="209.0" layoutY="344.0" prefWidth="100.0" styleClass="control-estilo" />
+
+                        <!-- Tabla de Vuelos Disponibles -->
+                        <TableView fx:id="tableInformacion" layoutX="400.0" layoutY="100.0" prefHeight="150.0" prefWidth="400.0" styleClass="table-estilo">
+                           <columns>
+                              <TableColumn fx:id="columnOrigen" prefWidth="100.0" text="Origen" />
+                              <TableColumn fx:id="columnDestino" prefWidth="100.0" text="Destino" />
+                              <TableColumn fx:id="columnHora" prefWidth="100.0" text="Hora de Salida" />
+                              <TableColumn fx:id="columnPrecio" prefWidth="100.0" text="Precio" />
+                           </columns>
+                        </TableView>
+
+                        <!-- Botones de Acción -->
+                        <Button fx:id="btnAsientos" layoutX="200.0" layoutY="500.0" mnemonicParsing="false" styleClass="compra-btn" text="Seleccionar Asientos" />
+                        <Button fx:id="btnCompra" layoutX="400.0" layoutY="500.0" mnemonicParsing="false" styleClass="compra-btn" text="Realizar Compra" />
+                        <Label layoutX="39.0" layoutY="42.0" styleClass="head-label" stylesheets="@loginDesign.css" text="Compra de Tiquetes" textFill="#2b7fbc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="anchorPerfil" prefHeight="600.0" prefWidth="850.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TextField fx:id="txtIDNueva" layoutX="49.0" layoutY="153.0" prefHeight="25.0" prefWidth="220.0" />
+                        <PasswordField fx:id="txtContraseniaNueva" layoutX="352.0" layoutY="298.0" prefHeight="25.0" prefWidth="220.0" />
+                        <Label layoutX="46.0" layoutY="49.0" styleClass="head-label" stylesheets="@loginDesign.css" text="Perfil de Usuario" textFill="#2b7fbc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnActualizarPerfil" layoutX="214.0" layoutY="486.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="220.0" styleClass="compra-btn" stylesheets="@loginDesign.css" text="Actualizar Perfil" />
+                        <TextField fx:id="txtNombre" layoutX="49.0" layoutY="223.0" prefHeight="25.0" prefWidth="220.0" />
+                        <TextField fx:id="txtApellido" layoutX="49.0" layoutY="298.0" prefHeight="25.0" prefWidth="220.0" />
+                        <TextField fx:id="txtDireccion" layoutX="352.0" layoutY="153.0" prefHeight="25.0" prefWidth="220.0" />
+                        <TextField fx:id="txtCorreo" layoutX="350.0" layoutY="223.0" prefHeight="25.0" prefWidth="220.0" />
+                        <DatePicker fx:id="dateNacimiento" layoutX="49.0" layoutY="369.0" prefHeight="25.0" prefWidth="220.0" />
+                        <Label layoutX="49.0" layoutY="119.0" prefHeight="33.0" prefWidth="119.0" styleClass="label-estilo" text="ID de Usuario" textFill="#1969cf" />
+                        <Label layoutX="49.0" layoutY="191.0" prefHeight="33.0" prefWidth="119.0" styleClass="label-estilo" text="Nombre" textFill="#1969cf" />
+                        <Label layoutX="49.0" layoutY="260.0" prefHeight="33.0" prefWidth="119.0" styleClass="label-estilo" text="Apellidos" textFill="#1969cf" />
+                        <Label layoutX="49.0" layoutY="340.0" prefHeight="33.0" prefWidth="154.0" styleClass="label-estilo" text="Fecha de Nacimiento" textFill="#1969cf" />
+                        <Label layoutX="352.0" layoutY="119.0" prefHeight="33.0" prefWidth="167.0" styleClass="label-estilo" text="Dirección de Residencia" textFill="#1969cf" />
+                        <Label layoutX="350.0" layoutY="191.0" prefHeight="33.0" prefWidth="167.0" styleClass="label-estilo" text="Correo Electronico" textFill="#1969cf" />
+                        <Label layoutX="352.0" layoutY="260.0" prefHeight="33.0" prefWidth="167.0" styleClass="label-estilo" text="Contraseña" textFill="#1969cf" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="anchorHistorial" prefHeight="600.0" prefWidth="850.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TableView fx:id="tableHistorial" layoutX="54.0" layoutY="123.0" prefHeight="312.0" prefWidth="697.0" stylesheets="@loginDesign.css">
+                          <columns>
+                            <TableColumn fx:id="historialOrigen" prefWidth="75.0" text="Origen" />
+                            <TableColumn fx:id="historialDestino" prefWidth="75.0" text="Destino" />
+                              <TableColumn fx:id="historialClase" prefWidth="75.0" text="Clase" />
+                              <TableColumn fx:id="HistorialPersonas" prefWidth="88.6666259765625" text="Num. Personas" />
+                              <TableColumn fx:id="HistorialAsientos" prefWidth="75.0" text="Asientos" />
+                              <TableColumn fx:id="HistorialSalida" prefWidth="106.00006103515625" text="Fecha de Salida" />
+                              <TableColumn fx:id="HistorialRegreso" prefWidth="118.0" text="Fecha de Regreso" />
+                              <TableColumn fx:id="HistorialPrecio" prefWidth="83.3333740234375" text="Precio" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="48.0" layoutY="62.0" styleClass="head-label" stylesheets="@loginDesign.css" text="Historial de Compras" textFill="#2b7fbc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
    </children>
 </StackPane>

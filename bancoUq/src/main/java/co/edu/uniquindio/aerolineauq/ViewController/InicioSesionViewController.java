@@ -92,7 +92,7 @@ public class InicioSesionViewController {
         } else {
             mostrarAlerta("Error", "ID o contraseña incorrecta", Alert.AlertType.ERROR);
         }
-        aplicacion.mostrarVentanaCompras();
+        aplicacion.mostrarVentanaMenu();
         registrarAccionesSistema("Ingresar", 1, "Se ingreso ");
     }
 
