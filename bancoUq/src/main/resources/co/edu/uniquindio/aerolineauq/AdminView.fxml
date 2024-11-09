@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.aerolineauq.ViewController.AdminViewController">
+   <children>
+      <BorderPane prefHeight="600.0" prefWidth="1100.0" stylesheets="@loginDesign.css">
+         <left>
+            <AnchorPane prefWidth="250.0" styleClass="gradient" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="AnchorNavegacion" layoutX="0.0" layoutY="0.0" prefHeight="200.0" prefWidth="250.0" style="-fx-padding: 20;">
+                     <children>
+                        <ImageView fitHeight="133.0" fitWidth="120.0" layoutX="65.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@imagenes/AEROLINEA_UQ-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="66.0" layoutY="170.0" styleClass="label-estilo" stylesheets="@loginDesign.css" text="ADMINISTRADOR" />
+                     </children>
+                  </AnchorPane>
+                  <Button fx:id="btnGestionAeronaves" layoutX="20.0" layoutY="210.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Gestión de Aeronaves" />
+                  <Button fx:id="btnGestionTripulantes" layoutX="20.0" layoutY="260.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Gestión de Tripulantes" />
+                  <Button fx:id="btnGestionEmbarque" layoutX="20.0" layoutY="310.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Gestión de Embarque" />
+                  <Button fx:id="btnCerrarSesion" layoutX="20.0" layoutY="480.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="35.0" prefWidth="135.0" styleClass="nav-btn" text="Cerrar Sesión">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@imagenes/salir.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <AnchorPane prefHeight="600.0" prefWidth="851.0" stylesheets="@loginDesign.css" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="anchorTripulantes" prefHeight="600.0" prefWidth="850.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TableView fx:id="tableTripulantes" layoutX="48.0" layoutY="287.0" prefHeight="226.0" prefWidth="693.0" stylesheets="@loginDesign.css">
+                           <columns>
+                              <TableColumn fx:id="columnNombre" prefWidth="75.0" text="Nombre" />
+                              <TableColumn fx:id="columnApellido" prefWidth="75.0" text="Apellidos" />
+                              <TableColumn fx:id="columnID" prefWidth="75.0" text="ID" />
+                              <TableColumn fx:id="columnFecha" prefWidth="106.6666259765625" text="Fecha Nacimiento" />
+                              <TableColumn fx:id="columnDireccion" prefWidth="82.66668701171875" text="Dirección" />
+                              <TableColumn fx:id="columnCorreo" prefWidth="82.0" text="Correo" />
+                              <TableColumn fx:id="columnRol" prefWidth="118.0" text="Rol" />
+                              <TableColumn fx:id="columnEstudios" prefWidth="83.3333740234375" text="Estudios" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="48.0" layoutY="62.0" styleClass="head-label" stylesheets="@loginDesign.css" text="Gestión de Tripulantes" textFill="#2b7fbc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnEliminar" layoutX="158.0" layoutY="548.0" mnemonicParsing="false" styleClass="compra-btn" stylesheets="@loginDesign.css" text="Eliminar" />
+                        <Button fx:id="btnAgregar" layoutX="546.0" layoutY="548.0" mnemonicParsing="false" styleClass="compra-btn" stylesheets="@loginDesign.css" text="Agregar" />
+                        <Button fx:id="btnModificar" layoutX="346.0" layoutY="548.0" mnemonicParsing="false" styleClass="compra-btn" stylesheets="@loginDesign.css" text="Modificar" />
+                        <TextField fx:id="txtNombre" layoutX="48.0" layoutY="160.0" prefHeight="25.0" prefWidth="220.0" promptText="Nombre" />
+                        <TextField fx:id="txtApellido" layoutX="48.0" layoutY="200.0" prefHeight="25.0" prefWidth="220.0" promptText="Apellido" stylesheets="@loginDesign.css" />
+                        <TextField fx:id="txtDireccion" layoutX="360.0" layoutY="160.0" prefHeight="25.0" prefWidth="220.0" promptText="Direccion" />
+                        <TextField fx:id="txtCorreo" layoutX="360.0" layoutY="120.0" prefHeight="25.0" prefWidth="220.0" promptText="Correo" />
+                        <DatePicker fx:id="dateNacimiento" layoutX="48.0" layoutY="238.0" prefHeight="25.0" prefWidth="220.0" promptText="Fecha de Nacimiento" styleClass="control-estilo" stylesheets="@loginDesign.css" />
+                        <TextField fx:id="txtID" layoutX="48.0" layoutY="120.0" prefHeight="25.0" prefWidth="220.0" promptText="ID" />
+                        <TextField fx:id="txtEstudios" layoutX="360.0" layoutY="200.0" prefHeight="25.0" prefWidth="220.0" promptText="Estudios" />
+                        <ComboBox layoutX="360.0" layoutY="238.0" prefHeight="25.0" prefWidth="219.0" promptText="Rol" styleClass="control-estilo" stylesheets="@loginDesign.css" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="anchorAeronaves" prefHeight="600.0" prefWidth="850.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label layoutX="50.0" layoutY="57.0" styleClass="head-label" stylesheets="@loginDesign.css" text="Gestion de la flota">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="110.0" layoutY="127.0" prefHeight="17.0" prefWidth="43.0" styleClass="label-estilo" stylesheets="@loginDesign.css" text="Ruta" />
+                        <ComboBox fx:id="rutaComboBox" layoutX="225.0" layoutY="123.0" prefHeight="25.0" prefWidth="320.0" styleClass="control-estilo" />
+                        <Button fx:id="btnAgregarAsignacion" layoutX="225.0" layoutY="530.0" mnemonicParsing="false" styleClass="compra-btn" text="Agregar" />
+                        <Button fx:id="btnEliminarAsignacion" layoutX="449.0" layoutY="530.0" mnemonicParsing="false" styleClass="compra-btn" text="Eliminar" />
+                        <Label fx:id="avionlbl" layoutX="107.0" layoutY="218.0" styleClass="label-estilo" text="Avion" />
+                        <ComboBox fx:id="avionComboBox" layoutX="225.0" layoutY="214.0" prefHeight="25.0" prefWidth="320.0" styleClass="control-estilo" />
+                        <TableView fx:id="tableTripulantesAsignados" layoutX="103.0" layoutY="306.0" prefHeight="200.0" prefWidth="535.0">
+                           <columns>
+                              <TableColumn fx:id="columnNombreAsignado" prefWidth="136.0" text="Nombre" />
+                              <TableColumn fx:id="columnIDAsignado" prefWidth="87.0" text="ID" />
+                              <TableColumn fx:id="columnRolAsignado" minWidth="0.0" prefWidth="120.0" text="Rol" />
+                              <TableColumn fx:id="columnCorreoAsignado" prefWidth="191.0" text="Correo" />
+                           </columns>
+                        </TableView>
+                        <Label fx:id="avionMostrarlbl" layoutX="19.0" layoutY="170.0" prefHeight="20.0" prefWidth="220.0" styleClass="label-estilo" text="El avion asignado a esta ruta es:" />
+                        <Label fx:id="avionLbl" layoutX="385.0" layoutY="171.0" prefHeight="17.0" prefWidth="87.0" text="????" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>
