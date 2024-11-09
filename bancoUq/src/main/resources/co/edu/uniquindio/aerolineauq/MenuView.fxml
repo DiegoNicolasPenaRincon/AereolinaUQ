@@ -35,9 +35,9 @@
                      </children>
                   </AnchorPane>
                   <!-- Botones de Navegación -->
-                  <Button fx:id="btnComprarTiquetes" layoutX="20.0" layoutY="210.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Comprar Tiquetes" />
-                  <Button fx:id="btnVerHistorial" layoutX="20.0" layoutY="260.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Ver Historial de Compras" />
-                  <Button fx:id="btnPerfil" layoutX="20.0" layoutY="310.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Perfil" />
+                  <Button fx:id="btnComprarTiquetes" layoutX="20.0" layoutY="210.0" mnemonicParsing="false" onAction="#mostrarCompras" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Comprar Tiquetes" />
+                  <Button fx:id="btnVerHistorial" layoutX="20.0" layoutY="260.0" mnemonicParsing="false" onAction="#mostrarHistorial" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Ver Historial de Compras" />
+                  <Button fx:id="btnPerfil" layoutX="20.0" layoutY="310.0" mnemonicParsing="false" onAction="#mostrarPerfil" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Perfil" />
                   <Button fx:id="btnCerrarSesion" layoutX="20.0" layoutY="480.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="35.0" prefWidth="135.0" styleClass="nav-btn" text="Cerrar Sesión">
                      <graphic>
                         <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">

@@ -30,8 +30,8 @@
                         <Label layoutX="66.0" layoutY="170.0" styleClass="label-estilo" stylesheets="@loginDesign.css" text="ADMINISTRADOR" />
                      </children>
                   </AnchorPane>
-                  <Button fx:id="btnGestionAeronaves" layoutX="20.0" layoutY="210.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Gestión de Aeronaves" />
-                  <Button fx:id="btnGestionTripulantes" layoutX="20.0" layoutY="260.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Gestión de Tripulantes" />
+                  <Button fx:id="btnGestionAeronaves" layoutX="20.0" layoutY="210.0" mnemonicParsing="false" onAction="#mostrarAeronaves" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Gestión de Aeronaves" />
+                  <Button fx:id="btnGestionTripulantes" layoutX="20.0" layoutY="260.0" mnemonicParsing="false" onAction="#mostrarTripulantes" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Gestión de Tripulantes" />
                   <Button fx:id="btnGestionEmbarque" layoutX="20.0" layoutY="310.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" text="Gestión de Embarque" />
                   <Button fx:id="btnCerrarSesion" layoutX="20.0" layoutY="480.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="35.0" prefWidth="135.0" styleClass="nav-btn" text="Cerrar Sesión">
                      <graphic>

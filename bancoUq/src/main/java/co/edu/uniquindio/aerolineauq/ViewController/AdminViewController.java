@@ -153,6 +153,8 @@ public class AdminViewController {
         columnCorreoAsignado.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getCorreo()) );
 
         tableTripulantesAsignados.setItems(FXCollections.observableList((List<Tripulante>) coleccionTripulantes));
+        anchorAeronaves.setVisible(true);
+        anchorTripulantes.setVisible(false);
     }
 
     @FXML
@@ -170,6 +172,18 @@ public class AdminViewController {
         }catch(Exception e){
             System.out.println("Error al abrir la ventana."+e);
         }
+    }
+
+    @FXML
+    public void mostrarAeronaves() {
+        anchorAeronaves.setVisible(true);
+        anchorTripulantes.setVisible(false);
+    }
+
+    @FXML
+    public void mostrarTripulantes() {
+        anchorAeronaves.setVisible(false);
+        anchorTripulantes.setVisible(true);
     }
 
 }

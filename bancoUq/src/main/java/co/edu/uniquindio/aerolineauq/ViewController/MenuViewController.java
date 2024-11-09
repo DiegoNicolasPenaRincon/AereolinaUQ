@@ -174,6 +174,9 @@ public class MenuViewController {
         radioIda.setSelected(true);
         comboClase.getSelectionModel().selectFirst();
         SpinPersonas.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1));
+        AnchorCompras.setVisible(true);
+        anchorPerfil.setVisible(false);
+        anchorHistorial.setVisible(false);
     }
 
     private void actualizarVisibilidadDateRegreso() {
@@ -217,6 +220,27 @@ public class MenuViewController {
     }
     public void registrarAccionesSistema(String mensaje, int nivel, String accion) {
         Persistencia.guardaRegistroLog(mensaje, nivel, accion);
+    }
+
+    @FXML
+    public void mostrarCompras() {
+        AnchorCompras.setVisible(true);
+        anchorPerfil.setVisible(false);
+        anchorHistorial.setVisible(false);
+    }
+
+    @FXML
+    public void mostrarPerfil() {
+        AnchorCompras.setVisible(false);
+        anchorPerfil.setVisible(true);
+        anchorHistorial.setVisible(false);
+    }
+
+    @FXML
+    public void mostrarHistorial() {
+        AnchorCompras.setVisible(false);
+        anchorPerfil.setVisible(false);
+        anchorHistorial.setVisible(true);
     }
 
 }
