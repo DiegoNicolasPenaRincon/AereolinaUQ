@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.aerolineauq.ViewController.EquipajeViewController">
+    <children>
+        <BorderPane prefHeight="600.0" prefWidth="1100.0" stylesheets="@loginDesign.css">
+            <!-- Panel Izquierdo (Menú de Navegación) -->
+            <left>
+                <AnchorPane prefHeight="600.0" prefWidth="67.0" styleClass="gradient" BorderPane.alignment="CENTER">
+                    <children>
+                        <AnchorPane fx:id="AnchorNavegacion" layoutX="0.0" layoutY="0.0" prefHeight="200.0" prefWidth="200.0" style="-fx-padding: 20;">
+                            <children>
+                                <!-- Logo -->
+                                <ImageView fitHeight="133.0" fitWidth="120.0" layoutX="65.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@imagenes/AEROLINEA_UQ-removebg-preview.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </AnchorPane>
+                        <Button fx:id="btnCerrarSesion" layoutX="20.0" layoutY="480.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="35.0" prefWidth="135.0" styleClass="nav-btn" text="Cerrar Sesión">
+                            <graphic>
+                                <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@imagenes/salir.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </AnchorPane>
+            </left>
+            <!-- Panel Central (Área de Compra de Tiquetes) -->
+            <center>
+                <AnchorPane prefHeight="600.0" prefWidth="851.0" stylesheets="@loginDesign.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <AnchorPane fx:id="anchorHistorial" layoutX="-29.0" prefHeight="600.0" prefWidth="860.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-29.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <Label layoutX="48.0" layoutY="62.0" styleClass="head-label" stylesheets="@loginDesign.css" text="Registro de equipaje " textFill="#2b7fbc">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Label>
+                        <Label layoutX="236.0" layoutY="212.0" styleClass="label-estilo" text="Vuelo asociado " />
+                        <TextField fx:id="txtNumeroVuelo" layoutX="404.0" layoutY="210.0" prefHeight="25.0" prefWidth="199.0" />
+                        <ComboBox fx:id="cbTipoEquipaje" layoutX="404.0" layoutY="154.0" prefWidth="200.0" styleClass="control-estilo" />
+                        <Label layoutX="236.0" layoutY="160.0" styleClass="label-estilo" text="Tipo de equipaje " />
+                        <Label layoutX="260.0" layoutY="307.0" styleClass="label-estilo" text="Mascota" />
+                        <CheckBox fx:id="ckMascotaSi" layoutX="316.0" layoutY="343.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="1.0" text="Si" />
+                        <CheckBox fx:id="ckMascotaNo" layoutX="367.0" layoutY="343.0" mnemonicParsing="false" text="No" />
+                        <TextField fx:id="txtPesoEquipaje" layoutX="405.0" layoutY="257.0" prefHeight="25.0" prefWidth="199.0" />
+                        <Label layoutX="236.0" layoutY="260.0" styleClass="label-estilo" text="Peso del equipaje (kg)" />
+                        <TextField fx:id="txtPesoMascota" layoutX="414.0" layoutY="378.0" prefHeight="25.0" prefWidth="199.0" />
+                        <Label layoutX="222.0" layoutY="380.0" styleClass="label-estilo" text="Peso de la mascota (kg)" />
+                        <Button fx:id="btnRegistrar" layoutX="293.0" layoutY="459.0" mnemonicParsing="false" onAction="#registrarEquipaje" prefHeight="40.0" prefWidth="210.0" style="-fx-background-color: #3297d8;" styleClass="nav-btn" text="Comprar Tiquetes" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+            </center>
+        </BorderPane>
+    </children>
+</StackPane>

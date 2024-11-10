@@ -96,3 +96,5 @@ nov. 09, 2024 9:58:06 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil gua
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-09
 nov. 09, 2024 10:06:27 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-09
+nov. 09, 2024 10:55:17 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-09

@@ -64,7 +64,7 @@ public class AerolineaApplication extends Application {
 
     public void mostrarVentanaEquipaje(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/aerolineauq/EquipajeView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/aerolineauq/Equipaje.fxml"));
             Parent root = loader.load();
 
             EquipajeViewController equipajeViewController = loader.getController();

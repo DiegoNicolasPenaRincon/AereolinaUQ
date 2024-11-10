@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class EquipajeViewController {
 
@@ -115,5 +116,22 @@ public class EquipajeViewController {
     }
     public void registrarAccionesSistema(String mensaje, int nivel, String accion) {
         Persistencia.guardaRegistroLog(mensaje, nivel, accion);
+    }
+
+    @FXML
+    public void cerrarSesion(){
+        try{
+            Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle(("Confirmación"));
+            alert.setHeaderText(null);
+            alert.setHeaderText("¿Esta seguro de que desea cerrar sesión?");
+            Optional<ButtonType> option=alert.showAndWait();
+
+            if(option.get().equals(ButtonType.OK)){
+                aplicacion.mostrarVentanaPrincipal();
+            }
+        }catch(Exception e){
+            System.out.println("Error al abrir la ventana."+e);
+        }
     }
 }
