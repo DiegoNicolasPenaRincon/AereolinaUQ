@@ -178,6 +178,13 @@ public class AerolineaUtils {
         aux3.setRolTripulante(RolTripulante.COPILOTO);
         aerolinea.getListaTripulantes().agregar(aux3);
 
+     Ruta ruta1 = new Ruta(Destino.Monterrey, LocalTime.of(3, 30), LocalTime.of(10, 0), LocalTime.of(15, 0));
+     aerolinea.getRutasAerolinea().agregar(ruta1);
+
+     Silla silla1 = new Silla("12", "A", true);
+
+     Tiquete tiquete1 = new Tiquete("123",usuario1, ruta1, 350.0, ClaseVuelo.ECONOMICA, silla1, TipoViaje.ida, null);
+     aerolinea.getListaTiquetes().agregar(tiquete1);
 
 
 

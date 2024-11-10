@@ -1,52 +1,34 @@
 package co.edu.uniquindio.aerolineauq.model;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.io.Serializable;
-
 
 public class Equipaje implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private double peso;
-    private double costoAdicional;
+    private double pesoEquipaje;
     private boolean esMascota;
     private double pesoMascota;
-    private int alto;
-    private int ancho;
-    private int largo;
-    private String categoriaViaje;
-    private claseVuelo claseVuelo;
-
-    public Equipaje(double peso, boolean esMascota, double pesoMascota, String categoriaViaje, claseVuelo claseVuelo) {
-        this.peso = peso;
-        this.esMascota = esMascota;
-        this.pesoMascota = pesoMascota;
-        this.categoriaViaje = categoriaViaje;
-        this.claseVuelo = claseVuelo;
-        this.costoAdicional = calcularCostoAdicional();
-    }
+    private String categoriaViaje; // Nacional o Internacional
+    private ClaseVuelo claseVuelo; // Ejecutiva o Económica
+    private double costoAdicional;
 
     public Equipaje() {
     }
 
-    public double getPeso() {
-        return peso;
+    public Equipaje(double pesoEquipaje, boolean esMascota, double pesoMascota, String categoriaViaje, ClaseVuelo claseVuelo) {
+        this.pesoEquipaje = pesoEquipaje;
+        this.esMascota = esMascota;
+        this.pesoMascota = pesoMascota;
+        this.categoriaViaje = categoriaViaje;
+        this.claseVuelo = claseVuelo;
+        calcularCostoAdicional();
     }
 
-    public void setPeso(double peso) {
-        this.peso = peso;
+    public double getPesoEquipaje() {
+        return pesoEquipaje;
     }
 
-    public double getCostoAdicional() {
-        return costoAdicional;
-    }
-
-    public void setCostoAdicional(double costoAdicional) {
-        this.costoAdicional = costoAdicional;
+    public void setPesoEquipaje(double pesoEquipaje) {
+        this.pesoEquipaje = pesoEquipaje;
     }
 
     public boolean isEsMascota() {
@@ -65,30 +47,6 @@ public class Equipaje implements Serializable {
         this.pesoMascota = pesoMascota;
     }
 
-    public int getAlto() {
-        return alto;
-    }
-
-    public void setAlto(int alto) {
-        this.alto = alto;
-    }
-
-    public int getAncho() {
-        return ancho;
-    }
-
-    public void setAncho(int ancho) {
-        this.ancho = ancho;
-    }
-
-    public int getLargo() {
-        return largo;
-    }
-
-    public void setLargo(int largo) {
-        this.largo = largo;
-    }
-
     public String getCategoriaViaje() {
         return categoriaViaje;
     }
@@ -97,31 +55,45 @@ public class Equipaje implements Serializable {
         this.categoriaViaje = categoriaViaje;
     }
 
-    public co.edu.uniquindio.aerolineauq.model.claseVuelo getClaseVuelo() {
+    public ClaseVuelo getClaseVuelo() {
         return claseVuelo;
     }
 
-    public void setClaseVuelo(co.edu.uniquindio.aerolineauq.model.claseVuelo claseVuelo) {
+    public void setClaseVuelo(ClaseVuelo claseVuelo) {
         this.claseVuelo = claseVuelo;
     }
 
-    public double calcularCostoAdicional() {
-        double costo = 0;
-        double pesoMaximo = claseVuelo == claseVuelo.EJECUTIVA ? 34 : 24;
-        int cantidadPiezas = categoriaViaje.equalsIgnoreCase("internacional") ? 2 : 1;
-        double pesoTotalPermitido = pesoMaximo * cantidadPiezas;
+    public double getCostoAdicional() {
+        return costoAdicional;
+    }
 
-        if (peso > pesoTotalPermitido) {
-            costo += (peso - pesoTotalPermitido) * 8 * 1.0675; // Costo por sobrepeso
+    public void setCostoAdicional(double costoAdicional) {
+        this.costoAdicional = costoAdicional;
+    }
+
+    private void calcularCostoAdicional() {
+        double pesoPermitido = 0;
+
+        if (categoriaViaje.equals("Nacional")) {
+            pesoPermitido = claseVuelo == ClaseVuelo.EJECUTIVA ? 34 * 2 : 24;
+        } else if (categoriaViaje.equals("Internacional")) {
+            pesoPermitido = 24 * 2; // 2 piezas de 24 kg para ambas clases
         }
+
+        double excesoPeso = pesoEquipaje > pesoPermitido ? pesoEquipaje - pesoPermitido : 0;
+        costoAdicional = excesoPeso * 8 * 1.0675; // Incluye el impuesto del 6.75%
+
         if (esMascota) {
-            costo += (pesoMascota > 9) ? (pesoMascota - 9) * 2 + 48 : 48;
+            costoAdicional += calcularCostoMascota();
         }
-        return costo;
+    }
+
+    private double calcularCostoMascota() {
+        if (pesoMascota < 3) return 0;
+        if (pesoMascota <= 9) return 48;
+        return 48 + (pesoMascota - 9) * 2;
     }
 
 
-
-    // Getters y Setters
 }
 

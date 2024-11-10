@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -134,6 +135,9 @@ public class AdminViewController {
     private ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
 
     private AerolineaApplication aplicacion;
+
+    public AdminViewController() throws IOException {
+    }
 
     public void setAplicacion(AerolineaApplication aplicacion) {
         this.aplicacion = aplicacion;

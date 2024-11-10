@@ -1,6 +1,7 @@
 package co.edu.uniquindio.aerolineauq.Listas;
 
 import co.edu.uniquindio.aerolineauq.model.Aerolinea;
+import co.edu.uniquindio.aerolineauq.model.Equipaje;
 import co.edu.uniquindio.aerolineauq.model.Usuario;
 
 import java.io.Serializable;
@@ -245,6 +246,12 @@ public class ListaSimple<T> implements Iterable<T> , Serializable {
 
 
     public void addAll(ArrayList<T> elementos) {
+        for (T elemento : elementos) {
+            this.agregar(elemento);
+        }
+    }
+
+    public void addAll(ListaSimple<T> elementos) {
         for (T elemento : elementos) {
             this.agregar(elemento);
         }

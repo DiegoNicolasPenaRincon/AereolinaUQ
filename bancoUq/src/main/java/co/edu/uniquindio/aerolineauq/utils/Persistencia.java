@@ -2,19 +2,19 @@ package co.edu.uniquindio.aerolineauq.utils;
 
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.model.Aerolinea;
+import co.edu.uniquindio.aerolineauq.model.Equipaje;
 import co.edu.uniquindio.aerolineauq.model.Usuario;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Persistencia {
 
-    public static final String RUTA_ARCHIVO_MODELO_BANCO_XML = "/persistencia/model.xml";
-    public static final String RUTA_ARCHIVO_LOG = "/persistencia/log/AeroLog.txt";
-    public static final String RUTA_ARCHIVO_MODELO_BINARIO = "/persistencia/model.dat";
-    public static final String RUTA_ARCHIVO_USUARIOS = "/persistencia/usuarios.txt";
+    public static final String RUTA_ARCHIVO_MODELO_XML = "bancoUq/src/main/resources/persistencia/model.xml";
+    public static final String RUTA_ARCHIVO_LOG = "bancoUq/src/main/resources/persistencia/log/AeroLog.txt";
+    public static final String RUTA_ARCHIVO_MODELO_BINARIO = "bancoUq/src/main/resources/persistencia/model.dat";
+    public static final String RUTA_ARCHIVO_USUARIOS = "bancoUq/src/main/resources/persistencia/usuarios.txt";
 
 
 
@@ -41,20 +41,20 @@ public class Persistencia {
     }
 
     // //Cargar y guardar recurso xml del model
-    public static void guardarRecursoBancoXML(Aerolinea aeroUq) {
+    public static void guardarRecursoXML(Aerolinea aeroUq) {
 
         try {
-            ArchivoUtil.salvarRecursoSerializadoXML(RUTA_ARCHIVO_MODELO_BANCO_XML, aeroUq);
+            ArchivoUtil.salvarRecursoSerializadoXML(RUTA_ARCHIVO_MODELO_XML, aeroUq);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public static Aerolinea cargarRecursoBancoXML() {
+    public static Aerolinea cargarRecursoXML() {
 
         Aerolinea aeroUq = null;
 
         try {
-            aeroUq = (Aerolinea) ArchivoUtil.cargarRecursoSerializadoXML(RUTA_ARCHIVO_MODELO_BANCO_XML);
+            aeroUq = (Aerolinea) ArchivoUtil.cargarRecursoSerializadoXML(RUTA_ARCHIVO_MODELO_XML);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -107,6 +107,30 @@ public class Persistencia {
         }
         ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_USUARIOS, contenido, false);
     }
+/*
+    public static ArrayList<Equipaje> cargarEquipaje() throws IOException {
+        ArrayList<Equipaje> eventos = new ArrayList<>();
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(RUTA_ARCHIVO_MODELO_BINARIO))) {
+            eventos = (ArrayList<Equipaje>) objectInputStream.readObject();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return eventos;
+    }
+
+
+
+
+
+    public static void guardarEquipaje(ArrayList<Equipaje> listaEventos) throws IOException {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(RUTA_ARCHIVO_MODELO_BINARIO))) {
+            oos.writeObject(listaEventos);
+        }
+    }
+
+
+ */
+
 
 
     // Cargar los datos de los archivos guardados en las respectivas rutas
@@ -116,6 +140,16 @@ public class Persistencia {
         ArrayList<Usuario> usuariosCargados = cargarUsuarios();
         if (usuariosCargados.size() > 0)
             aerolinea.getListaUsuarios().addAll(usuariosCargados);
+/*
+        ArrayList<Equipaje> equipajeCargados = cargarEquipaje();
+        if (equipajeCargados.size() > 0)
+            aerolinea.getListaEquipaje().addAll(equipajeCargados);
+
+
+ */
+
+
+
 
 
     }

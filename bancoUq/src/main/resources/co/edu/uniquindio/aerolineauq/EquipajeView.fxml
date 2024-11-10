@@ -23,6 +23,7 @@
                         <Font name="Bell MT Bold" size="14.0" />
                     </font>
                 </Label>
+                <ComboBox fx:id="cbTipoEquipaje" layoutX="212.0" layoutY="105.0" prefHeight="30.0" prefWidth="240.0" promptText="Seleccione el tipo de equipaje"/>
                 <Button fx:id="btnRegistrar" layoutX="275.0" layoutY="386.0" mnemonicParsing="false" onAction="#registrarEquipaje" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #FFB923;" text="Registrar" textFill="WHITE">
                     <font>
                         <Font name="Lucida Fax Demibold" size="12.0" />

@@ -15,6 +15,32 @@ public class Aerolinea implements Serializable {
     ListaSimple<Tiquete> listaTiquetes=new ListaSimple<>();
     ListaSimple<Ruta> rutasAerolinea=new ListaSimple<>();
     ListaSimple<Avion> listaAviones=new ListaSimple<>();
+    ListaSimple<Equipaje> listaEquipaje=new ListaSimple<>();
+
+
+    public ListaSimple<Equipaje> getListaEquipaje() {
+        return listaEquipaje;
+    }
+
+    public void setListaEquipaje(ListaSimple<Equipaje> listaEquipaje) {
+        this.listaEquipaje = listaEquipaje;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public ListaSimple<Tiquete> getListaTiquetes() {
+        return listaTiquetes;
+    }
+
+    public void setListaTiquetes(ListaSimple<Tiquete> listaTiquetes) {
+        this.listaTiquetes = listaTiquetes;
+    }
 
     public ListaSimple<Ruta> getRutasAerolinea() {
         return rutasAerolinea;
@@ -76,13 +102,6 @@ public class Aerolinea implements Serializable {
 
         return usuarioEncontrado;
     }
-
-    public void registrarEquipaje(Tiquete tiquete, double peso, boolean esMascota, double pesoMascota, String categoriaViaje) {
-        Equipaje equipaje = new Equipaje(peso, esMascota, pesoMascota, categoriaViaje, tiquete.getClaseVuelo());
-        tiquete.setEquipaje(equipaje);
-        registrarAccionesSistema("Equipaje registrado para tiquete: " + tiquete, 1, "Registro Equipaje");
-    }
-
 
 
     public void setListaUsuarios(ListaSimple<Usuario> listaUsuarios) {

@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="17.0.9" class="java.beans.XMLDecoder">
+<java version="17.0.10" class="java.beans.XMLDecoder">
  <object class="co.edu.uniquindio.aerolineauq.model.Aerolinea" id="Aerolinea0">
+  <void property="listaAviones">
+   <void property="tamanio">
+    <int>6</int>
+   </void>
+  </void>
+  <void property="listaTiquetes">
+   <void property="tamanio">
+    <int>1</int>
+   </void>
+  </void>
+  <void property="listaTripulantes">
+   <void property="tamanio">
+    <int>7</int>
+   </void>
+  </void>
   <void property="listaUsuarios">
    <void property="tamanio">
-    <int>5</int>
+    <int>2</int>
+   </void>
+  </void>
+  <void property="rutasAerolinea">
+   <void property="tamanio">
+    <int>1</int>
    </void>
   </void>
  </object>

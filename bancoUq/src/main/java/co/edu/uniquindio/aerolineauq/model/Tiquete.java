@@ -1,24 +1,21 @@
 package co.edu.uniquindio.aerolineauq.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.io.Serializable;
 
 public class Tiquete implements Serializable {
     private static final long serialVersionUID = 1L;
+    private String numeroVuelo;
     private Usuario usuario;
     private Ruta ruta;
     private double precio;
-    private claseVuelo claseVuelo;
+    private ClaseVuelo claseVuelo;
     private Silla silla;
     private TipoViaje tipoViaje;
     private Equipaje equipaje;  // Nuevo atributo para asociar equipaje
 
     // Constructor, getters y setters
-    public Tiquete(Usuario usuario, Ruta ruta, double precio, claseVuelo claseVuelo, Silla silla, TipoViaje tipoViaje, Equipaje equipaje) {
+    public Tiquete(String numeroVuelo,Usuario usuario, Ruta ruta, double precio, ClaseVuelo claseVuelo, Silla silla, TipoViaje tipoViaje, Equipaje equipaje) {
+        this.numeroVuelo = numeroVuelo;
         this.usuario = usuario;
         this.ruta = ruta;
         this.precio = precio;
@@ -30,6 +27,14 @@ public class Tiquete implements Serializable {
     }
 
     public Tiquete() {
+    }
+
+    public String getNumeroVuelo() {
+        return numeroVuelo;
+    }
+
+    public void setNumeroVuelo(String numeroVuelo) {
+        this.numeroVuelo = numeroVuelo;
     }
 
     public Usuario getUsuario() {
@@ -56,11 +61,11 @@ public class Tiquete implements Serializable {
         this.precio = precio;
     }
 
-    public co.edu.uniquindio.aerolineauq.model.claseVuelo getClaseVuelo() {
+    public ClaseVuelo getClaseVuelo() {
         return claseVuelo;
     }
 
-    public void setClaseVuelo(co.edu.uniquindio.aerolineauq.model.claseVuelo claseVuelo) {
+    public void setClaseVuelo(ClaseVuelo claseVuelo) {
         this.claseVuelo = claseVuelo;
     }
 
@@ -85,6 +90,10 @@ public class Tiquete implements Serializable {
     }
 
     public void setEquipaje(Equipaje equipaje) {
+        this.equipaje = equipaje;
+    }
+
+    public void agregarEquipaje(Equipaje equipaje) {
         this.equipaje = equipaje;
     }
 }

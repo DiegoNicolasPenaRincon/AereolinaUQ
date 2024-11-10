@@ -1,7 +1,7 @@
 package co.edu.uniquindio.aerolineauq.ViewController;
 
 import co.edu.uniquindio.aerolineauq.AerolineaApplication;
-import co.edu.uniquindio.aerolineauq.model.claseVuelo;
+import co.edu.uniquindio.aerolineauq.model.ClaseVuelo;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -168,7 +168,7 @@ public class MenuViewController {
         actualizarVisibilidadDateRegreso();
         comboDestinos.getItems().addAll("Monterrey", "Cancún", "Buenos Aires", "Los Angeles", "Bogotá", "Panamá");
         comboDestinos.getSelectionModel().selectFirst();
-        for (claseVuelo clase : claseVuelo.values()) {
+        for (ClaseVuelo clase : ClaseVuelo.values()) {
             comboClase.getItems().add(clase.toString());
         }
         radioIda.setSelected(true);

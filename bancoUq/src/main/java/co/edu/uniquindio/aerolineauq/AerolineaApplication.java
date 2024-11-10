@@ -1,5 +1,6 @@
 package co.edu.uniquindio.aerolineauq;
 
+import co.edu.uniquindio.aerolineauq.ViewController.EquipajeViewController;
 import co.edu.uniquindio.aerolineauq.ViewController.InicioSesionViewController;
 import co.edu.uniquindio.aerolineauq.ViewController.MenuViewController;
 import javafx.application.Application;
@@ -51,6 +52,26 @@ public class AerolineaApplication extends Application {
 
             Scene scene = new Scene(root);
             primaryStage.setTitle("Menú de Usuario");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            primaryStage.setWidth(1100);
+            primaryStage.setHeight(600);
+            primaryStage.centerOnScreen();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void mostrarVentanaEquipaje(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/aerolineauq/EquipajeView.fxml"));
+            Parent root = loader.load();
+
+            EquipajeViewController equipajeViewController = loader.getController();
+            equipajeViewController.setAplicacion(this);
+
+            Scene scene = new Scene(root);
+            primaryStage.setTitle("equipaje");
             primaryStage.setScene(scene);
             primaryStage.show();
             primaryStage.setWidth(1100);

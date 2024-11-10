@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class InicioSesionViewController {
@@ -65,6 +66,9 @@ public class InicioSesionViewController {
     private AnchorPane SideSign;
 
     private ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
+
+    public InicioSesionViewController() throws IOException {
+    }
 
 
     public void setAplicacion(AerolineaApplication aplicacion) {

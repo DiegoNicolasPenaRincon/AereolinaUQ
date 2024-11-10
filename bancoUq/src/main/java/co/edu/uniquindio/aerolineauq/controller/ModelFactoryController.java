@@ -1,10 +1,7 @@
 package co.edu.uniquindio.aerolineauq.controller;
 
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
-import co.edu.uniquindio.aerolineauq.model.Aerolinea;
-import co.edu.uniquindio.aerolineauq.model.Equipaje;
-import co.edu.uniquindio.aerolineauq.model.Tiquete;
-import co.edu.uniquindio.aerolineauq.model.Usuario;
+import co.edu.uniquindio.aerolineauq.model.*;
 import co.edu.uniquindio.aerolineauq.utils.AerolineaUtils;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 
@@ -16,19 +13,22 @@ public class ModelFactoryController {
     private static ModelFactoryController instance;
     private Aerolinea aerolinea;
 
-    public ModelFactoryController() {
+    public ModelFactoryController() throws IOException {
         System.out.println("Datos inicializados");// Inicializa la clase de lógica de negocio
 
         //1. carga los datos del utils
-        cargarDatosBase();
+        //cargarDatosBase();
         //salvarDatosPrueba();
 
         //2. cargar desde los archivos
-        //cargarDatosDesdeArchivos();
+        cargarDatosDesdeArchivos();
 
         // Guardar y cargar desde el binario
-        //cargarResourceBinario();
-        //guardarResourceBinario();
+        cargarResourceBinario();
+        guardarResourceBinario();
+
+        //cargarResourceXML();
+        //guardarResourceXML();
 
         if (aerolinea == null) {
             cargarDatosBase();
@@ -40,7 +40,7 @@ public class ModelFactoryController {
     }
 
 
-    public static ModelFactoryController getInstance() {
+    public static ModelFactoryController getInstance() throws IOException {
         if (instance == null) {
             instance = new ModelFactoryController();
         }
@@ -56,7 +56,7 @@ public class ModelFactoryController {
         Usuario usuario = new Usuario(id, nombre, apellido, direccion, fechaNacimiento, correo, contrasenia);
         try {
             if (!aerolinea.verificarUsuarioExistente(usuario.getId())) {
-                aerolinea.registrarUsuario(usuario); // Delegar el registro a Aerolinea
+                aerolinea.registrarUsuario(usuario);
                 guardarResourceBinario();
                 guardarResourceXML();
                 guardarListaUsuario(getAerolinea().getListaUsuarios());
@@ -72,12 +72,12 @@ public class ModelFactoryController {
 
     // Cargar y guardar los xml
     private void cargarResourceXML() {
-        aerolinea = Persistencia.cargarRecursoBancoXML();
+        aerolinea = Persistencia.cargarRecursoXML();
     }
 
     private void guardarResourceXML() {
         Thread thread = new Thread(() -> {
-            Persistencia.guardarRecursoBancoXML(aerolinea);
+            Persistencia.guardarRecursoXML(aerolinea);
         });
         thread.start();
     }
@@ -94,15 +94,15 @@ public class ModelFactoryController {
     }
 
     // Guarda los datos diferentes datos que esten en los utils
-    private void salvarDatosPrueba() {
-        try {
+    private void salvarDatosPrueba() throws IOException {
 
-            Persistencia.guardarUsuarios(getAerolinea().getListaUsuarios());
+         Persistencia.guardarUsuarios(getAerolinea().getListaUsuarios());
 
+        Persistencia.guardarRecursoBinario(getAerolinea());
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+      //  Persistencia.guardarEquipaje(getAerolinea().getListaEquipaje());
+
+        Persistencia.guardarRecursoXML(getAerolinea());
     }
     // Carga los datos desde los archivos (txt dat xml)
     private void cargarDatosDesdeArchivos() {
@@ -124,20 +124,25 @@ public class ModelFactoryController {
         });
         thread.start();
     }
-    /*
 
-    public void registrarEquipaje(String numeroVuelo, double pesoEquipaje, boolean esMascota, double pesoMascota, String categoriaViaje) {
+
+   public void registrarEquipaje(String numeroVuelo, double pesoEquipaje, boolean esMascota, double pesoMascota, String categoriaViaje, ClaseVuelo claseVuelo) {
         Tiquete tiquete = buscarTiquetePorNumero(numeroVuelo);
+
         if (tiquete != null) {
-            aerolinea.registrarEquipaje(tiquete, pesoEquipaje, esMascota, pesoMascota, categoriaViaje);
+            Equipaje equipaje = new Equipaje(pesoEquipaje, esMascota, pesoMascota, categoriaViaje, claseVuelo);
+            tiquete.agregarEquipaje(equipaje);
+            guardarResourceBinario();
+            guardarResourceXML();
         } else {
-            System.out.println("Tiquete no encontrado para el número de vuelo: " + numeroVuelo);
+            System.out.println("Tiquete no encontrado.");
         }
     }
 
-    private Tiquete buscarTiquetePorNumero(String numeroVuelo) {
-        for (Tiquete tiquete : aerolinea.getTiquetes()) {
-            if (tiquete.getRuta().getVuelo().getNumeroVuelo().equals(numeroVuelo)) {
+
+    public Tiquete buscarTiquetePorNumero(String numeroVuelo) {
+        for (Tiquete tiquete : aerolinea.getListaTiquetes()) {
+            if (tiquete.getNumeroVuelo().equals(numeroVuelo)) {
                 return tiquete;
             }
         }
@@ -145,7 +150,6 @@ public class ModelFactoryController {
     }
 
 
-     */
 
 
 }

@@ -1,6 +1,6 @@
 package co.edu.uniquindio.aerolineauq.model;
 
-public enum claseVuelo {
+public enum ClaseVuelo {
     EJECUTIVA,
     ECONOMICA
 }
