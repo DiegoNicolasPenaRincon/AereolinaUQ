@@ -1,7 +1,9 @@
 package co.edu.uniquindio.aerolineauq.ViewController;
 
 import co.edu.uniquindio.aerolineauq.AerolineaApplication;
+import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
+import co.edu.uniquindio.aerolineauq.model.Avion;
 import co.edu.uniquindio.aerolineauq.model.Ruta;
 import co.edu.uniquindio.aerolineauq.model.Tripulante;
 import javafx.beans.property.SimpleStringProperty;
@@ -28,7 +30,7 @@ public class AdminViewController {
     private AnchorPane anchorTripulantes;
 
     @FXML
-    private ComboBox<?> avionComboBox;
+    private ComboBox<String> avionComboBox;
 
     @FXML
     private Label avionLbl;
@@ -106,7 +108,7 @@ public class AdminViewController {
     private DatePicker dateNacimiento;
 
     @FXML
-    private ComboBox<Ruta> rutaComboBox;
+    private ComboBox<String> rutaComboBox;
 
     @FXML
     private TableView<Tripulante> tableTripulantes;
@@ -144,12 +146,12 @@ public class AdminViewController {
     }
 
     public void initialize() {
-        Collection<Ruta> coleccionRuta=modelFactoryController.getAerolinea().getRutasAerolinea().toCollection();
-        Collection<Tripulante> coleccionTripulantes=modelFactoryController.getAerolinea().getListaTripulantes().toCollection();
-        //Collection<Avion> coleccionAviones=modelFactoryController.getAerolinea().getAvionesDisponibles().toCollection();
+        //Collection<Ruta> coleccionRuta=modelFactoryController.getAerolinea().getRutasAerolinea().toCollection();
+        //Collection<Tripulante> coleccionTripulantes=modelFactoryController.getAerolinea().getListaTripulantes().toCollection();
+        //Collection<Avion> coleccionAviones=modelFactoryController.getAerolinea().getListaAviones().toCollection();
         rutaComboBox.getItems().addAll(coleccionRuta);
-        //ListaSimple<Avion> aviones = modelFactoryController.getAerolinea().filtrarNacionalesInternacionales();
-        //avionComboBox.getItems().addAll(modelFactoryController.getAerolinea());
+
+        avionComboBox.getItems().addAll(coleccionAviones);
 
         columnNombreAsignado.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getNombre()) );
         columnIDAsignado.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getId() ));
@@ -189,5 +191,6 @@ public class AdminViewController {
         anchorAeronaves.setVisible(false);
         anchorTripulantes.setVisible(true);
     }
+    
 
 }
