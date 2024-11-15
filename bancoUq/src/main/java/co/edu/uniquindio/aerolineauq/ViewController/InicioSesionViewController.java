@@ -6,8 +6,12 @@ import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -92,7 +96,17 @@ public class InicioSesionViewController {
 
         if (inicioExitoso) {
             mostrarAlerta("Éxito", "Inicio de sesión exitoso", Alert.AlertType.INFORMATION);
-            // Aquí puedes redirigir al usuario a la siguiente vista, si es necesario
+            if(id.equals("1234"))
+            {
+                try
+                {
+                    mostrarVentanaAdministrador();
+                }
+                catch (IOException e)
+                {
+                    throw new RuntimeException(e);
+                }
+            }
         } else {
             mostrarAlerta("Error", "ID o contraseña incorrecta", Alert.AlertType.ERROR);
         }
@@ -176,6 +190,19 @@ public class InicioSesionViewController {
     }
     public void registrarAccionesSistema(String mensaje, int nivel, String accion) {
         Persistencia.guardaRegistroLog(mensaje, nivel, accion);
+    }
+
+    public void mostrarVentanaAdministrador() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/aerolineauq/AdminView.fxml"));
+        Parent root = loader.load();
+
+        AdminViewController SACController =loader.getController();
+
+        // Mostramos la nueva ventana
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

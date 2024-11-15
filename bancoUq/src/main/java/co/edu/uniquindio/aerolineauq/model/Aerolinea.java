@@ -123,4 +123,9 @@ public class Aerolinea implements Serializable {
     public void setListaAviones(ListaSimple<Avion> listaAviones) {
         this.listaAviones = listaAviones;
     }
+
+    public void filtarNacionales() {
+
+    }
+
 }
