@@ -16,15 +16,12 @@ public class Aerolinea implements Serializable {
     ListaSimple<Ruta> rutasAerolinea=new ListaSimple<>();
     ListaSimple<Avion> listaAviones=new ListaSimple<>();
     ListaSimple<Equipaje> listaEquipaje=new ListaSimple<>();
+    public Usuario usuario;
 
-
-    public ListaSimple<Equipaje> getListaEquipaje() {
-        return listaEquipaje;
+    public ListaSimple<Usuario> getListaUsuarios() {
+        return listaUsuarios;
     }
 
-    public void setListaEquipaje(ListaSimple<Equipaje> listaEquipaje) {
-        this.listaEquipaje = listaEquipaje;
-    }
 
     public Usuario getUsuario() {
         return usuario;
@@ -32,6 +29,18 @@ public class Aerolinea implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public void registrarAccionesSistema(String mensaje, int nivel, String accion) {
+        Persistencia.guardaRegistroLog(mensaje, nivel, accion);
+    }
+
+    public void setListaEquipaje(ListaSimple<Equipaje> listaEquipaje) {
+        this.listaEquipaje = listaEquipaje;
+    }
+
+    public ListaSimple<Equipaje> getListaEquipaje() {
+        return listaEquipaje;
     }
 
     public ListaSimple<Tiquete> getListaTiquetes() {
@@ -48,17 +57,6 @@ public class Aerolinea implements Serializable {
 
     public void setRutasAerolinea(ListaSimple<Ruta> rutasAerolinea) {
         this.rutasAerolinea = rutasAerolinea;
-    }
-
-    public Usuario usuario;
-
-    public ListaSimple<Usuario> getListaUsuarios() {
-        return listaUsuarios;
-    }
-
-
-    public void registrarAccionesSistema(String mensaje, int nivel, String accion) {
-        Persistencia.guardaRegistroLog(mensaje, nivel, accion);
     }
 
 
@@ -88,6 +86,7 @@ public class Aerolinea implements Serializable {
             return false;
         }
     }
+
     public boolean usuarioExiste(String id) {
         boolean usuarioEncontrado = false;
         Iterator var3 = this.getListaUsuarios().iterator();
@@ -122,5 +121,10 @@ public class Aerolinea implements Serializable {
 
     public void setListaAviones(ListaSimple<Avion> listaAviones) {
         this.listaAviones = listaAviones;
+    }
+
+    public void registrarTiquete(Tiquete tiquete) {
+        listaTiquetes.agregar(tiquete);
+        Persistencia.guardaRegistroLog("Se ha registrado un nuevo tiquete para el usuario " + tiquete.getUsuario().getId(), 1, "Registro Tiquete");
     }
 }

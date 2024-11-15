@@ -17,18 +17,18 @@ public class ModelFactoryController {
         System.out.println("Datos inicializados");// Inicializa la clase de lógica de negocio
 
         //1. carga los datos del utils
-        //cargarDatosBase();
+        cargarDatosBase();
         //salvarDatosPrueba();
 
         //2. cargar desde los archivos
-        cargarDatosDesdeArchivos();
+        //cargarDatosDesdeArchivos();
 
         // Guardar y cargar desde el binario
-        cargarResourceBinario();
-        guardarResourceBinario();
+        //cargarResourceBinario();
+         guardarResourceBinario();
 
         //cargarResourceXML();
-        //guardarResourceXML();
+        guardarResourceXML();
 
         if (aerolinea == null) {
             cargarDatosBase();
@@ -114,7 +114,11 @@ public class ModelFactoryController {
         }
     }
 
-    private void guardarListaUsuario(ListaSimple<Usuario> listaUsuario) {
+    public Usuario getUsuarioActual(){
+        return aerolinea.getUsuario();
+    }
+
+    public void guardarListaUsuario(ListaSimple<Usuario> listaUsuario) {
         Thread thread = new Thread(() -> {
             try {
                 Persistencia.guardarUsuarios(listaUsuario);
@@ -149,7 +153,66 @@ public class ModelFactoryController {
         return null;
     }
 
+    public Tiquete registrarCompra(String numeroVuelo, Usuario usuario, Ruta ruta, double precio, ClaseVuelo claseVuelo, Silla silla, TipoViaje tipoViaje, LocalDate fechaViaje, LocalDate fechaRegreso, Equipaje equipaje) {
+        if (!validarDatosCompra(usuario, ruta, claseVuelo)) {
+            throw new IllegalArgumentException("Datos de compra inválidos.");
+        }
+
+        // Calcula el precio
+       // double precio = calcularPrecio(ruta, claseVuelo, tipoViaje, pesoEquipaje, esMascota);
+
+        // Crea el tiquete y equipaje
+        //Equipaje equipaje = new Equipaje(pesoEquipaje, esMascota, pesoMascota, tipoViaje.toString(), claseVuelo);
+        // Silla silla = asignarSilla(claseVuelo);
+        Tiquete tiquete = new Tiquete();
+
+        // Asigna el equipaje al tiquete
+        tiquete.setEquipaje(equipaje);
+        aerolinea.registrarTiquete(tiquete); // Añade el tiquete a la aerolínea
+
+        // Registra la acción en el log
+        registrarAccionesSistema("Compra realizada para el usuario: " + usuario.getId(), 1, "Compra Tiquete");
+
+        return tiquete;
+    }
+
+    /**
+     * Método para validar datos de la compra.
+     */
+    private boolean validarDatosCompra(Usuario usuario, Ruta ruta, ClaseVuelo claseVuelo) {
+        return usuario != null && ruta != null && claseVuelo != null;
+    }
+
+    /**
+     * Método para calcular el precio del tiquete según la ruta, clase, tipo de viaje y equipaje.
+     */
+    private double calcularPrecio(Ruta ruta, ClaseVuelo claseVuelo, TipoViaje tipoViaje, double pesoEquipaje, boolean esMascota) {
+        //double precioBase = ruta.getDistancia() * 0.1; // Supón que el precio base depende de la distancia
+        double precioBase=0;
+        precioBase += claseVuelo == ClaseVuelo.EJECUTIVA ? 50 : claseVuelo == ClaseVuelo.ECONOMICA ? 20 : 30;
+        precioBase += (tipoViaje == TipoViaje.idaYvuelta ? 0.8 * precioBase : 0);
+        precioBase += pesoEquipaje * 2.0; // Añade un costo por peso del equipaje
+        precioBase += esMascota ? 30 : 0; // Añade un costo si hay una mascota
+        return precioBase;
+    }
+
+    /**
+     * Método para asignar una silla disponible según la clase de vuelo.
+     */
+    /*
+    private Silla asignarSilla(ClaseVuelo claseVuelo) {
+        // Método para buscar y retornar una silla disponible según la clase de vuelo.
+        // Para este ejemplo, devuelve una silla nueva.
+        return new Silla(claseVuelo.toString(), true); // Asume que el asiento está disponible
+    }
 
 
+     */
 
+    /**
+     * Método para registrar acciones en el sistema.
+     */
+    private void registrarAccionesSistema(String mensaje, int nivel, String accion) {
+        Persistencia.guardaRegistroLog(mensaje, nivel, accion);
+    }
 }

@@ -16,12 +16,14 @@ public class Ruta implements Serializable {
     private LocalTime duracion;
     private LocalTime horaSalida;
     private LocalTime horaRegreso;
+    private double precio;
 
-    public Ruta(Destino destino, LocalTime duracion, LocalTime horaSalida, LocalTime horaRegreso) {
+    public Ruta(Destino destino, LocalTime duracion, LocalTime horaSalida, LocalTime horaRegreso, double precio) {
         this.destino = destino;
         this.duracion = duracion;
         this.horaSalida = horaSalida;
         this.horaRegreso = horaRegreso;
+        this.precio=precio;
     }
 
     public Ruta() {
@@ -61,5 +63,13 @@ public class Ruta implements Serializable {
 
     public void setHoraRegreso(LocalTime horaRegreso) {
         this.horaRegreso = horaRegreso;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 }

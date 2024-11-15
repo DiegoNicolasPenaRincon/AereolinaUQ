@@ -1,12 +1,15 @@
 package co.edu.uniquindio.aerolineauq.ViewController;
 
 import co.edu.uniquindio.aerolineauq.AerolineaApplication;
-import co.edu.uniquindio.aerolineauq.model.ClaseVuelo;
+import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
+import co.edu.uniquindio.aerolineauq.model.*;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Optional;
 
 public class MenuViewController {
@@ -138,6 +141,11 @@ public class MenuViewController {
 
     private AerolineaApplication aplicacion;
 
+    private ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
+
+    public MenuViewController() throws IOException {
+    }
+
     public void setAplicacion(AerolineaApplication aplicacion) {
         this.aplicacion = aplicacion;
     }
@@ -183,36 +191,47 @@ public class MenuViewController {
         dateRegresoViaje.setVisible(radioIdaVuelta.isSelected());
         labelRegreso.setVisible(radioIdaVuelta.isSelected());
     }
-
+    @FXML
     public void realizarCompra() {
-        // Validación de campos requeridos
-        if (comboDestinos.getValue() == null || comboClase.getValue() == null ||
-                dateSalidaViaje.getValue() == null || SpinPersonas.getValue() == null ||
-                (radioIdaVuelta.isSelected() && dateRegresoViaje.getValue() == null)) {
+        if (validarCampos()) {
+            // Recopila información de la interfaz
+            Destino destino = Destino.valueOf(comboDestinos.getValue());
+            ClaseVuelo claseVuelo = ClaseVuelo.valueOf(comboClase.getValue());
+            TipoViaje tipoViaje = radioIdaVuelta.isSelected() ? TipoViaje.idaYvuelta: TipoViaje.ida;
+            int cantidadPersonas = SpinPersonas.getValue();
+            LocalDate fechaSalida = dateSalidaViaje.getValue();
+            LocalDate fechaRegreso = tipoViaje == TipoViaje.idaYvuelta ? dateRegresoViaje.getValue() : null;
 
-            mostrarAlerta("Error", "Por favor, complete todos los campos requeridos.");
-            return;
+            try {
+                // Llamada al método de ModelFactoryController para registrar el tiquete
+                Tiquete tiquete = modelFactoryController.registrarCompra("V123", modelFactoryController.getUsuarioActual(), new Ruta(),0, claseVuelo, new Silla(), tipoViaje, fechaSalida, fechaRegreso, new Equipaje());
+                mostrarConfirmacion("Tiquete registrado exitosamente", "Número de vuelo: " + tiquete.getNumeroVuelo());
+            } catch (Exception e) {
+                mostrarError("Error al registrar el tiquete", e.getMessage());
+            }
+        } else {
+            mostrarError("Datos incompletos", "Por favor completa todos los campos necesarios.");
         }
-
-        // Obtener datos de la compra
-        String ruta = comboDestinos.getValue();
-        String clase = comboClase.getValue();
-        System.out.println(comboClase.getValue());
-        int cantidadPersonas = SpinPersonas.getValue();
-        String tipoViaje = radioIdaVuelta.isSelected() ? "Ida y vuelta" : "Solo ida";
-        String fechaSalida = dateSalidaViaje.getValue().toString();
-        String fechaRegreso = radioIdaVuelta.isSelected() ? dateRegresoViaje.getValue().toString() : "N/A";
-
-        // Lógica para procesar la compra (ej. guardar en base de datos o lista)
-        // Aquí podrías llamar a un método en tu clase de modelo para almacenar la compra.
-        // Por ejemplo: aplicacion.realizarCompra(ruta, clase, cantidadPersonas, tipoViaje, fechaSalida, fechaRegreso);
-        //  modelFactoryController.registrarCompra();
-        // Mostrar confirmación de compra
-
     }
 
-    private void mostrarAlerta(String titulo, String mensaje) {
+    private boolean validarCampos() {
+        return comboDestinos.getValue() != null &&
+                comboClase.getValue() != null &&
+                dateSalidaViaje.getValue() != null &&
+                SpinPersonas.getValue() > 0 &&
+                (!radioIdaVuelta.isSelected() || dateRegresoViaje.getValue() != null);
+    }
+
+    private void mostrarConfirmacion(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
+    private void mostrarError(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
