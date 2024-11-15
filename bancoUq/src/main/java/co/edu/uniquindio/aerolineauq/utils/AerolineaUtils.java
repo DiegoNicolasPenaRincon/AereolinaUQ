@@ -178,33 +178,31 @@ public class AerolineaUtils {
         aux3.setRolTripulante(RolTripulante.COPILOTO);
         aerolinea.getListaTripulantes().agregar(aux3);
 
-     Ruta ruta1 = new Ruta(Destino.Monterrey, LocalTime.of(3, 30), LocalTime.of(10, 0), LocalTime.of(15, 0));
+
+
+     Ruta ruta1=new Ruta(Destino.Cancún, LocalTime.of(2, 0), LocalTime.of(8, 30), LocalTime.of(18, 45), 2500.0);
+     Ruta ruta2=new Ruta(Destino.Bogotá, LocalTime.of(4, 0), LocalTime.of(6, 15), LocalTime.of(21, 30), 3200.0);
+     Ruta ruta3=new Ruta(Destino.Buenos_Aires, LocalTime.of(8, 0), LocalTime.of(5, 0), LocalTime.of(20, 15), 7800.0);
+     Ruta ruta4=new Ruta(Destino.Los_Ángeles, LocalTime.of(5, 30), LocalTime.of(9, 0), LocalTime.of(22, 0), 4500.0);
+     Ruta ruta5=new Ruta(Destino.Monterrey, LocalTime.of(1, 30), LocalTime.of(7, 0), LocalTime.of(16, 15), 1500.0);
+     Ruta ruta6=new Ruta(Destino.Panamá, LocalTime.of(3, 45), LocalTime.of(10, 30), LocalTime.of(19, 0), 3000.0);
      aerolinea.getRutasAerolinea().agregar(ruta1);
+     aerolinea.getRutasAerolinea().agregar(ruta2);
+     aerolinea.getRutasAerolinea().agregar(ruta3);
+     aerolinea.getRutasAerolinea().agregar(ruta4);
+     aerolinea.getRutasAerolinea().agregar(ruta5);
+     aerolinea.getRutasAerolinea().agregar(ruta6);
+
+
 
      Silla silla1 = new Silla("12", "A", true);
 
-     Tiquete tiquete1 = new Tiquete("123",usuario1, ruta1, 350.0, ClaseVuelo.ECONOMICA, silla1, TipoViaje.ida, null);
+     Tiquete tiquete1 = new Tiquete("123", usuario1, ruta1, ruta1.getPrecio(), ClaseVuelo.ECONOMICA, silla1, TipoViaje.idaYvuelta, LocalDate.of(2024, 12, 12), LocalDate.of(2024, 12, 20), null);
      aerolinea.getListaTiquetes().agregar(tiquete1);
 
 
 
-        /*Rutas
 
-        Ruta ruta1=new Ruta();
-        Ruta ruta2=new Ruta();
-        Ruta ruta3=new Ruta();
-        Ruta ruta4=new Ruta();
-        Ruta ruta5=new Ruta();
-        Ruta ruta6=new Ruta();
-
-        ruta1.setDestino(Destino.Monterrey);
-        ruta1.setDuracion(LocalTime.of(2,45));
-        ruta1.setHoraSalida(LocalTime.of(6,0));
-        ruta1.setHoraRegreso(ruta1.getHoraSalida());
-
-         */
-
-
-        return aerolinea;
+     return aerolinea;
     }
 }

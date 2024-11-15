@@ -1,6 +1,7 @@
 package co.edu.uniquindio.aerolineauq.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class Tiquete implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -11,10 +12,11 @@ public class Tiquete implements Serializable {
     private ClaseVuelo claseVuelo;
     private Silla silla;
     private TipoViaje tipoViaje;
+    private LocalDate fechaViaje;
+    private LocalDate fechaRegreso;
     private Equipaje equipaje;  // Nuevo atributo para asociar equipaje
 
-    // Constructor, getters y setters
-    public Tiquete(String numeroVuelo,Usuario usuario, Ruta ruta, double precio, ClaseVuelo claseVuelo, Silla silla, TipoViaje tipoViaje, Equipaje equipaje) {
+    public Tiquete(String numeroVuelo, Usuario usuario, Ruta ruta, double precio, ClaseVuelo claseVuelo, Silla silla, TipoViaje tipoViaje, LocalDate fechaViaje, LocalDate fechaRegreso, Equipaje equipaje) {
         this.numeroVuelo = numeroVuelo;
         this.usuario = usuario;
         this.ruta = ruta;
@@ -22,11 +24,29 @@ public class Tiquete implements Serializable {
         this.claseVuelo = claseVuelo;
         this.silla = silla;
         this.tipoViaje = tipoViaje;
+        this.fechaViaje = fechaViaje;
+        this.fechaRegreso = fechaRegreso;
         this.equipaje = equipaje;
-
     }
 
+
     public Tiquete() {
+    }
+
+    public LocalDate getFechaViaje() {
+        return fechaViaje;
+    }
+
+    public void setFechaViaje(LocalDate fechaViaje) {
+        this.fechaViaje = fechaViaje;
+    }
+
+    public LocalDate getFechaRegreso() {
+        return fechaRegreso;
+    }
+
+    public void setFechaRegreso(LocalDate fechaRegreso) {
+        this.fechaRegreso = fechaRegreso;
     }
 
     public String getNumeroVuelo() {
