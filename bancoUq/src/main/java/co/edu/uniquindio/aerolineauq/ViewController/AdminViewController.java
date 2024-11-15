@@ -30,7 +30,7 @@ public class AdminViewController {
     private AnchorPane anchorTripulantes;
 
     @FXML
-    private ComboBox<Avion> avionComboBox;
+    private ComboBox<String> avionComboBox;
 
     @FXML
     private Label avionLbl;
@@ -108,7 +108,7 @@ public class AdminViewController {
     private DatePicker dateNacimiento;
 
     @FXML
-    private ComboBox<Ruta> rutaComboBox;
+    private ComboBox<String> rutaComboBox;
 
     @FXML
     private TableView<Tripulante> tableTripulantes;
@@ -146,9 +146,9 @@ public class AdminViewController {
     }
 
     public void initialize() {
-        Collection<Ruta> coleccionRuta=modelFactoryController.getAerolinea().getRutasAerolinea().toCollection();
-        Collection<Tripulante> coleccionTripulantes=modelFactoryController.getAerolinea().getListaTripulantes().toCollection();
-        Collection<Avion> coleccionAviones=modelFactoryController.getAerolinea().getListaAviones().toCollection();
+        //Collection<Ruta> coleccionRuta=modelFactoryController.getAerolinea().getRutasAerolinea().toCollection();
+        //Collection<Tripulante> coleccionTripulantes=modelFactoryController.getAerolinea().getListaTripulantes().toCollection();
+        //Collection<Avion> coleccionAviones=modelFactoryController.getAerolinea().getListaAviones().toCollection();
         rutaComboBox.getItems().addAll(coleccionRuta);
 
         avionComboBox.getItems().addAll(coleccionAviones);
@@ -191,5 +191,6 @@ public class AdminViewController {
         anchorAeronaves.setVisible(false);
         anchorTripulantes.setVisible(true);
     }
+    
 
 }

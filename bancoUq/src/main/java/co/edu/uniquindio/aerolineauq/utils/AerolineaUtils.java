@@ -178,6 +178,18 @@ public class AerolineaUtils {
         aux3.setRolTripulante(RolTripulante.COPILOTO);
         aerolinea.getListaTripulantes().agregar(aux3);
 
+        //Administrador
+
+        Usuario adminsitrador=new Usuario();
+        usuario.setId("55555");
+        usuario.setNombre("Nicolas");
+        usuario.setApellido("Peña");
+        usuario.setContrasenia("2");
+        usuario.setCorreo("diegon.penar@uqvirtual.edu.co");
+        usuario.setDireccion("Armenia");
+        usuario.setFechaNacimiento(LocalDate.ofEpochDay(01-02-2005));
+        aerolinea.getListaUsuarios().agregar(usuario);
+
 
 
      Ruta ruta1=new Ruta(Destino.Cancún, LocalTime.of(2, 0), LocalTime.of(8, 30), LocalTime.of(18, 45), 2500.0);

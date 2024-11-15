@@ -96,7 +96,7 @@ public class InicioSesionViewController {
 
         if (inicioExitoso) {
             mostrarAlerta("Éxito", "Inicio de sesión exitoso", Alert.AlertType.INFORMATION);
-            if(id.equals("1234"))
+            if(id.equals("55555"))
             {
                 try
                 {
@@ -107,10 +107,13 @@ public class InicioSesionViewController {
                     throw new RuntimeException(e);
                 }
             }
+            else
+            {
+                aplicacion.mostrarVentanaMenu();
+            }
         } else {
             mostrarAlerta("Error", "ID o contraseña incorrecta", Alert.AlertType.ERROR);
         }
-        aplicacion.mostrarVentanaMenu();
         registrarAccionesSistema("Ingresar", 1, "Se ingreso ");
     }
 
