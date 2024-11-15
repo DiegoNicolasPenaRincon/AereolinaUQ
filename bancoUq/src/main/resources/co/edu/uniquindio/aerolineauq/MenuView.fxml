@@ -94,7 +94,7 @@
 
                         <!-- Botones de Acción -->
                         <Button fx:id="btnAsientos" layoutX="200.0" layoutY="500.0" mnemonicParsing="false" styleClass="compra-btn" text="Seleccionar Asientos" />
-                        <Button fx:id="btnCompra" layoutX="400.0" layoutY="500.0" mnemonicParsing="false" styleClass="compra-btn" text="Realizar Compra" />
+                        <Button fx:id="btnCompra" layoutX="400.0" layoutY="500.0" mnemonicParsing="false" onAction="#realizarCompra" styleClass="compra-btn" text="Realizar Compra" />
                         <Label layoutX="39.0" layoutY="42.0" styleClass="head-label" stylesheets="@loginDesign.css" text="Compra de Tiquetes" textFill="#2b7fbc">
                            <font>
                               <Font size="16.0" />

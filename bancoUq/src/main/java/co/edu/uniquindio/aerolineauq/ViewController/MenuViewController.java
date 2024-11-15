@@ -4,8 +4,12 @@ import co.edu.uniquindio.aerolineauq.AerolineaApplication;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
 import co.edu.uniquindio.aerolineauq.model.*;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -66,16 +70,16 @@ public class MenuViewController {
     private Button btnVerHistorial;
 
     @FXML
-    private TableColumn<?, ?> columnDestino;
+    private TableColumn<Ruta, Destino> columnDestino;
 
     @FXML
-    private TableColumn<?, ?> columnHora;
+    private TableColumn<Ruta, String> columnHora;
 
     @FXML
-    private TableColumn<?, ?> columnOrigen;
+    private TableColumn<Ruta, String> columnOrigen;
 
     @FXML
-    private TableColumn<?, ?> columnPrecio;
+    private TableColumn<Ruta, String> columnPrecio;
 
     @FXML
     private ComboBox<?> comboCiudadOrigen;
@@ -117,7 +121,7 @@ public class MenuViewController {
     private TableView<?> tableHistorial;
 
     @FXML
-    private TableView<?> tableInformacion;
+    private TableView<Ruta> tableInformacion;
 
     @FXML
     private TextField txtApellido;
@@ -185,6 +189,25 @@ public class MenuViewController {
         AnchorCompras.setVisible(true);
         anchorPerfil.setVisible(false);
         anchorHistorial.setVisible(false);
+        inicializarTabla();
+    }
+
+    private void inicializarTabla(){
+        columnOrigen.setCellValueFactory(new PropertyValueFactory<>("origen")); // Nombre del atributo en la clase Ruta
+        columnDestino.setCellValueFactory(new PropertyValueFactory<>("destino")); // Nombre del atributo en la clase Ruta
+        columnHora.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getHoraSalida().toString())); // Transformar LocalTime a String
+        columnPrecio.setCellValueFactory(cellData ->
+                new SimpleStringProperty(String.format("$%.2f", cellData.getValue().getPrecio()))); // Formato de precio
+
+        ObservableList<Ruta> rutas = FXCollections.observableArrayList();
+        for (Object ruta : modelFactoryController.getListaRutas()) {
+            rutas.add((Ruta) ruta);
+        }
+
+// Ahora puedes usar 'observableRutas' para tu TableView
+        tableInformacion.setItems(rutas);
+
     }
 
     private void actualizarVisibilidadDateRegreso() {
@@ -195,19 +218,34 @@ public class MenuViewController {
     public void realizarCompra() {
         if (validarCampos()) {
             // Recopila información de la interfaz
-            Destino destino = Destino.valueOf(comboDestinos.getValue());
+            Destino destino = Destino.valueOf(comboDestinos.getValue().replace(" ", "_"));
             ClaseVuelo claseVuelo = ClaseVuelo.valueOf(comboClase.getValue());
             TipoViaje tipoViaje = radioIdaVuelta.isSelected() ? TipoViaje.idaYvuelta: TipoViaje.ida;
             int cantidadPersonas = SpinPersonas.getValue();
             LocalDate fechaSalida = dateSalidaViaje.getValue();
             LocalDate fechaRegreso = tipoViaje == TipoViaje.idaYvuelta ? dateRegresoViaje.getValue() : null;
+            System.out.println(modelFactoryController.getUsuarioActual().getId());
+
+            Ruta rutaSeleccionada = modelFactoryController.buscarRutaPorDestino(destino);
+            if (rutaSeleccionada == null) {
+                mostrarError("Error al registrar el tiquete", "No se encontró una ruta para el destino seleccionado.");
+                return;
+            }
+
+            Usuario usuarioActual = modelFactoryController.getUsuarioActual();
+            if (usuarioActual == null) {
+                mostrarError("Error", "Usuario no autenticado.");
+                return;
+            }
 
             try {
                 // Llamada al método de ModelFactoryController para registrar el tiquete
-                Tiquete tiquete = modelFactoryController.registrarCompra("V123", modelFactoryController.getUsuarioActual(), new Ruta(),0, claseVuelo, new Silla(), tipoViaje, fechaSalida, fechaRegreso, new Equipaje());
+                Tiquete tiquete = modelFactoryController.registrarCompra("V123", usuarioActual, rutaSeleccionada, (rutaSeleccionada.getPrecio()*cantidadPersonas), claseVuelo, new Silla(), tipoViaje, fechaSalida, fechaRegreso, new Equipaje());
                 mostrarConfirmacion("Tiquete registrado exitosamente", "Número de vuelo: " + tiquete.getNumeroVuelo());
+                aplicacion.mostrarVentanaEquipaje();
             } catch (Exception e) {
                 mostrarError("Error al registrar el tiquete", e.getMessage());
+                System.out.println(e.getMessage());
             }
         } else {
             mostrarError("Datos incompletos", "Por favor completa todos los campos necesarios.");

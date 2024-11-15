@@ -69,6 +69,7 @@ public class Aerolinea implements Serializable {
     public boolean validarInicioSesion(String id, String contrasenia) {
         Usuario usuario = buscarUsuarioPorId(id);
         this.usuario=usuario;
+        System.out.println("Usuario ingresado:"+usuario.getId());
         if (usuario != null && usuario.getContrasenia().equals(contrasenia)) {
             return true; // Inicio de sesión válido
         }
@@ -126,5 +127,14 @@ public class Aerolinea implements Serializable {
     public void registrarTiquete(Tiquete tiquete) {
         listaTiquetes.agregar(tiquete);
         Persistencia.guardaRegistroLog("Se ha registrado un nuevo tiquete para el usuario " + tiquete.getUsuario().getId(), 1, "Registro Tiquete");
+    }
+
+    public Ruta buscarRutaPorDestino(Destino destino) {
+        for (Ruta ruta : rutasAerolinea) {
+            if (ruta.getDestino() == destino) {
+                return ruta; // Retorna la ruta si se encuentra
+            }
+        }
+        return null; // Retorna null si no se encuentra la ruta
     }
 }

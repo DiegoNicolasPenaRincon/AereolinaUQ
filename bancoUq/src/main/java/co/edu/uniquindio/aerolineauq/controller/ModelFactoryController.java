@@ -118,6 +118,10 @@ public class ModelFactoryController {
         return aerolinea.getUsuario();
     }
 
+    public ListaSimple getListaRutas(){
+        return aerolinea.getRutasAerolinea();
+    }
+
     public void guardarListaUsuario(ListaSimple<Usuario> listaUsuario) {
         Thread thread = new Thread(() -> {
             try {
@@ -164,7 +168,7 @@ public class ModelFactoryController {
         // Crea el tiquete y equipaje
         //Equipaje equipaje = new Equipaje(pesoEquipaje, esMascota, pesoMascota, tipoViaje.toString(), claseVuelo);
         // Silla silla = asignarSilla(claseVuelo);
-        Tiquete tiquete = new Tiquete();
+        Tiquete tiquete = new Tiquete(numeroVuelo, usuario, ruta, precio,claseVuelo,silla,tipoViaje, fechaViaje,fechaRegreso,equipaje);
 
         // Asigna el equipaje al tiquete
         tiquete.setEquipaje(equipaje);
@@ -214,5 +218,9 @@ public class ModelFactoryController {
      */
     private void registrarAccionesSistema(String mensaje, int nivel, String accion) {
         Persistencia.guardaRegistroLog(mensaje, nivel, accion);
+    }
+
+    public Ruta buscarRutaPorDestino(Destino destino){
+        return aerolinea.buscarRutaPorDestino(destino);
     }
 }
