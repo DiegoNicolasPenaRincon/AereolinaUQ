@@ -82,15 +82,26 @@ public class AerolineaUtils {
 
 
         //Usuarios
-        Usuario usuario=new Usuario();
-        usuario.setId("1234");
-        usuario.setNombre("Santiago");
-        usuario.setApellido("Betancourt");
-        usuario.setContrasenia("1234");
-        usuario.setCorreo("santiagobv687@gmail.com");
-        usuario.setDireccion("Armenia");
-        usuario.setFechaNacimiento(LocalDate.ofEpochDay(01-02-2005));
-        aerolinea.getListaUsuarios().agregar(usuario);
+
+     Usuario usuario=new Usuario();
+     usuario.setId("1234");
+     usuario.setNombre("Santiago");
+     usuario.setApellido("Betancourt");
+     usuario.setContrasenia("1234");
+     usuario.setCorreo("santiagobv687@gmail.com");
+     usuario.setDireccion("Armenia");
+     usuario.setFechaNacimiento(LocalDate.ofEpochDay(01-02-2005));
+     aerolinea.getListaUsuarios().agregar(usuario);
+
+     Usuario usuario2=new Usuario();
+     usuario2.setId("000");
+     usuario2.setNombre("Lola");
+     usuario2.setApellido("Betancourt");
+     usuario2.setContrasenia("000");
+     usuario2.setCorreo("santiagobv687@gmail.com");
+     usuario2.setDireccion("Armenia");
+     usuario2.setFechaNacimiento(LocalDate.ofEpochDay(01-02-2005));
+     aerolinea.getListaUsuarios().agregar(usuario2);
 
         Usuario usuario1=new Usuario();
         usuario1.setId("111");
@@ -181,14 +192,14 @@ public class AerolineaUtils {
         //Administrador
 
         Usuario adminsitrador=new Usuario();
-        usuario.setId("55555");
-        usuario.setNombre("Nicolas");
-        usuario.setApellido("Peña");
-        usuario.setContrasenia("2");
-        usuario.setCorreo("diegon.penar@uqvirtual.edu.co");
-        usuario.setDireccion("Armenia");
-        usuario.setFechaNacimiento(LocalDate.ofEpochDay(01-02-2005));
-        aerolinea.getListaUsuarios().agregar(usuario);
+     adminsitrador.setId("55555");
+     adminsitrador.setNombre("Nicolas");
+     adminsitrador.setApellido("Peña");
+     adminsitrador.setContrasenia("2");
+     adminsitrador.setCorreo("diegon.penar@uqvirtual.edu.co");
+     adminsitrador.setDireccion("Armenia");
+     adminsitrador.setFechaNacimiento(LocalDate.ofEpochDay(01-02-2005));
+        aerolinea.getListaUsuarios().agregar(adminsitrador);
 
 
 

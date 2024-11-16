@@ -68,17 +68,25 @@ public class Aerolinea implements Serializable {
     // metodo para validar el inicio de sesión
     public boolean validarInicioSesion(String id, String contrasenia) {
         Usuario usuario = buscarUsuarioPorId(id);
-        this.usuario=usuario;
-        System.out.println("Usuario ingresado:"+usuario.getId());
-        if (usuario != null && usuario.getContrasenia().equals(contrasenia)) {
-            return true; // Inicio de sesión válido
+        if (usuario == null) {
+            System.out.println("Usuario no encontrado con ID: " + id);
+            return false; // Usuario no encontrado
         }
-        return false; // Usuario no encontrado o contraseña incorrecta
+        this.usuario = usuario;
+        System.out.println("Usuario ingresado: " + usuario.getId());
+        return usuario.getContrasenia().equals(contrasenia);
     }
 
+
     public Usuario buscarUsuarioPorId(String id) {
-        return listaUsuarios.buscarUsuarioPorId(id);
+        for (Usuario user : listaUsuarios) {
+            if (user.getId().equalsIgnoreCase(id)) {
+                return user;
+            }
+        }
+        return null; // Usuario no encontrado
     }
+
 
     public boolean verificarUsuarioExistente(String id) throws Exception {
         if (this.usuarioExiste(id)) {

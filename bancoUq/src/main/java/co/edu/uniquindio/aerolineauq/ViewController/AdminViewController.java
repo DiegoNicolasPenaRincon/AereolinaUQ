@@ -144,7 +144,7 @@ public class AdminViewController {
     public void setAplicacion(AerolineaApplication aplicacion) {
         this.aplicacion = aplicacion;
     }
-
+/*
     public void initialize() {
         //Collection<Ruta> coleccionRuta=modelFactoryController.getAerolinea().getRutasAerolinea().toCollection();
         //Collection<Tripulante> coleccionTripulantes=modelFactoryController.getAerolinea().getListaTripulantes().toCollection();
@@ -162,6 +162,10 @@ public class AdminViewController {
         anchorAeronaves.setVisible(true);
         anchorTripulantes.setVisible(false);
     }
+
+ */
+
+
 
     @FXML
     void cerrarSesion(ActionEvent event) {

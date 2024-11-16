@@ -18,17 +18,17 @@ public class ModelFactoryController {
 
         //1. carga los datos del utils
         cargarDatosBase();
-        //salvarDatosPrueba();
+        salvarDatosPrueba();
 
         //2. cargar desde los archivos
         //cargarDatosDesdeArchivos();
 
         // Guardar y cargar desde el binario
         //cargarResourceBinario();
-         guardarResourceBinario();
+        //guardarResourceBinario();
 
         //cargarResourceXML();
-        guardarResourceXML();
+        //guardarResourceXML();
 
         if (aerolinea == null) {
             cargarDatosBase();

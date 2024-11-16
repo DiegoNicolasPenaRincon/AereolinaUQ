@@ -126,3 +126,17 @@ nov. 15, 2024 4:24:02 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil gua
 INFORMACIÓN: Compra Tiquete,Compra realizada para el usuario: 1234,2024-11-15
 nov. 15, 2024 4:39:55 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-15
+nov. 16, 2024 2:58:58 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 3:00:38 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Registro Usuario,Se ha registrado al usuariosusicon ID:123,2024-11-16
+nov. 16, 2024 3:00:38 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el usuario susi,Registro usuario,2024-11-16
+nov. 16, 2024 3:00:40 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se limpiaron los campos ,Limpiar campos,2024-11-16
+nov. 16, 2024 3:00:52 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 3:10:53 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 3:13:05 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
