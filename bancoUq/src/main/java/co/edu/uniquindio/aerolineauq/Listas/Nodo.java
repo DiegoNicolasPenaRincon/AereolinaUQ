@@ -8,6 +8,8 @@ public class Nodo<T> implements Serializable {
     private Nodo<T> siguienteNodo;
     private T valorNodo;
 
+    public Nodo() {
+    }
 
     /**
      * Constructor de la clase Nodo

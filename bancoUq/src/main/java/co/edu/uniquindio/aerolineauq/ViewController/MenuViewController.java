@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -183,6 +184,8 @@ public class MenuViewController {
         for (ClaseVuelo clase : ClaseVuelo.values()) {
             comboClase.getItems().add(clase.toString());
         }
+        configureDatePicker(dateSalidaViaje);
+        configureDatePicker(dateRegresoViaje);
         radioIda.setSelected(true);
         comboClase.getSelectionModel().selectFirst();
         SpinPersonas.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1));
@@ -239,7 +242,7 @@ public class MenuViewController {
             }
 
             try {
-                // Llamada al método de ModelFactoryController para registrar el tiquete
+                // Llamada al metodo de ModelFactoryController para registrar el tiquete
                 Tiquete tiquete = modelFactoryController.registrarCompra("V123", usuarioActual, rutaSeleccionada, (rutaSeleccionada.getPrecio()*cantidadPersonas), claseVuelo, new Silla(), tipoViaje, fechaSalida, fechaRegreso, new Equipaje());
                 mostrarConfirmacion("Tiquete registrado exitosamente", "Número de vuelo: " + tiquete.getNumeroVuelo());
                 aplicacion.mostrarVentanaEquipaje();
@@ -274,6 +277,22 @@ public class MenuViewController {
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
+    }
+    private void configureDatePicker(DatePicker datePicker) {
+        datePicker.setDayCellFactory(getDateCellFactory());
+    }
+
+    private Callback<DatePicker, DateCell> getDateCellFactory() {
+        return datePicker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item.isBefore(LocalDate.now())) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #d3d3d3;");
+                }
+            }
+        };
     }
     public void registrarAccionesSistema(String mensaje, int nivel, String accion) {
         Persistencia.guardaRegistroLog(mensaje, nivel, accion);

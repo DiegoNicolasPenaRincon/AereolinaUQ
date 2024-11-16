@@ -111,6 +111,33 @@ public class Aerolinea implements Serializable {
         return usuarioEncontrado;
     }
 
+    public void registrarTripulante(Tripulante tripulante) {
+        listaTripulantes.agregar(tripulante);
+        Persistencia.guardaRegistroLog("Se ha registrado al tripulante"+tripulante.getNombre()+"con ID:"+tripulante.getId(), 1, "Registro Tripulante");
+    }
+    public boolean verificarTripuExistente(String id) throws Exception {
+        if (this.tripulanteExiste(id)) {
+            throw new Exception("El tripulante con cedula: " + id + " ya existe");
+        } else {
+            return false;
+        }
+    }
+
+    public boolean tripulanteExiste(String id) {
+        boolean tripulanteEncontrado = false;
+        Iterator var3 = this.getListaTripulantes().iterator();
+
+        while(var3.hasNext()) {
+            Tripulante user = (Tripulante) var3.next();
+            if (user.getId().equalsIgnoreCase(id)) {
+                tripulanteEncontrado = true;
+                break;
+            }
+        }
+
+        return tripulanteEncontrado;
+    }
+
 
     public void setListaUsuarios(ListaSimple<Usuario> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;

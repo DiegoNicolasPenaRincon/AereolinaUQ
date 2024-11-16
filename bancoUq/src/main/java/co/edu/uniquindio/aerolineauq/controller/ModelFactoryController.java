@@ -66,6 +66,19 @@ public class ModelFactoryController {
         }
     }
 
+    public void registrarTripulante(String id, String nombre, String direccion, LocalDate fechaNacimiento,String correo , String estudios, RolTripulante rolTripulante) {
+        Tripulante tripulante = new Tripulante(id, nombre, direccion, fechaNacimiento, correo,estudios,rolTripulante );
+        try {
+            if (!aerolinea.verificarTripuExistente(tripulante.getId())) {
+                aerolinea.registrarTripulante(tripulante);
+                guardarResourceBinario();
+                guardarResourceXML();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public boolean validarInicioSesion(String id, String contrasenia) {
         return aerolinea.validarInicioSesion(id, contrasenia);
     }

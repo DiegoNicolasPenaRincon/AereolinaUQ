@@ -4,8 +4,10 @@ import co.edu.uniquindio.aerolineauq.AerolineaApplication;
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
 import co.edu.uniquindio.aerolineauq.model.Avion;
+import co.edu.uniquindio.aerolineauq.model.RolTripulante;
 import co.edu.uniquindio.aerolineauq.model.Ruta;
 import co.edu.uniquindio.aerolineauq.model.Tripulante;
+import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -14,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -133,6 +136,8 @@ public class AdminViewController {
 
     @FXML
     private TextField txtNombre;
+    @FXML
+    private ComboBox<Tripulante> cbRol;
 
     private ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
 
@@ -164,6 +169,64 @@ public class AdminViewController {
     }
 
  */
+/*
+    @FXML
+    void agregarTripulanteEvent(ActionEvent event) {
+        String id = txtID.getText();
+        String nombre = txtNombre.getText();
+        String apellido = txtApellido.getText();
+        String correo = txtCorreo.getText();
+        String direccion = txtDireccion.getText();
+        LocalDate fechaNacimiento = dateNacimiento.getValue();
+        String estudios = txtEstudios.getText();
+
+
+        if (id.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || direccion.isEmpty() || estudios.isEmpty() || fechaNacimiento == null) {
+            mostrarAlerta("Error", "Todos los campos son obligatorios", Alert.AlertType.ERROR);
+            return;
+        }
+
+        modelFactoryController.registrarTripulante(id, nombre , direccion, fechaNacimiento, correo, estudios,);
+        registrarAccionesSistema("Registro Tripulante", 1, "Se registro el tripulante "+ nombre);
+
+        mostrarAlerta("Éxito", "Tripulante registrado correctamente", Alert.AlertType.INFORMATION);
+
+        limpiarCampos();
+    }
+    
+ */
+
+    private void limpiarCampos() {
+        txtID.clear();
+        txtNombre.clear();
+        txtApellido.clear();
+        txtCorreo.clear();
+        txtDireccion.clear();
+        txtEstudios.clear();
+        dateNacimiento.setValue(null);
+        registrarAccionesSistema("Limpiar campos", 1, "Se limpiaron los campos ");
+    }
+
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
+    }
+    public void registrarAccionesSistema(String mensaje, int nivel, String accion) {
+        Persistencia.guardaRegistroLog(mensaje, nivel, accion);
+    }
+
+    @FXML
+    void eliminarTripulanteEvent(ActionEvent event) {
+
+    }
+
+    @FXML
+    void modificarTripulanteEvent(ActionEvent event) {
+
+    }
 
 
 

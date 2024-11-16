@@ -2,26 +2,612 @@
 <java version="17.0.10" class="java.beans.XMLDecoder">
  <object class="co.edu.uniquindio.aerolineauq.model.Aerolinea" id="Aerolinea0">
   <void property="listaAviones">
+   <void property="nodoPrimero">
+    <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+     <void property="siguienteNodo">
+      <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+       <void property="siguienteNodo">
+        <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+         <void property="siguienteNodo">
+          <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+           <void property="siguienteNodo">
+            <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+             <void property="siguienteNodo">
+              <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+               <void property="valorNodo">
+                <object class="co.edu.uniquindio.aerolineauq.model.Avion">
+                 <void property="cantidadPasajerosEconomica">
+                  <int>222</int>
+                 </void>
+                 <void property="cantidadPasajerosEjecutiva">
+                  <int>28</int>
+                 </void>
+                 <void property="capacidadCarga">
+                  <double>50000.0</double>
+                 </void>
+                 <void property="nombre">
+                  <string>Boeing 787</string>
+                 </void>
+                 <void property="tipoAvion">
+                  <object class="java.lang.Enum" id="TipoAvion0" method="valueOf">
+                   <class>co.edu.uniquindio.aerolineauq.model.TipoAvion</class>
+                   <string>INTERNACIONAL</string>
+                  </object>
+                 </void>
+                </object>
+               </void>
+              </object>
+             </void>
+             <void property="valorNodo">
+              <object class="co.edu.uniquindio.aerolineauq.model.Avion">
+               <void property="cantidadPasajerosEconomica">
+                <int>222</int>
+               </void>
+               <void property="cantidadPasajerosEjecutiva">
+                <int>28</int>
+               </void>
+               <void property="capacidadCarga">
+                <double>50000.0</double>
+               </void>
+               <void property="nombre">
+                <string>Boeing 787</string>
+               </void>
+               <void property="tipoAvion">
+                <object idref="TipoAvion0"/>
+               </void>
+              </object>
+             </void>
+            </object>
+           </void>
+           <void property="valorNodo">
+            <object class="co.edu.uniquindio.aerolineauq.model.Avion">
+             <void property="cantidadPasajerosEconomica">
+              <int>222</int>
+             </void>
+             <void property="cantidadPasajerosEjecutiva">
+              <int>30</int>
+             </void>
+             <void property="capacidadCarga">
+              <double>52000.0</double>
+             </void>
+             <void property="nombre">
+              <string>Airbus A330</string>
+             </void>
+             <void property="tipoAvion">
+              <object idref="TipoAvion0"/>
+             </void>
+            </object>
+           </void>
+          </object>
+         </void>
+         <void property="valorNodo">
+          <object class="co.edu.uniquindio.aerolineauq.model.Avion">
+           <void property="cantidadPasajerosEconomica">
+            <int>222</int>
+           </void>
+           <void property="cantidadPasajerosEjecutiva">
+            <int>30</int>
+           </void>
+           <void property="capacidadCarga">
+            <double>52000.0</double>
+           </void>
+           <void property="nombre">
+            <string>Airbus A330</string>
+           </void>
+           <void property="tipoAvion">
+            <object idref="TipoAvion0"/>
+           </void>
+          </object>
+         </void>
+        </object>
+       </void>
+       <void property="valorNodo">
+        <object class="co.edu.uniquindio.aerolineauq.model.Avion">
+         <void property="cantidadPasajerosEconomica">
+          <int>138</int>
+         </void>
+         <void property="cantidadPasajerosEjecutiva">
+          <int>12</int>
+         </void>
+         <void property="capacidadCarga">
+          <double>190000.0</double>
+         </void>
+         <void property="nombre">
+          <string>Airbus A320</string>
+         </void>
+         <void property="tipoAvion">
+          <object class="java.lang.Enum" id="TipoAvion1" method="valueOf">
+           <class>co.edu.uniquindio.aerolineauq.model.TipoAvion</class>
+           <string>NACIONAL</string>
+          </object>
+         </void>
+        </object>
+       </void>
+      </object>
+     </void>
+     <void property="valorNodo">
+      <object class="co.edu.uniquindio.aerolineauq.model.Avion">
+       <void property="cantidadPasajerosEconomica">
+        <int>138</int>
+       </void>
+       <void property="cantidadPasajerosEjecutiva">
+        <int>12</int>
+       </void>
+       <void property="capacidadCarga">
+        <double>190000.0</double>
+       </void>
+       <void property="nombre">
+        <string>Airbus A320</string>
+       </void>
+       <void property="tipoAvion">
+        <object idref="TipoAvion1"/>
+       </void>
+      </object>
+     </void>
+    </object>
+   </void>
    <void property="tamanio">
     <int>6</int>
    </void>
   </void>
   <void property="listaTiquetes">
+   <void property="nodoPrimero">
+    <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+     <void property="valorNodo">
+      <object class="co.edu.uniquindio.aerolineauq.model.Tiquete">
+       <void property="claseVuelo">
+        <object class="java.lang.Enum" method="valueOf">
+         <class>co.edu.uniquindio.aerolineauq.model.ClaseVuelo</class>
+         <string>ECONOMICA</string>
+        </object>
+       </void>
+       <void property="numeroVuelo">
+        <string>123</string>
+       </void>
+       <void property="precio">
+        <double>2500.0</double>
+       </void>
+       <void property="ruta">
+        <object class="co.edu.uniquindio.aerolineauq.model.Ruta" id="Ruta0">
+         <void property="destino">
+          <object class="java.lang.Enum" method="valueOf">
+           <class>co.edu.uniquindio.aerolineauq.model.Destino</class>
+           <string>Cancún</string>
+          </object>
+         </void>
+         <void property="precio">
+          <double>2500.0</double>
+         </void>
+        </object>
+       </void>
+       <void property="silla">
+        <object class="co.edu.uniquindio.aerolineauq.model.Silla">
+         <void property="esDisponible">
+          <boolean>true</boolean>
+         </void>
+         <void property="fila">
+          <string>12</string>
+         </void>
+         <void property="posicion">
+          <string>A</string>
+         </void>
+        </object>
+       </void>
+       <void property="tipoViaje">
+        <object class="java.lang.Enum" method="valueOf">
+         <class>co.edu.uniquindio.aerolineauq.model.TipoViaje</class>
+         <string>idaYvuelta</string>
+        </object>
+       </void>
+       <void property="usuario">
+        <object class="co.edu.uniquindio.aerolineauq.model.Usuario" id="Usuario0">
+         <void property="apellido">
+          <string>Ramirez</string>
+         </void>
+         <void property="contrasenia">
+          <string>1234</string>
+         </void>
+         <void property="correo">
+          <string>camila@gmail.com</string>
+         </void>
+         <void property="direccion">
+          <string>Armenia</string>
+         </void>
+         <void property="id">
+          <string>111</string>
+         </void>
+         <void property="nombre">
+          <string>Camila</string>
+         </void>
+        </object>
+       </void>
+      </object>
+     </void>
+    </object>
+   </void>
    <void property="tamanio">
     <int>1</int>
    </void>
   </void>
   <void property="listaTripulantes">
+   <void property="nodoPrimero">
+    <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+     <void property="siguienteNodo">
+      <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+       <void property="siguienteNodo">
+        <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+         <void property="siguienteNodo">
+          <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+           <void property="siguienteNodo">
+            <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+             <void property="siguienteNodo">
+              <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+               <void property="siguienteNodo">
+                <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+                 <void property="valorNodo">
+                  <object class="co.edu.uniquindio.aerolineauq.model.Tripulante">
+                   <void property="correo">
+                    <string>ana@correo.com</string>
+                   </void>
+                   <void property="direccion">
+                    <string>Calle 78</string>
+                   </void>
+                   <void property="estudios">
+                    <string>Tripulante de Cabina</string>
+                   </void>
+                   <void property="id">
+                    <string>007</string>
+                   </void>
+                   <void property="nombre">
+                    <string>Ana</string>
+                   </void>
+                   <void property="rolTripulante">
+                    <object class="java.lang.Enum" id="RolTripulante0" method="valueOf">
+                     <class>co.edu.uniquindio.aerolineauq.model.RolTripulante</class>
+                     <string>COPILOTO</string>
+                    </object>
+                   </void>
+                  </object>
+                 </void>
+                </object>
+               </void>
+               <void property="valorNodo">
+                <object class="co.edu.uniquindio.aerolineauq.model.Tripulante">
+                 <void property="correo">
+                  <string>maria@correo.com</string>
+                 </void>
+                 <void property="direccion">
+                  <string>Calle 56</string>
+                 </void>
+                 <void property="estudios">
+                  <string>Tripulante de Cabina</string>
+                 </void>
+                 <void property="id">
+                  <string>006</string>
+                 </void>
+                 <void property="nombre">
+                  <string>Maria</string>
+                 </void>
+                 <void property="rolTripulante">
+                  <object class="java.lang.Enum" id="RolTripulante1" method="valueOf">
+                   <class>co.edu.uniquindio.aerolineauq.model.RolTripulante</class>
+                   <string>AUXILIAR</string>
+                  </object>
+                 </void>
+                </object>
+               </void>
+              </object>
+             </void>
+             <void property="valorNodo">
+              <object class="co.edu.uniquindio.aerolineauq.model.Tripulante">
+               <void property="correo">
+                <string>luis@correo.com</string>
+               </void>
+               <void property="direccion">
+                <string>Calle 12</string>
+               </void>
+               <void property="estudios">
+                <string>Tripulante de Cabina</string>
+               </void>
+               <void property="id">
+                <string>005</string>
+               </void>
+               <void property="nombre">
+                <string>Luis</string>
+               </void>
+               <void property="rolTripulante">
+                <object idref="RolTripulante1"/>
+               </void>
+              </object>
+             </void>
+            </object>
+           </void>
+           <void property="valorNodo">
+            <object class="co.edu.uniquindio.aerolineauq.model.Tripulante">
+             <void property="correo">
+              <string>camil1a@correo.com</string>
+             </void>
+             <void property="direccion">
+              <string>Calle 72</string>
+             </void>
+             <void property="estudios">
+              <string>Aviación</string>
+             </void>
+             <void property="id">
+              <string>004</string>
+             </void>
+             <void property="nombre">
+              <string>Camila</string>
+             </void>
+             <void property="rolTripulante">
+              <object idref="RolTripulante0"/>
+             </void>
+            </object>
+           </void>
+          </object>
+         </void>
+         <void property="valorNodo">
+          <object class="co.edu.uniquindio.aerolineauq.model.Tripulante">
+           <void property="correo">
+            <string>camila@correo.com</string>
+           </void>
+           <void property="direccion">
+            <string>Calle 56</string>
+           </void>
+           <void property="estudios">
+            <string>Aviación</string>
+           </void>
+           <void property="id">
+            <string>003</string>
+           </void>
+           <void property="nombre">
+            <string>Camilo</string>
+           </void>
+           <void property="rolTripulante">
+            <object idref="RolTripulante0"/>
+           </void>
+          </object>
+         </void>
+        </object>
+       </void>
+       <void property="valorNodo">
+        <object class="co.edu.uniquindio.aerolineauq.model.Tripulante">
+         <void property="correo">
+          <string>ana1@correo.com</string>
+         </void>
+         <void property="direccion">
+          <string>Calle 13</string>
+         </void>
+         <void property="estudios">
+          <string>Aviación</string>
+         </void>
+         <void property="id">
+          <string>002</string>
+         </void>
+         <void property="nombre">
+          <string>Ana</string>
+         </void>
+         <void property="rolTripulante">
+          <object class="java.lang.Enum" id="RolTripulante2" method="valueOf">
+           <class>co.edu.uniquindio.aerolineauq.model.RolTripulante</class>
+           <string>PILOTO</string>
+          </object>
+         </void>
+        </object>
+       </void>
+      </object>
+     </void>
+     <void property="valorNodo">
+      <object class="co.edu.uniquindio.aerolineauq.model.Tripulante">
+       <void property="correo">
+        <string>juan.perez@correo.com</string>
+       </void>
+       <void property="direccion">
+        <string>Calle 123</string>
+       </void>
+       <void property="estudios">
+        <string>Aviación</string>
+       </void>
+       <void property="id">
+        <string>001</string>
+       </void>
+       <void property="nombre">
+        <string>Juan</string>
+       </void>
+       <void property="rolTripulante">
+        <object idref="RolTripulante2"/>
+       </void>
+      </object>
+     </void>
+    </object>
+   </void>
    <void property="tamanio">
     <int>7</int>
    </void>
   </void>
   <void property="listaUsuarios">
+   <void property="nodoPrimero">
+    <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+     <void property="siguienteNodo">
+      <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+       <void property="siguienteNodo">
+        <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+         <void property="siguienteNodo">
+          <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+           <void property="valorNodo">
+            <object class="co.edu.uniquindio.aerolineauq.model.Usuario">
+             <void property="apellido">
+              <string>Peña</string>
+             </void>
+             <void property="contrasenia">
+              <string>2</string>
+             </void>
+             <void property="correo">
+              <string>diegon.penar@uqvirtual.edu.co</string>
+             </void>
+             <void property="direccion">
+              <string>Armenia</string>
+             </void>
+             <void property="id">
+              <string>55555</string>
+             </void>
+             <void property="nombre">
+              <string>Nicolas</string>
+             </void>
+            </object>
+           </void>
+          </object>
+         </void>
+         <void property="valorNodo">
+          <object idref="Usuario0"/>
+         </void>
+        </object>
+       </void>
+       <void property="valorNodo">
+        <object class="co.edu.uniquindio.aerolineauq.model.Usuario">
+         <void property="apellido">
+          <string>Betancourt</string>
+         </void>
+         <void property="contrasenia">
+          <string>000</string>
+         </void>
+         <void property="correo">
+          <string>santiagobv687@gmail.com</string>
+         </void>
+         <void property="direccion">
+          <string>Armenia</string>
+         </void>
+         <void property="id">
+          <string>000</string>
+         </void>
+         <void property="nombre">
+          <string>Lola</string>
+         </void>
+        </object>
+       </void>
+      </object>
+     </void>
+     <void property="valorNodo">
+      <object class="co.edu.uniquindio.aerolineauq.model.Usuario">
+       <void property="apellido">
+        <string>Betancourt</string>
+       </void>
+       <void property="contrasenia">
+        <string>1234</string>
+       </void>
+       <void property="correo">
+        <string>santiagobv687@gmail.com</string>
+       </void>
+       <void property="direccion">
+        <string>Armenia</string>
+       </void>
+       <void property="id">
+        <string>1234</string>
+       </void>
+       <void property="nombre">
+        <string>Santiago</string>
+       </void>
+      </object>
+     </void>
+    </object>
+   </void>
    <void property="tamanio">
     <int>4</int>
    </void>
   </void>
   <void property="rutasAerolinea">
+   <void property="nodoPrimero">
+    <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+     <void property="siguienteNodo">
+      <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+       <void property="siguienteNodo">
+        <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+         <void property="siguienteNodo">
+          <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+           <void property="siguienteNodo">
+            <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+             <void property="siguienteNodo">
+              <object class="co.edu.uniquindio.aerolineauq.Listas.Nodo">
+               <void property="valorNodo">
+                <object class="co.edu.uniquindio.aerolineauq.model.Ruta">
+                 <void property="destino">
+                  <object class="java.lang.Enum" method="valueOf">
+                   <class>co.edu.uniquindio.aerolineauq.model.Destino</class>
+                   <string>Panamá</string>
+                  </object>
+                 </void>
+                 <void property="precio">
+                  <double>3000.0</double>
+                 </void>
+                </object>
+               </void>
+              </object>
+             </void>
+             <void property="valorNodo">
+              <object class="co.edu.uniquindio.aerolineauq.model.Ruta">
+               <void property="destino">
+                <object class="java.lang.Enum" method="valueOf">
+                 <class>co.edu.uniquindio.aerolineauq.model.Destino</class>
+                 <string>Monterrey</string>
+                </object>
+               </void>
+               <void property="precio">
+                <double>1500.0</double>
+               </void>
+              </object>
+             </void>
+            </object>
+           </void>
+           <void property="valorNodo">
+            <object class="co.edu.uniquindio.aerolineauq.model.Ruta">
+             <void property="destino">
+              <object class="java.lang.Enum" method="valueOf">
+               <class>co.edu.uniquindio.aerolineauq.model.Destino</class>
+               <string>Los_Ángeles</string>
+              </object>
+             </void>
+             <void property="precio">
+              <double>4500.0</double>
+             </void>
+            </object>
+           </void>
+          </object>
+         </void>
+         <void property="valorNodo">
+          <object class="co.edu.uniquindio.aerolineauq.model.Ruta">
+           <void property="destino">
+            <object class="java.lang.Enum" method="valueOf">
+             <class>co.edu.uniquindio.aerolineauq.model.Destino</class>
+             <string>Buenos_Aires</string>
+            </object>
+           </void>
+           <void property="precio">
+            <double>7800.0</double>
+           </void>
+          </object>
+         </void>
+        </object>
+       </void>
+       <void property="valorNodo">
+        <object class="co.edu.uniquindio.aerolineauq.model.Ruta">
+         <void property="destino">
+          <object class="java.lang.Enum" method="valueOf">
+           <class>co.edu.uniquindio.aerolineauq.model.Destino</class>
+           <string>Bogotá</string>
+          </object>
+         </void>
+         <void property="precio">
+          <double>3200.0</double>
+         </void>
+        </object>
+       </void>
+      </object>
+     </void>
+     <void property="valorNodo">
+      <object idref="Ruta0"/>
+     </void>
+    </object>
+   </void>
    <void property="tamanio">
     <int>6</int>
    </void>

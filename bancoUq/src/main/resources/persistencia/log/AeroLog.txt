@@ -140,3 +140,29 @@ nov. 16, 2024 3:10:53 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil gua
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
 nov. 16, 2024 3:13:05 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 3:23:17 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 3:23:51 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Registro Tiquete,Se ha registrado un nuevo tiquete para el usuario 1234,2024-11-16
+nov. 16, 2024 3:23:51 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Compra Tiquete,Compra realizada para el usuario: 1234,2024-11-16
+nov. 16, 2024 3:24:07 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el equipaje al vuelo  V123,Registro equipaje ,2024-11-16
+nov. 16, 2024 3:24:34 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 3:39:23 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 3:40:01 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 3:40:26 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Registro Tiquete,Se ha registrado un nuevo tiquete para el usuario 1234,2024-11-16
+nov. 16, 2024 3:40:26 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Compra Tiquete,Compra realizada para el usuario: 1234,2024-11-16
+nov. 16, 2024 3:40:39 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el equipaje al vuelo  V123,Registro equipaje ,2024-11-16
+nov. 16, 2024 4:33:18 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 4:59:21 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 4:59:30 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
