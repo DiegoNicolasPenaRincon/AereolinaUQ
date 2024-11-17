@@ -98,6 +98,8 @@ nov. 09, 2024 10:06:27 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil gu
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-09
 nov. 09, 2024 10:55:17 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-09
+nov. 12, 2024 7:44:21 A. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-12
 nov. 15, 2024 7:37:49 A. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-15
 nov. 15, 2024 7:47:20 A. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
@@ -187,4 +189,42 @@ INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
 nov. 16, 2024 8:36:18 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
 nov. 16, 2024 8:39:40 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 10:36:55 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 10:40:09 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 10:40:32 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Registro Tripulante,Se ha registrado al tripulante111con ID:111,2024-11-16
+nov. 16, 2024 10:40:32 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el tripulante 111,Registro Tripulante,2024-11-16
+nov. 16, 2024 10:40:36 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se limpiaron los campos ,Limpiar campos,2024-11-16
+nov. 16, 2024 10:46:29 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 10:46:57 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Registro Tripulante,Se ha registrado al tripulante000con ID:000,2024-11-16
+nov. 16, 2024 10:46:57 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el tripulante 000,Registro Tripulante,2024-11-16
+nov. 16, 2024 10:46:58 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se limpiaron los campos ,Limpiar campos,2024-11-16
+nov. 16, 2024 11:13:11 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 11:14:27 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 11:17:16 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 11:18:11 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 11:19:17 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Registro Tripulante,Se ha registrado al tripulante222con ID:222,2024-11-16
+nov. 16, 2024 11:19:17 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el tripulante 222,Registro Tripulante,2024-11-16
+nov. 16, 2024 11:19:19 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se limpiaron los campos ,Limpiar campos,2024-11-16
+nov. 16, 2024 11:19:40 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 11:21:06 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 11:21:23 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16

@@ -9,6 +9,7 @@ import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ModelFactoryController {
     private static ModelFactoryController instance;
@@ -251,4 +252,11 @@ public class ModelFactoryController {
     public Ruta buscarRutaPorDestino(Destino destino){
         return aerolinea.buscarRutaPorDestino(destino);
     }
+
+
+    public ListaSimple<Tripulante> getListaTripulantes(){
+        return aerolinea.getListaTripulantes();
+
+    }
+
 }

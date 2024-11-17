@@ -3,10 +3,7 @@ package co.edu.uniquindio.aerolineauq.ViewController;
 import co.edu.uniquindio.aerolineauq.AerolineaApplication;
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
-import co.edu.uniquindio.aerolineauq.model.Avion;
-import co.edu.uniquindio.aerolineauq.model.RolTripulante;
-import co.edu.uniquindio.aerolineauq.model.Ruta;
-import co.edu.uniquindio.aerolineauq.model.Tripulante;
+import co.edu.uniquindio.aerolineauq.model.*;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -137,7 +134,8 @@ public class AdminViewController {
     @FXML
     private TextField txtNombre;
     @FXML
-    private ComboBox<Tripulante> cbRol;
+    private ComboBox<RolTripulante> cbRol;
+
 
     private ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
 
@@ -148,6 +146,24 @@ public class AdminViewController {
 
     public void setAplicacion(AerolineaApplication aplicacion) {
         this.aplicacion = aplicacion;
+    }
+
+    @FXML
+    public void initialize() {
+        cbRol.setItems(FXCollections.observableArrayList(RolTripulante.values()));
+
+        // Configurar las columnas de la tabla de tripulantes asignados
+        columnIDAsignado.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getId()));
+        columnNombreAsignado.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getNombre()));
+        columnCorreoAsignado.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getCorreo()));
+   //     columnRolAsignado.setCellValueFactory(cellData ->
+   //             new SimpleStringProperty(cellData.getValue().getRolTripulante().toString()));
+
+        // Cargar los datos en la tabla
+        cargarDatosTabla();
     }
 /*
     public void initialize() {
@@ -169,7 +185,7 @@ public class AdminViewController {
     }
 
  */
-/*
+
     @FXML
     void agregarTripulanteEvent(ActionEvent event) {
         String id = txtID.getText();
@@ -179,14 +195,15 @@ public class AdminViewController {
         String direccion = txtDireccion.getText();
         LocalDate fechaNacimiento = dateNacimiento.getValue();
         String estudios = txtEstudios.getText();
+        RolTripulante rolTripulante = cbRol.getValue();
 
 
-        if (id.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || direccion.isEmpty() || estudios.isEmpty() || fechaNacimiento == null) {
+        if (id.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || direccion.isEmpty() || estudios.isEmpty() || fechaNacimiento == null || rolTripulante==null) {
             mostrarAlerta("Error", "Todos los campos son obligatorios", Alert.AlertType.ERROR);
             return;
         }
 
-        modelFactoryController.registrarTripulante(id, nombre , direccion, fechaNacimiento, correo, estudios,);
+        modelFactoryController.registrarTripulante(id, nombre , direccion, fechaNacimiento, correo, estudios,rolTripulante);
         registrarAccionesSistema("Registro Tripulante", 1, "Se registro el tripulante "+ nombre);
 
         mostrarAlerta("Éxito", "Tripulante registrado correctamente", Alert.AlertType.INFORMATION);
@@ -194,7 +211,7 @@ public class AdminViewController {
         limpiarCampos();
     }
     
- */
+
 
     private void limpiarCampos() {
         txtID.clear();
@@ -258,6 +275,22 @@ public class AdminViewController {
         anchorAeronaves.setVisible(false);
         anchorTripulantes.setVisible(true);
     }
-    
+
+    private void cargarDatosTabla() {
+        ListaSimple<Tripulante> listaTripulantes = modelFactoryController.getListaTripulantes();
+
+        tableTripulantes.getItems().clear();
+        for (Tripulante tripulante : listaTripulantes) {
+            tableTripulantes.getItems().add(tripulante);
+        }
+
+        tableTripulantesAsignados.getItems().clear();
+        for (Tripulante tripulante : listaTripulantes) {
+            tableTripulantesAsignados.getItems().add(tripulante);
+        }
+    }
+
+
+
 
 }

@@ -1,4 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="17.0.9" class="java.beans.XMLDecoder">
- <object class="co.edu.uniquindio.aerolineauq.model.Aerolinea"/>
+<java version="17.0.8.1" class="java.beans.XMLDecoder">
+ <object class="co.edu.uniquindio.aerolineauq.model.Aerolinea" id="Aerolinea0">
+  <void class="co.edu.uniquindio.aerolineauq.model.Aerolinea" method="getField">
+   <string>usuario</string>
+   <void method="set">
+    <object idref="Aerolinea0"/>
+    <object class="co.edu.uniquindio.aerolineauq.model.Usuario">
+     <void property="apellido">
+      <string>Peña</string>
+     </void>
+     <void property="contrasenia">
+      <string>2</string>
+     </void>
+     <void property="correo">
+      <string>diegon.penar@uqvirtual.edu.co</string>
+     </void>
+     <void property="direccion">
+      <string>Armenia</string>
+     </void>
+     <void property="fechaNacimiento">
+      <object class="java.time.LocalDate" method="parse">
+       <string>2002-10-11</string>
+      </object>
+     </void>
+     <void property="id">
+      <string>55555</string>
+     </void>
+     <void property="nombre">
+      <string>Nicolas</string>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
 </java>

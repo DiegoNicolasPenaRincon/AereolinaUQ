@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.aerolineauq.ViewController.AdminViewController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.aerolineauq.ViewController.AdminViewController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="1100.0" stylesheets="@loginDesign.css">
          <left>
@@ -68,7 +68,7 @@
                            </font>
                         </Label>
                         <Button fx:id="btnEliminar" layoutX="158.0" layoutY="548.0" mnemonicParsing="false" styleClass="compra-btn" stylesheets="@loginDesign.css" text="Eliminar" />
-                        <Button fx:id="btnAgregar" layoutX="546.0" layoutY="548.0" mnemonicParsing="false" styleClass="compra-btn" stylesheets="@loginDesign.css" text="Agregar" />
+                        <Button fx:id="btnAgregar" layoutX="546.0" layoutY="548.0" mnemonicParsing="false" onAction="#agregarTripulanteEvent" styleClass="compra-btn" stylesheets="@loginDesign.css" text="Agregar" />
                         <Button fx:id="btnModificar" layoutX="346.0" layoutY="548.0" mnemonicParsing="false" styleClass="compra-btn" stylesheets="@loginDesign.css" text="Modificar" />
                         <TextField fx:id="txtNombre" layoutX="48.0" layoutY="160.0" prefHeight="25.0" prefWidth="220.0" promptText="Nombre" />
                         <TextField fx:id="txtApellido" layoutX="48.0" layoutY="200.0" prefHeight="25.0" prefWidth="220.0" promptText="Apellido" stylesheets="@loginDesign.css" />
