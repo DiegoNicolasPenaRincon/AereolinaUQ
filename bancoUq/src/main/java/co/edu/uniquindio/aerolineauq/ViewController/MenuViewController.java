@@ -193,6 +193,7 @@ public class MenuViewController {
         anchorPerfil.setVisible(false);
         anchorHistorial.setVisible(false);
         inicializarTabla();
+        inicializarPerfil();
     }
 
     private void inicializarTabla(){
@@ -211,6 +212,16 @@ public class MenuViewController {
 // Ahora puedes usar 'observableRutas' para tu TableView
         tableInformacion.setItems(rutas);
 
+    }
+
+    private void inicializarPerfil(){
+        txtNombre.setText(modelFactoryController.getUsuarioActual().getNombre());
+        txtApellido.setText(modelFactoryController.getUsuarioActual().getApellido());
+        txtCorreo.setText(modelFactoryController.getUsuarioActual().getCorreo());
+        txtDireccion.setText(modelFactoryController.getUsuarioActual().getDireccion());
+        txtIDNueva.setText(modelFactoryController.getUsuarioActual().getId());
+        txtContraseniaNueva.setText(modelFactoryController.getUsuarioActual().getContrasenia());
+        dateNacimiento.setValue(modelFactoryController.getUsuarioActual().getFechaNacimiento());
     }
 
     private void actualizarVisibilidadDateRegreso() {
@@ -294,6 +305,40 @@ public class MenuViewController {
             }
         };
     }
+
+    @FXML
+    private void actualizarPerfil(){
+        try {
+            if (validarCamposPerfil()) {
+                String nombre = txtNombre.getText();
+                String apellido = txtApellido.getText();
+                String correo = txtCorreo.getText();
+                String direccion = txtDireccion.getText();
+                String id = txtIDNueva.getText();
+                String contrasenia = txtContraseniaNueva.getText();
+                LocalDate fechaNacimiento = dateNacimiento.getValue();
+
+                // Crear el usuario actualizado
+                Usuario usuarioActualizado = new Usuario(id, nombre, apellido, direccion, fechaNacimiento, correo, contrasenia);
+                modelFactoryController.actualizarUsuario(usuarioActualizado);
+                // Mostrar mensaje de confirmación
+                mostrarConfirmacion("Perfil actualizado", "Los datos del perfil han sido actualizados exitosamente.");
+            } else {
+                mostrarError("Datos incompletos", "Por favor completa todos los campos antes de actualizar el perfil.");
+            }
+        } catch (Exception e) {
+            mostrarError("Error al actualizar", "Ocurrió un error al intentar actualizar el perfil: " + e.getMessage());
+        }
+
+    }
+
+    private boolean validarCamposPerfil() {
+        return !(txtNombre.getText().isEmpty() || txtApellido.getText().isEmpty() ||
+                txtCorreo.getText().isEmpty() || txtDireccion.getText().isEmpty() ||
+                txtIDNueva.getText().isEmpty() || txtContraseniaNueva.getText().isEmpty() ||
+                dateNacimiento.getValue() == null);
+    }
+
     public void registrarAccionesSistema(String mensaje, int nivel, String accion) {
         Persistencia.guardaRegistroLog(mensaje, nivel, accion);
     }

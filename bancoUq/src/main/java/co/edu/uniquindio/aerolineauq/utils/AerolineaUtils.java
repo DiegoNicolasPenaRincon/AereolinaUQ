@@ -90,17 +90,17 @@ public class AerolineaUtils {
      usuario.setContrasenia("1234");
      usuario.setCorreo("santiagobv687@gmail.com");
      usuario.setDireccion("Armenia");
-     usuario.setFechaNacimiento(LocalDate.ofEpochDay(01-02-2005));
+     usuario.setFechaNacimiento(LocalDate.of(2005, 1, 2));
      aerolinea.getListaUsuarios().agregar(usuario);
 
      Usuario usuario2=new Usuario();
      usuario2.setId("000");
      usuario2.setNombre("Lola");
-     usuario2.setApellido("Betancourt");
+     usuario2.setApellido("Bonilla");
      usuario2.setContrasenia("000");
-     usuario2.setCorreo("santiagobv687@gmail.com");
+     usuario2.setCorreo("lola@gmail.com");
      usuario2.setDireccion("Armenia");
-     usuario2.setFechaNacimiento(LocalDate.ofEpochDay(01-02-2005));
+     usuario2.setFechaNacimiento(LocalDate.of(2004,11,10));
      aerolinea.getListaUsuarios().agregar(usuario2);
 
         Usuario usuario1=new Usuario();
@@ -110,7 +110,7 @@ public class AerolineaUtils {
         usuario1.setContrasenia("1234");
         usuario1.setCorreo("camila@gmail.com");
         usuario1.setDireccion("Armenia");
-        usuario1.setFechaNacimiento(LocalDate.ofEpochDay(25-07-2003));
+        usuario1.setFechaNacimiento(LocalDate.of(2004,11,12));
         aerolinea.getListaUsuarios().agregar(usuario1);
 
        // Tripulacion
@@ -198,7 +198,7 @@ public class AerolineaUtils {
      adminsitrador.setContrasenia("2");
      adminsitrador.setCorreo("diegon.penar@uqvirtual.edu.co");
      adminsitrador.setDireccion("Armenia");
-     adminsitrador.setFechaNacimiento(LocalDate.ofEpochDay(01-02-2005));
+     adminsitrador.setFechaNacimiento(LocalDate.of(2002, 10, 11));
         aerolinea.getListaUsuarios().agregar(adminsitrador);
 
 

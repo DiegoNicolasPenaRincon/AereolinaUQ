@@ -42,24 +42,31 @@ public class Persistencia {
 
     // //Cargar y guardar recurso xml del model
     public static void guardarRecursoXML(Aerolinea aeroUq) {
-
         try {
             ArchivoUtil.salvarRecursoSerializadoXML(RUTA_ARCHIVO_MODELO_XML, aeroUq);
-        } catch (Exception e) {
+            System.out.println("Modelo XML guardado correctamente en " + RUTA_ARCHIVO_MODELO_XML);
+        } catch (IOException e) {
+            System.err.println("Error al guardar el modelo XML: " + e.getMessage());
             e.printStackTrace();
         }
     }
+
     public static Aerolinea cargarRecursoXML() {
-
-        Aerolinea aeroUq = null;
-
         try {
-            aeroUq = (Aerolinea) ArchivoUtil.cargarRecursoSerializadoXML(RUTA_ARCHIVO_MODELO_XML);
+            Object recurso = ArchivoUtil.cargarRecursoSerializadoXML(RUTA_ARCHIVO_MODELO_XML);
+            if (recurso instanceof Aerolinea) {
+                return (Aerolinea) recurso;
+            } else {
+                System.err.println("El archivo XML no contiene un objeto de tipo Aerolinea.");
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("Archivo XML no encontrado: " + RUTA_ARCHIVO_MODELO_XML);
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo XML: " + e.getMessage());
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Error inesperado al cargar el recurso XML: " + e.getMessage());
         }
-        return aeroUq;
-
+        return null; // Devuelve null si ocurre algún problema
     }
 
     // Guardar registro del log

@@ -18,10 +18,12 @@ public class Aerolinea implements Serializable {
     ListaSimple<Equipaje> listaEquipaje=new ListaSimple<>();
     public Usuario usuario;
 
+    public Aerolinea() {
+    }
+
     public ListaSimple<Usuario> getListaUsuarios() {
         return listaUsuarios;
     }
-
 
     public Usuario getUsuario() {
         return usuario;

@@ -1,6 +1,7 @@
 package co.edu.uniquindio.aerolineauq.controller;
 
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
+import co.edu.uniquindio.aerolineauq.exceptions.UsuarioException;
 import co.edu.uniquindio.aerolineauq.model.*;
 import co.edu.uniquindio.aerolineauq.utils.AerolineaUtils;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
@@ -17,21 +18,22 @@ public class ModelFactoryController {
         System.out.println("Datos inicializados");// Inicializa la clase de lógica de negocio
 
         //1. carga los datos del utils
-        cargarDatosBase();
-        salvarDatosPrueba();
+        //cargarDatosBase();
+        //salvarDatosPrueba();
 
         //2. cargar desde los archivos
         //cargarDatosDesdeArchivos();
 
         // Guardar y cargar desde el binario
-        //cargarResourceBinario();
+        cargarResourceBinario();
         //guardarResourceBinario();
 
         //cargarResourceXML();
-        //guardarResourceXML();
+        guardarResourceXML();
 
         if (aerolinea == null) {
             cargarDatosBase();
+            guardarResourceXML();
         }
 
     }
@@ -51,6 +53,7 @@ public class ModelFactoryController {
     private void cargarDatosBase() {
         aerolinea = AerolineaUtils.inicializarDatos();
     }
+
     //metodo que registra a un usuario
     public void registrarUsuario(String id, String nombre, String apellido, String correo, String direccion, String contrasenia, LocalDate fechaNacimiento) {
         Usuario usuario = new Usuario(id, nombre, apellido, direccion, fechaNacimiento, correo, contrasenia);
@@ -61,8 +64,23 @@ public class ModelFactoryController {
                 guardarResourceXML();
                 guardarListaUsuario(getAerolinea().getListaUsuarios());
             }
-            } catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void actualizarUsuario(Usuario usuarioActualizado) throws UsuarioException {
+        boolean actualizado = aerolinea.getListaUsuarios().modificarElemento(
+                usuario -> usuario.getId().equals(getUsuarioActual().getId()), // Criterio: buscar por ID
+                usuarioActualizado);
+
+        if (actualizado) {
+            System.out.println("Usuario actualizado correctamente.");
+            guardarListaUsuario(aerolinea.getListaUsuarios());
+            guardarResourceXML();
+        } else {
+            System.out.println("No se encontró el usuario con el ID especificado.");
+            throw new UsuarioException("No se encontró el usuario.");
         }
     }
 
@@ -89,10 +107,7 @@ public class ModelFactoryController {
     }
 
     private void guardarResourceXML() {
-        Thread thread = new Thread(() -> {
-            Persistencia.guardarRecursoXML(aerolinea);
-        });
-        thread.start();
+        Persistencia.guardarRecursoXML(aerolinea);
     }
     // Carga y guarda los binarios
     private void cargarResourceBinario() {

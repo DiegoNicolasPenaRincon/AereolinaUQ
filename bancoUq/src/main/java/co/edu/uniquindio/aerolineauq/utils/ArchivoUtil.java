@@ -1,7 +1,6 @@
 package co.edu.uniquindio.aerolineauq.utils;
 
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
+import java.beans.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
@@ -11,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.FileHandler;
@@ -208,6 +208,14 @@ public class ArchivoUtil {
         XMLEncoder codificadorXML;
 
         codificadorXML = new XMLEncoder(new FileOutputStream(rutaArchivo));
+        codificadorXML.setPersistenceDelegate(LocalDate.class,
+                new PersistenceDelegate() {
+                    @Override
+                    protected Expression instantiate(Object oldInstance, Encoder out) {
+                        LocalDate date = (LocalDate) oldInstance;
+                        return new Expression(oldInstance, oldInstance.getClass(), "parse", new Object[]{date.toString()});
+                    }
+                });
         codificadorXML.writeObject(objeto);
         codificadorXML.close();
 

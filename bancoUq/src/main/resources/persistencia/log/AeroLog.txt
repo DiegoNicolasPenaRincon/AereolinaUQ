@@ -166,3 +166,19 @@ nov. 16, 2024 4:59:21 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil gua
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
 nov. 16, 2024 4:59:30 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 6:03:58 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 6:26:45 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 7:54:40 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 7:55:45 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 7:56:40 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 7:57:49 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 8:07:42 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
+nov. 16, 2024 8:23:44 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-16
