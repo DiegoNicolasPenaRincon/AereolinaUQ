@@ -62,7 +62,6 @@ public class ModelFactoryController {
                 aerolinea.registrarUsuario(usuario);
                 guardarResourceBinario();
                 guardarResourceXML();
-                guardarListaUsuario(getAerolinea().getListaUsuarios());
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -78,6 +77,7 @@ public class ModelFactoryController {
             System.out.println("Usuario actualizado correctamente.");
             guardarListaUsuario(aerolinea.getListaUsuarios());
             guardarResourceXML();
+            guardarResourceBinario();
         } else {
             System.out.println("No se encontró el usuario con el ID especificado.");
             throw new UsuarioException("No se encontró el usuario.");

@@ -1,5 +1,6 @@
 package co.edu.uniquindio.aerolineauq;
 
+import co.edu.uniquindio.aerolineauq.ViewController.AdminViewController;
 import co.edu.uniquindio.aerolineauq.ViewController.EquipajeViewController;
 import co.edu.uniquindio.aerolineauq.ViewController.InicioSesionViewController;
 import co.edu.uniquindio.aerolineauq.ViewController.MenuViewController;
@@ -80,6 +81,22 @@ public class AerolineaApplication extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void mostrarVentanaAdministrador() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/aerolineauq/AdminView.fxml"));
+        Parent root = loader.load();
+
+        AdminViewController adminViewController =loader.getController();
+        adminViewController.setAplicacion(this);
+
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Administrador");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        primaryStage.setWidth(1100);
+        primaryStage.setHeight(600);
+        primaryStage.centerOnScreen();
     }
 
     public static void main(String[] args) {

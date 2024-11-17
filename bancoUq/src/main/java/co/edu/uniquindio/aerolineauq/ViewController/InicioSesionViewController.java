@@ -100,7 +100,7 @@ public class InicioSesionViewController {
             {
                 try
                 {
-                    mostrarVentanaAdministrador();
+                    aplicacion.mostrarVentanaAdministrador();
                 }
                 catch (IOException e)
                 {
@@ -138,10 +138,10 @@ public class InicioSesionViewController {
             slider.setNode(sideForm);
             slider.setToX(0);
             slider.setDuration(Duration.seconds(.5));
-            SideInicio.setVisible(true);
+
 
             slider.setOnFinished((ActionEvent e) ->{
-
+                SideInicio.setVisible(true);
                 btnExisteCuenta.setVisible(false);
                 btnRegistrarse.setVisible(true);
             });
@@ -195,17 +195,6 @@ public class InicioSesionViewController {
         Persistencia.guardaRegistroLog(mensaje, nivel, accion);
     }
 
-    public void mostrarVentanaAdministrador() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/aerolineauq/AdminView.fxml"));
-        Parent root = loader.load();
 
-        AdminViewController SACController =loader.getController();
-
-        // Mostramos la nueva ventana
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-    }
 
 }
