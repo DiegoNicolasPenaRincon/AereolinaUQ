@@ -152,6 +152,22 @@ public class AdminViewController {
     public void initialize() {
         cbRol.setItems(FXCollections.observableArrayList(RolTripulante.values()));
 
+        columnID.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getId()));
+        columnNombre.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getNombre()));
+        columnCorreo.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getCorreo()));
+        columnDireccion.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getDireccion()));
+        columnEstudios.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getEstudios()));
+        columnFecha.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getFechaNacimiento().toString()));
+        columnRolAsignado.setCellValueFactory(cellData -> {
+            RolTripulante rol = cellData.getValue().getRolTripulante();
+            return new SimpleStringProperty(rol != null ? rol.toString() : "Sin asignar");
+        });
         // Configurar las columnas de la tabla de tripulantes asignados
         columnIDAsignado.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getId()));
@@ -159,9 +175,10 @@ public class AdminViewController {
                 new SimpleStringProperty(cellData.getValue().getNombre()));
         columnCorreoAsignado.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getCorreo()));
-   //     columnRolAsignado.setCellValueFactory(cellData ->
-   //             new SimpleStringProperty(cellData.getValue().getRolTripulante().toString()));
-
+        columnRolAsignado.setCellValueFactory(cellData -> {
+            RolTripulante rol = cellData.getValue().getRolTripulante();
+            return new SimpleStringProperty(rol != null ? rol.toString() : "Sin asignar");
+        });
         // Cargar los datos en la tabla
         cargarDatosTabla();
     }
@@ -198,7 +215,7 @@ public class AdminViewController {
         RolTripulante rolTripulante = cbRol.getValue();
 
 
-        if (id.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || direccion.isEmpty() || estudios.isEmpty() || fechaNacimiento == null || rolTripulante==null) {
+        if (id.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || direccion.isEmpty() || estudios.isEmpty() || fechaNacimiento == null ) {
             mostrarAlerta("Error", "Todos los campos son obligatorios", Alert.AlertType.ERROR);
             return;
         }

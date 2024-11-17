@@ -27,7 +27,7 @@ public class ModelFactoryController {
 
         // Guardar y cargar desde el binario
         cargarResourceBinario();
-        //guardarResourceBinario();
+        guardarResourceBinario();
 
         //cargarResourceXML();
         guardarResourceXML();

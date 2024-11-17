@@ -201,9 +201,20 @@ public class AerolineaUtils {
      adminsitrador.setFechaNacimiento(LocalDate.of(2002, 10, 11));
         aerolinea.getListaUsuarios().agregar(adminsitrador);
 
+        Usuario adminsitrador1=new Usuario();
+        adminsitrador1.setId("1");
+        adminsitrador1.setNombre("1");
+        adminsitrador1.setApellido("1");
+        adminsitrador1.setContrasenia("1");
+        adminsitrador1.setCorreo("1");
+        adminsitrador1.setDireccion("1");
+        adminsitrador1.setFechaNacimiento(LocalDate.of(2002, 10, 11));
+        aerolinea.getListaUsuarios().agregar(adminsitrador1);
 
 
-     Ruta ruta1=new Ruta(Destino.Cancún, LocalTime.of(2, 0), LocalTime.of(8, 30), LocalTime.of(18, 45), 2500.0);
+
+
+        Ruta ruta1=new Ruta(Destino.Cancún, LocalTime.of(2, 0), LocalTime.of(8, 30), LocalTime.of(18, 45), 2500.0);
      Ruta ruta2=new Ruta(Destino.Bogotá, LocalTime.of(4, 0), LocalTime.of(6, 15), LocalTime.of(21, 30), 3200.0);
      Ruta ruta3=new Ruta(Destino.Buenos_Aires, LocalTime.of(8, 0), LocalTime.of(5, 0), LocalTime.of(20, 15), 7800.0);
      Ruta ruta4=new Ruta(Destino.Los_Ángeles, LocalTime.of(5, 30), LocalTime.of(9, 0), LocalTime.of(22, 0), 4500.0);
