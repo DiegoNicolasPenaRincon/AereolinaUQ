@@ -4,6 +4,8 @@ import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 
 
@@ -173,5 +175,99 @@ public class Aerolinea implements Serializable {
             }
         }
         return null; // Retorna null si no se encuentra la ruta
+    }
+
+    /*public ListaSimple<String> llenarListaSimpleStringAviones(ListaSimple<Avion> listaAviones) {
+        ListaSimple<String> listaSimpleString = new ListaSimple<>();
+        for(int i=0;i<listaAviones.size();i++)
+        {
+            listaSimpleString.agregar(listaAviones.obtenerValorNodo(i).getNombre());
+        }
+        return listaSimpleString;
+    }
+
+    public ListaSimple<String> llenarListaSimpleStringRutas(ListaSimple<Ruta> listaRutas) {
+        ListaSimple<String> listaSimpleString = new ListaSimple<>();
+        for(int i=0;i<listaRutas.size();i++)
+        {
+            listaSimpleString.agregar(listaRutas.obtenerValorNodo(i).getDestino().toString());
+        }
+        return listaSimpleString;
+    }
+
+     */
+
+    public Collection<Avion> filtrarAvionesNacionales(ListaSimple<Avion> coleccionAviones,TipoAvion tipo) {
+        ListaSimple<Avion> filtrarAvionesNacionales= new ListaSimple<>();
+        for(int i=0;i<coleccionAviones.size();i++)
+        {
+            if(coleccionAviones.obtenerValorNodo(i).getTipoAvion().equals(tipo))
+            {
+                filtrarAvionesNacionales.agregar(coleccionAviones.obtenerValorNodo(i));
+            }
+        }
+
+        return filtrarAvionesNacionales.toCollection();
+    }
+
+    /*public TipoAvion determinarElTipoAvion(Ruta ruta) {
+        if(ruta.getOrigen()!=Destino.Cancún&&ruta.getOrigen()!=Destino.Monterrey)
+        {
+            return TipoAvion.INTERNACIONAL;
+        }
+        return TipoAvion.NACIONAL;
+    }
+
+     */
+
+    public boolean verificarAsignacion(String nombreAvion,ListaSimple<Tripulante> listaTripulantes) {
+        int copilotos=0;
+        int pilotos=0;
+        int auxiliares=0;
+        for (Tripulante tripulante : listaTripulantes)
+        {
+            switch (tripulante.getRolTripulante())
+            {
+                case PILOTO: pilotos++;
+                            break;
+                case COPILOTO: copilotos++;
+                                break;
+                case AUXILIAR: auxiliares++;
+                                break;
+            }
+        }
+
+        int contador=0;
+        switch (nombreAvion)
+        {
+            case "Airbus A320": if(copilotos<=1)
+                                  contador++;
+                                if(pilotos<=1)
+                                  contador++;
+                                if(auxiliares<=3)
+                                    contador++;
+                                break;
+            case "Airbus A330", "Boeing 787":
+                                 if(copilotos<=1)
+                                    contador++;
+                                if(pilotos<=1)
+                                    contador++;
+                                if(auxiliares<=7)
+                                    contador++;
+                                break;
+        }
+        return false;
+
+    }
+
+    public boolean verificarTripulante (ListaSimple<Tripulante> listaTripulante,Tripulante tripulante) {
+        for(int i=0;i<listaTripulante.size();i++)
+        {
+            if(listaTripulante.obtenerValorNodo(i).equals(tripulante))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

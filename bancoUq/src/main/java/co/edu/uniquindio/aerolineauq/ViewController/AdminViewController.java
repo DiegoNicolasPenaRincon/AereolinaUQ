@@ -3,11 +3,15 @@ package co.edu.uniquindio.aerolineauq.ViewController;
 import co.edu.uniquindio.aerolineauq.AerolineaApplication;
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
+import co.edu.uniquindio.aerolineauq.exceptions.TripulanteAsignadoException;
 import co.edu.uniquindio.aerolineauq.model.*;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -21,6 +25,8 @@ import java.util.Optional;
 public class AdminViewController {
 
     @FXML
+    Button cambiarAvionButton;
+    @FXML
     private AnchorPane AnchorNavegacion;
 
     @FXML
@@ -30,7 +36,7 @@ public class AdminViewController {
     private AnchorPane anchorTripulantes;
 
     @FXML
-    private ComboBox<String> avionComboBox;
+    private ComboBox<Avion> avionComboBox;
 
     @FXML
     private Label avionLbl;
@@ -108,7 +114,7 @@ public class AdminViewController {
     private DatePicker dateNacimiento;
 
     @FXML
-    private ComboBox<String> rutaComboBox;
+    private ComboBox<Ruta> rutaComboBox;
 
     @FXML
     private TableView<Tripulante> tableTripulantes;
@@ -179,29 +185,51 @@ public class AdminViewController {
             RolTripulante rol = cellData.getValue().getRolTripulante();
             return new SimpleStringProperty(rol != null ? rol.toString() : "Sin asignar");
         });
+
+        //Llenar ComboBox
+        Collection<Ruta> coleccionRuta=modelFactoryController.getAerolinea().getRutasAerolinea().toCollection();
+        //Collection<Avion> coleccionAviones=modelFactoryController.getAerolinea().getListaAviones().toCollection();
+
+        this.rutaComboBox.setItems(FXCollections.observableArrayList(coleccionRuta));
+        avionComboBox.setDisable(true);
+        tableTripulantesAsignados.setDisable(true);
+
+
+
+        rutaComboBox.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Obtener la opción seleccionada
+                avionComboBox.getItems().clear();
+                Ruta selectedOption = rutaComboBox.getValue();
+                avionLbl.setText(selectedOption.getAvionAsignado().getNombre());
+                Collection<Avion> coleccionAviones=modelFactoryController.getAerolinea().filtrarAvionesNacionales(modelFactoryController.getAerolinea().getListaAviones(), selectedOption.getAvionAsignado().getTipoAvion());
+                avionComboBox.getItems().addAll(coleccionAviones);
+                //avionComboBox.setDisable(false);
+                tableTripulantesAsignados.setDisable(false);
+            }
+        });
+
+
+        tableTripulantesAsignados.setRowFactory(tv -> {
+            TableRow<Tripulante> row = new TableRow<>();
+
+            row.itemProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue.getAvionAsignado().equals(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado()))
+                {
+                    row.setStyle("-fx-background-color: yellow;");
+                }
+                else
+                {
+                    row.setStyle("");
+                }
+            });
+            return row;
+        });
+
         // Cargar los datos en la tabla
         cargarDatosTabla();
     }
-/*
-    public void initialize() {
-        //Collection<Ruta> coleccionRuta=modelFactoryController.getAerolinea().getRutasAerolinea().toCollection();
-        //Collection<Tripulante> coleccionTripulantes=modelFactoryController.getAerolinea().getListaTripulantes().toCollection();
-        //Collection<Avion> coleccionAviones=modelFactoryController.getAerolinea().getListaAviones().toCollection();
-        rutaComboBox.getItems().addAll(coleccionRuta);
-
-        avionComboBox.getItems().addAll(coleccionAviones);
-
-        columnNombreAsignado.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getNombre()) );
-        columnIDAsignado.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getId() ));
-        columnRolAsignado.setCellValueFactory( cellData -> new SimpleStringProperty( String.valueOf(cellData.getValue().getRolTripulante()) ) );
-        columnCorreoAsignado.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getCorreo()) );
-
-        tableTripulantesAsignados.setItems(FXCollections.observableList((List<Tripulante>) coleccionTripulantes));
-        anchorAeronaves.setVisible(true);
-        anchorTripulantes.setVisible(false);
-    }
-
- */
 
     @FXML
     void agregarTripulanteEvent(ActionEvent event) {
@@ -308,6 +336,65 @@ public class AdminViewController {
     }
 
 
+    public void agregarTripulanteOnAction(ActionEvent actionEvent) throws TripulanteAsignadoException {
+        if(tableTripulantesAsignados.getSelectionModel().getSelectedItem()!=null)
+        {
+            try
+            {
+                if(tableTripulantesAsignados.getSelectionModel().getSelectedItem().getAvionAsignado().equals(null))
+                {
+                    throw new NullPointerException();
+                }
+                else
+                {
+                    throw new TripulanteAsignadoException();
+                }
+            }
+            catch (NullPointerException e)
+            {
+                if(modelFactoryController.getAerolinea().verificarAsignacion(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getNombre(),rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getListaTripulantes()))
+                {
+                    tableTripulantesAsignados.getSelectionModel().getSelectedItem().setAvionAsignado(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado());
+                    //avionComboBox.getSelectionModel().getSelectedItem().getListaTripulantes().agregar(tableTripulantesAsignados.getSelectionModel().getSelectedItem());
+                    rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getListaTripulantes().agregar(tableTripulantesAsignados.getSelectionModel().getSelectedItem());
+                    mostrarAlerta("Informacion","Tripulante agregado correctamente", Alert.AlertType.INFORMATION);
+                }
+                else
+                {
+                    mostrarAlerta("Informacion","el avion supero el limite de tripulantes permitidos", Alert.AlertType.ERROR);
+                }
+            }
+            catch (TripulanteAsignadoException e)
+            {
+                mostrarAlerta("Error",e.getMessage(),Alert.AlertType.ERROR);
+            }
+        }
+        else
+        {
+            mostrarAlerta("Error","Debe seleccionar un tripulante",Alert.AlertType.ERROR);
+        }
+    }
 
+    public void cambiarAvionOnAction(ActionEvent actionEvent) {
 
+    }
+
+    public void eliminarOnAction(ActionEvent actionEvent) {
+        if(tableTripulantesAsignados.getSelectionModel().getSelectedItem()!=null)
+        {
+            if(tableTripulantesAsignados.getSelectionModel().getSelectedItem().getAvionAsignado().equals(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado()))
+            {
+                tableTripulantesAsignados.getSelectionModel().getSelectedItem().setAvionAsignado(null);
+                mostrarAlerta("Informacion","El tripulante ya no se encuentra asignado a ese avion",Alert.AlertType.INFORMATION);
+            }
+            else
+            {
+                mostrarAlerta("Error","El tripulante no pertenece al avion seleccionado",Alert.AlertType.ERROR);
+            }
+        }
+        else
+        {
+            mostrarAlerta("Error","Debe seleccionar un tripulante",Alert.AlertType.ERROR);
+        }
+    }
 }

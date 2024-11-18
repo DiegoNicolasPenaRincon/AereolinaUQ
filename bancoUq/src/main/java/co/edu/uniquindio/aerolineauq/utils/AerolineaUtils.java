@@ -213,13 +213,12 @@ public class AerolineaUtils {
 
 
 
-
-        Ruta ruta1=new Ruta(Destino.Cancún, LocalTime.of(2, 0), LocalTime.of(8, 30), LocalTime.of(18, 45), 2500.0);
-     Ruta ruta2=new Ruta(Destino.Bogotá, LocalTime.of(4, 0), LocalTime.of(6, 15), LocalTime.of(21, 30), 3200.0);
-     Ruta ruta3=new Ruta(Destino.Buenos_Aires, LocalTime.of(8, 0), LocalTime.of(5, 0), LocalTime.of(20, 15), 7800.0);
-     Ruta ruta4=new Ruta(Destino.Los_Ángeles, LocalTime.of(5, 30), LocalTime.of(9, 0), LocalTime.of(22, 0), 4500.0);
-     Ruta ruta5=new Ruta(Destino.Monterrey, LocalTime.of(1, 30), LocalTime.of(7, 0), LocalTime.of(16, 15), 1500.0);
-     Ruta ruta6=new Ruta(Destino.Panamá, LocalTime.of(3, 45), LocalTime.of(10, 30), LocalTime.of(19, 0), 3000.0);
+        Ruta ruta1=new Ruta(Destino.Cancún, LocalTime.of(2, 0), LocalTime.of(8, 30), LocalTime.of(18, 45), 2500.0,avion1);
+     Ruta ruta2=new Ruta(Destino.Bogotá, LocalTime.of(4, 0), LocalTime.of(6, 15), LocalTime.of(21, 30), 3200.0,avion3);
+     Ruta ruta3=new Ruta(Destino.Buenos_Aires, LocalTime.of(8, 0), LocalTime.of(5, 0), LocalTime.of(20, 15), 7800.0,avion4);
+     Ruta ruta4=new Ruta(Destino.Los_Ángeles, LocalTime.of(5, 30), LocalTime.of(9, 0), LocalTime.of(22, 0), 4500.0,avion5);
+     Ruta ruta5=new Ruta(Destino.Monterrey, LocalTime.of(1, 30), LocalTime.of(7, 0), LocalTime.of(16, 15), 1500.0,avion2);
+     Ruta ruta6=new Ruta(Destino.Panamá, LocalTime.of(3, 45), LocalTime.of(10, 30), LocalTime.of(19, 0), 3000.0,avion6);
      aerolinea.getRutasAerolinea().agregar(ruta1);
      aerolinea.getRutasAerolinea().agregar(ruta2);
      aerolinea.getRutasAerolinea().agregar(ruta3);

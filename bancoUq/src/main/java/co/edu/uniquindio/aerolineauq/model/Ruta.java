@@ -1,10 +1,5 @@
 package co.edu.uniquindio.aerolineauq.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.io.Serializable;
 import java.time.LocalTime;
 
@@ -17,13 +12,15 @@ public class Ruta implements Serializable {
     private LocalTime horaSalida;
     private LocalTime horaRegreso;
     private double precio;
+    private Avion avionAsignado;
 
-    public Ruta(Destino destino, LocalTime duracion, LocalTime horaSalida, LocalTime horaRegreso, double precio) {
+    public Ruta(Destino destino, LocalTime duracion, LocalTime horaSalida, LocalTime horaRegreso, double precio,Avion avionAsignado) {
         this.destino = destino;
         this.duracion = duracion;
         this.horaSalida = horaSalida;
         this.horaRegreso = horaRegreso;
         this.precio=precio;
+        this.avionAsignado=avionAsignado;
     }
 
     public Ruta() {
@@ -71,5 +68,20 @@ public class Ruta implements Serializable {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public Avion getAvionAsignado() {
+        return avionAsignado;
+    }
+
+    public void setAvionAsignado(Avion avionAsignado) {
+        this.avionAsignado = avionAsignado;
+    }
+
+    @Override
+    public String toString() {
+        return "Ruta{" +
+                "destino=" + destino +
+                '}';
     }
 }

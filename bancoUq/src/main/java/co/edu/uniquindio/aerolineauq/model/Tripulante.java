@@ -18,6 +18,7 @@ public class Tripulante  implements Serializable {
     private String correo;
     private String estudios;
     private RolTripulante rolTripulante;
+    private Avion avionAsignado;
 
     public Tripulante(String id, String nombre, String direccion, LocalDate fechaNacimiento, String correo, String estudios, RolTripulante rolTripulante) {
         this.id = id;
@@ -86,5 +87,13 @@ public class Tripulante  implements Serializable {
 
     public void setRolTripulante(RolTripulante rolTripulante) {
         this.rolTripulante = rolTripulante;
+    }
+
+    public Avion getAvionAsignado() {
+        return avionAsignado;
+    }
+
+    public void setAvionAsignado(Avion avionAsignado) {
+        this.avionAsignado = avionAsignado;
     }
 }

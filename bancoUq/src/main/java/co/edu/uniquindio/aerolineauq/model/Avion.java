@@ -20,6 +20,7 @@ public class Avion implements Serializable {
     private double capacidadCarga;
     private double cargaActual;
     private ListaSimple<Usuario> listaPasajeros=new ListaSimple<>();
+    private ListaSimple<Tripulante> listaTripulantes=new ListaSimple<>();
     private String nombre;
     private Ruta rutaAsignada;
 
@@ -101,5 +102,20 @@ public class Avion implements Serializable {
 
     public void setRutaAsignada(Ruta rutaAsignada) {
         this.rutaAsignada = rutaAsignada;
+    }
+
+    public ListaSimple<Tripulante> getListaTripulantes() {
+        return listaTripulantes;
+    }
+
+    public void setListaTripulantes(ListaSimple<Tripulante> listaTripulantes) {
+        this.listaTripulantes = listaTripulantes;
+    }
+
+    @Override
+    public String toString() {
+        return "Avion{" +
+                "nombre='" + nombre + '\'' +
+                '}';
     }
 }
