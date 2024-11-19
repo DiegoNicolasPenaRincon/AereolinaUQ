@@ -1,6 +1,7 @@
 package co.edu.uniquindio.aerolineauq.ViewController;
 
 import co.edu.uniquindio.aerolineauq.AerolineaApplication;
+import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
 import co.edu.uniquindio.aerolineauq.model.*;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
@@ -362,6 +363,15 @@ public class MenuViewController {
         AnchorCompras.setVisible(false);
         anchorPerfil.setVisible(false);
         anchorHistorial.setVisible(true);
+    }
+
+    @FXML
+    public void mostrarAsientos(){
+        Destino destino = Destino.valueOf(comboDestinos.getValue().replace(" ", "_"));
+        LocalDate fechaSalida = dateSalidaViaje.getValue();
+        String avion=modelFactoryController.buscarAvionPorDestino(destino);
+        ListaSimple<Tiquete> tiquetesRelacionados=modelFactoryController.buscarTiquetesRelacionados(destino, fechaSalida);
+        aplicacion.mostrarAsientos(avion, tiquetesRelacionados);
     }
 
 }

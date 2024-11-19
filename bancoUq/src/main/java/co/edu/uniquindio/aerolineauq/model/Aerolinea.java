@@ -4,6 +4,7 @@ import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -269,5 +270,15 @@ public class Aerolinea implements Serializable {
             }
         }
         return false;
+    }
+
+    public ListaSimple buscarTiquetesRelacionados(Ruta ruta, LocalDate fechaViaje) {
+        ListaSimple<Tiquete> listaTiquetesRelacionados=new ListaSimple<>();
+        for(Tiquete tiquete: listaTiquetes){
+            if(tiquete.getRuta().getDestino()==ruta.getDestino() && tiquete.getFechaViaje()==fechaViaje){
+                listaTiquetesRelacionados.agregar(tiquete);
+            }
+        }
+        return listaTiquetesRelacionados;
     }
 }

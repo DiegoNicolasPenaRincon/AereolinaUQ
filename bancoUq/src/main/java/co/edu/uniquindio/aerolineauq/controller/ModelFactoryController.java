@@ -19,14 +19,14 @@ public class ModelFactoryController {
         System.out.println("Datos inicializados");// Inicializa la clase de lógica de negocio
 
         //1. carga los datos del utils
-        cargarDatosBase();
+        //cargarDatosBase();
         //salvarDatosPrueba();
 
         //2. cargar desde los archivos
         //cargarDatosDesdeArchivos();
 
         // Guardar y cargar desde el binario
-        //cargarResourceBinario();
+        cargarResourceBinario();
         guardarResourceBinario();
 
         //cargarResourceXML();
@@ -251,6 +251,16 @@ public class ModelFactoryController {
 
     public Ruta buscarRutaPorDestino(Destino destino){
         return aerolinea.buscarRutaPorDestino(destino);
+    }
+
+    public String buscarAvionPorDestino(Destino destino){
+        Ruta ruta=buscarRutaPorDestino(destino);
+        return ruta.getAvionAsignado().getNombre();
+    }
+
+    public ListaSimple buscarTiquetesRelacionados(Destino destino, LocalDate fechaViaje){
+        Ruta ruta=buscarRutaPorDestino(destino);
+        return aerolinea.buscarTiquetesRelacionados(ruta, fechaViaje);
     }
 
 

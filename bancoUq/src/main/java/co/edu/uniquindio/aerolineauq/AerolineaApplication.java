@@ -1,14 +1,14 @@
 package co.edu.uniquindio.aerolineauq;
 
-import co.edu.uniquindio.aerolineauq.ViewController.AdminViewController;
-import co.edu.uniquindio.aerolineauq.ViewController.EquipajeViewController;
-import co.edu.uniquindio.aerolineauq.ViewController.InicioSesionViewController;
-import co.edu.uniquindio.aerolineauq.ViewController.MenuViewController;
+import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
+import co.edu.uniquindio.aerolineauq.ViewController.*;
+import co.edu.uniquindio.aerolineauq.model.Tiquete;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -97,6 +97,31 @@ public class AerolineaApplication extends Application {
         primaryStage.setWidth(1100);
         primaryStage.setHeight(600);
         primaryStage.centerOnScreen();
+    }
+
+    public void mostrarAsientos(String avion, ListaSimple<Tiquete> tiquetesRelacionados) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/aerolineauq/AsientosView.fxml"));
+            Parent root = loader.load();
+
+            AsientosViewController asientosViewController = loader.getController();
+            asientosViewController.setAplicacion(this, avion, tiquetesRelacionados);
+
+            // Crear un nuevo Stage
+            Stage nuevoStage = new Stage();
+            Scene scene = new Scene(root);
+
+            // Configurar la nueva ventana
+            nuevoStage.setTitle("Asientos");
+            nuevoStage.setScene(scene);
+            nuevoStage.setWidth(1100);
+            nuevoStage.setHeight(600);
+            nuevoStage.centerOnScreen();
+            nuevoStage.initModality(Modality.APPLICATION_MODAL); // Bloquear interacción con otras ventanas (opcional)
+            nuevoStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

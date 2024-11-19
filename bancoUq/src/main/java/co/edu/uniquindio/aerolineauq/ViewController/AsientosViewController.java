@@ -1,84 +1,103 @@
 package co.edu.uniquindio.aerolineauq.ViewController;
+
+import co.edu.uniquindio.aerolineauq.AerolineaApplication;
+import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
+import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
+import co.edu.uniquindio.aerolineauq.model.Tiquete;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
+
+import java.io.IOException;
 
 public class AsientosViewController {
 
     @FXML
-    private GridPane gridAsientos;
+    private Pane paneAsientos;
 
-    public void inicializarAsientos(String tipoAvion, String claseVuelo) {
-        int filas, columnas;
-        String[][] numeracion;
+    private AerolineaApplication aplicacion;
 
-        // Configurar la matriz de asientos según el tipo de avión y clase de vuelo
-        switch (tipoAvion) {
-            case "Airbus A320":
-                if (claseVuelo.equals("EJECUTIVA")) {
-                    filas = 4;
-                    columnas = 2;
-                    numeracion = new String[][]{{"A", "C"}, {"D", "F"}};
-                } else {
-                    filas = 6;
-                    columnas = 3;
-                    numeracion = new String[][]{{"A", "B", "C"}, {"D", "E", "F"}};
-                }
-                break;
-            case "Airbus A330":
-                if (claseVuelo.equals("EJECUTIVA")) {
-                    filas = 6;
-                    columnas = 3;
-                    numeracion = new String[][]{{"A", "C"}, {"D", "F"}, {"H", "K"}};
-                } else {
-                    filas = 8;
-                    columnas = 4;
-                    numeracion = new String[][]{{"A", "C"}, {"D", "E", "F", "G"}, {"H", "K"}};
-                }
-                break;
-            case "Boeing 787":
-                if (claseVuelo.equals("EJECUTIVA")) {
-                    filas = 3;
-                    columnas = 2;
-                    numeracion = new String[][]{{"A", "B"}, {"D", "E"}, {"L", "K"}};
-                } else {
-                    filas = 3;
-                    columnas = 3;
-                    numeracion = new String[][]{{"A", "B", "C"}, {"D", "E", "F"}, {"J", "K", "L"}};
-                }
-                break;
-            default:
-                return;
-        }
+    private ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
 
-        // Limpiar el GridPane
-        gridAsientos.getChildren().clear();
+    private String avion;
 
-        // Crear botones para cada asiento según la numeración
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
-                int filaIndex = i % numeracion.length;
-                int colIndex = j % numeracion[filaIndex].length;
+    private ListaSimple<Tiquete> listaTiquetes;
+    public AsientosViewController() throws IOException {
+    }
 
-                Button asientoBtn = new Button(numeracion[filaIndex][colIndex] + (i + 1));
-                asientoBtn.setOnAction(e -> seleccionarAsiento(asientoBtn));
+    public void setAplicacion(AerolineaApplication aplicacion, String avion, ListaSimple listaTiquetes) {
+        this.aplicacion = aplicacion;
+        this.avion=avion;
+        this.listaTiquetes=listaTiquetes;
+    }
 
-                // Añadir botón al GridPane en la posición correspondiente
-                gridAsientos.add(asientoBtn, j, i);
+    public void initialize() {
+        crearAsientosA320();
+    }
+
+    private void crearAsientosA320() {
+        int filasEjecutiva = 4; // 3 filas para clase ejecutiva (6 asientos por fila)
+        int filasEconomica = 6; // 20 filas para clase económica (8 asientos por fila)
+        int totalFilas = filasEjecutiva + filasEconomica;
+
+        // Configuración inicial de coordenadas y espacio entre filas
+        double xInicial = 20;
+        double yInicialIzquierda = 20;
+        double yInicialDerecha = 200;
+        double espacioVertical = 35; // Espacio entre asientos en vertical (para las columnas)
+        double espacioHorizontal = 50; // Espacio entre filas (en horizontal)
+
+        // Tamaño de los botones de asiento
+        double anchoAsiento = 35;
+        double altoAsiento = 30;
+
+        // Creación de los asientos de clase ejecutiva (6 asientos por fila)
+        for (int fila = 1; fila <= filasEjecutiva; fila++) {
+            for (int columna = 0; columna < 3; columna++) { // Cambiado a 3 asientos por lado
+                String letraIzquierda = String.valueOf((char) ('A' + columna));
+                Button asientoIzquierda = new Button(fila + letraIzquierda);
+                asientoIzquierda.setPrefWidth(anchoAsiento);
+                asientoIzquierda.setPrefHeight(altoAsiento);
+                asientoIzquierda.setStyle("-fx-font-size: 10px;");
+                asientoIzquierda.setLayoutX(xInicial + (fila - 1) * espacioHorizontal);
+                asientoIzquierda.setLayoutY(yInicialIzquierda + columna * espacioVertical);
+                paneAsientos.getChildren().add(asientoIzquierda);
+
+                String letraDerecha = String.valueOf((char) ('D' + columna)); // Cambiado a 'D' para 3 asientos en el otro lado
+                Button asientoDerecha = new Button(fila + letraDerecha);
+                asientoDerecha.setPrefWidth(anchoAsiento);
+                asientoDerecha.setPrefHeight(altoAsiento);
+                asientoDerecha.setStyle("-fx-font-size: 10px;");
+                asientoDerecha.setLayoutX(xInicial + (fila - 1) * espacioHorizontal);
+                asientoDerecha.setLayoutY(yInicialDerecha + columna * espacioVertical);
+                paneAsientos.getChildren().add(asientoDerecha);
             }
         }
 
-    }
+        // Ajustar coordenada X para los asientos de clase económica
+        xInicial += filasEjecutiva * espacioHorizontal + espacioHorizontal;
 
-    private void seleccionarAsiento(Button asientoBtn) {
-        // Marcar el asiento como seleccionado
-        asientoBtn.setStyle("-fx-background-color: green;");
-        asientoBtn.setDisable(true);
-    }
+        // Creación de los asientos de clase económica (8 asientos por fila)
+        for (int fila = filasEjecutiva + 1; fila <= totalFilas; fila++) {
+            for (int columna = 0; columna < 4; columna++) { // Cambiado a 4 asientos por lado
+                String letraIzquierda = String.valueOf((char) ('A' + columna));
+                Button asientoIzquierda = new Button(fila + letraIzquierda);
+                asientoIzquierda.setPrefWidth(anchoAsiento);
+                asientoIzquierda.setPrefHeight(altoAsiento);
+                asientoIzquierda.setStyle("-fx-font-size: 10px;");
+                asientoIzquierda.setLayoutX(xInicial + (fila - filasEjecutiva - 1) * espacioHorizontal);
+                asientoIzquierda.setLayoutY(yInicialIzquierda + columna * espacioVertical);
+                paneAsientos.getChildren().add(asientoIzquierda);
 
-    public void cerrarVentana() {
-        Stage stage = (Stage) gridAsientos.getScene().getWindow();
-        stage.close();
+                String letraDerecha = String.valueOf((char) ('E' + columna)); // Cambiado a 'E' para 4 asientos en el otro lado
+                Button asientoDerecha = new Button(fila + letraDerecha);
+                asientoDerecha.setPrefWidth(anchoAsiento);
+                asientoDerecha.setPrefHeight(altoAsiento);
+                asientoDerecha.setStyle("-fx-font-size: 10px;");
+                asientoDerecha.setLayoutX(xInicial + (fila - filasEjecutiva - 1) * espacioHorizontal);
+                asientoDerecha.setLayoutY(yInicialDerecha + columna * espacioVertical);
+                paneAsientos.getChildren().add(asientoDerecha);
+            }
+        }
     }
 }
