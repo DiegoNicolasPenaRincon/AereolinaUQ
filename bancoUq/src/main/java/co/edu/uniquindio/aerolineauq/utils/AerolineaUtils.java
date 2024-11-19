@@ -228,7 +228,7 @@ public class AerolineaUtils {
 
 
 
-     Silla silla1 = new Silla("12", "A", true);
+     Silla silla1 = new Silla("12", "A");
 
      Tiquete tiquete1 = new Tiquete("123", usuario1, ruta1, ruta1.getPrecio(), ClaseVuelo.ECONOMICA, silla1, TipoViaje.idaYvuelta, LocalDate.of(2024, 12, 12), LocalDate.of(2024, 12, 20), null);
      aerolinea.getListaTiquetes().agregar(tiquete1);

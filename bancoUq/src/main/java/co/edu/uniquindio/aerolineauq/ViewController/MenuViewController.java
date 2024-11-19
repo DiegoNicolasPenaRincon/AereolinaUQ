@@ -366,12 +366,39 @@ public class MenuViewController {
     }
 
     @FXML
-    public void mostrarAsientos(){
-        Destino destino = Destino.valueOf(comboDestinos.getValue().replace(" ", "_"));
-        LocalDate fechaSalida = dateSalidaViaje.getValue();
-        String avion=modelFactoryController.buscarAvionPorDestino(destino);
-        ListaSimple<Tiquete> tiquetesRelacionados=modelFactoryController.buscarTiquetesRelacionados(destino, fechaSalida);
-        aplicacion.mostrarAsientos(avion, tiquetesRelacionados);
-    }
+    public void mostrarAsientos() {
+        if (comboDestinos.getValue() == null || comboDestinos.getValue().isEmpty()) {
+            mostrarError("Seleccione el Destino", "Por favor, selecciona un destino válido.");
+            return;
+        }
 
+        // Validar que se haya seleccionado una fecha de salida
+        LocalDate fechaSalida = dateSalidaViaje.getValue();
+        if (fechaSalida == null) {
+            mostrarError("Fecha No Valida", "Por favor, selecciona una fecha de salida.");
+            return;
+        }
+
+
+        // Validar que el número de personas sea mayor a 0
+        int cantidadPersonas = SpinPersonas.getValue();
+        if (cantidadPersonas <= 0) {
+            mostrarError("Seleccione cantidad", "Por favor, selecciona al menos una persona para el viaje.");
+            return;
+        }
+
+        // Validar que haya un avión disponible para el destino seleccionado
+        Destino destino = Destino.valueOf(comboDestinos.getValue().replace(" ", "_"));
+        String avion = modelFactoryController.buscarAvionPorDestino(destino);
+        if (avion == null || avion.isEmpty()) {
+            mostrarError("Aviones no disponibles", "No hay aviones disponibles para el destino seleccionado.");
+            return;
+        }
+
+        // Buscar los tiquetes relacionados
+        ListaSimple<Tiquete> tiquetesRelacionados = modelFactoryController.buscarTiquetesRelacionados(destino, fechaSalida);
+
+        // Mostrar los asientos en la ventana
+        aplicacion.mostrarAsientos(avion, tiquetesRelacionados, cantidadPersonas);
+    }
 }
