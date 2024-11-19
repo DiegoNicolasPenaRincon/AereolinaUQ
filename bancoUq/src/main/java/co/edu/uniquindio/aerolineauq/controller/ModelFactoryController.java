@@ -19,14 +19,14 @@ public class ModelFactoryController {
         System.out.println("Datos inicializados");// Inicializa la clase de lógica de negocio
 
         //1. carga los datos del utils
-        //cargarDatosBase();
+        cargarDatosBase();
         //salvarDatosPrueba();
 
         //2. cargar desde los archivos
         //cargarDatosDesdeArchivos();
 
         // Guardar y cargar desde el binario
-        cargarResourceBinario();
+        //cargarResourceBinario();
         guardarResourceBinario();
 
         //cargarResourceXML();
@@ -34,7 +34,7 @@ public class ModelFactoryController {
 
         if (aerolinea == null) {
             cargarDatosBase();
-            guardarResourceXML();
+            guardarResourceBinario();
         }
 
     }
