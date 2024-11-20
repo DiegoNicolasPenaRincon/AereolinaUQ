@@ -321,7 +321,7 @@ public class Aerolinea implements Serializable {
     public ListaSimple buscarTiquetesRelacionados(Ruta ruta, LocalDate fechaViaje) {
         ListaSimple<Tiquete> listaTiquetesRelacionados=new ListaSimple<>();
         for(Tiquete tiquete: listaTiquetes){
-            if(tiquete.getRuta().getDestino()==ruta.getDestino() && tiquete.getFechaViaje()==fechaViaje){
+            if(tiquete.getRuta().getDestino().equals(ruta.getDestino()) && tiquete.getFechaViaje().equals(fechaViaje)){
                 listaTiquetesRelacionados.agregar(tiquete);
             }
         }
