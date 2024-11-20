@@ -287,9 +287,9 @@ public class MenuViewController {
 
             try {
                 // Llamada al metodo de ModelFactoryController para registrar el tiquete
+                modelFactoryController.registrarCompra("V123", usuarioActual, rutaSeleccionada, (rutaSeleccionada.getPrecio()*cantidadPersonas), claseVuelo, new Silla(), tipoViaje, fechaSalida, fechaRegreso, new Equipaje());
                 mostrarConfirmacion("Tiquete registrado exitosamente", usuarioActual.getNombre()+", ID:"+usuarioActual.getId());
-                aplicacion.mostrarVentanaEquipaje(usuarioActual, rutaSeleccionada, (rutaSeleccionada.getPrecio()), claseVuelo, asientosSeleccionados, tipoViaje, fechaSalida, fechaRegreso, cantidadPersonas);
-
+                aplicacion.mostrarVentanaEquipaje();
             } catch (Exception e) {
                 mostrarError("Error al registrar el tiquete", e.getMessage());
                 System.out.println(e.getMessage());

@@ -2,7 +2,8 @@ package co.edu.uniquindio.aerolineauq;
 
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.ViewController.*;
-import co.edu.uniquindio.aerolineauq.model.*;
+import co.edu.uniquindio.aerolineauq.model.Tiquete;
+import co.edu.uniquindio.aerolineauq.model.ClaseVuelo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,8 +13,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.List;
 
 public class AerolineaApplication extends Application {
     private Stage primaryStage;
@@ -65,13 +64,13 @@ public class AerolineaApplication extends Application {
         }
     }
 
-    public void mostrarVentanaEquipaje(Usuario usuarioActual, Ruta rutaSeleccionada, double precio, ClaseVuelo claseVuelo, List<Silla> asientosSeleccionados, TipoViaje tipoViaje, LocalDate fechaSalida, LocalDate fechaRegreso, int cantidadPersonas){
+    public void mostrarVentanaEquipaje(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/aerolineauq/Equipaje.fxml"));
             Parent root = loader.load();
 
             EquipajeViewController equipajeViewController = loader.getController();
-            equipajeViewController.setAplicacion(this, usuarioActual, rutaSeleccionada, precio, claseVuelo, asientosSeleccionados, tipoViaje, fechaSalida, fechaRegreso, cantidadPersonas);
+            equipajeViewController.setAplicacion(this);
 
             Scene scene = new Scene(root);
             primaryStage.setTitle("equipaje");
