@@ -228,10 +228,60 @@ public class AerolineaUtils {
 
 
 
-     Silla silla1 = new Silla("12", "A");
+        Equipaje equipaje1 = new Equipaje();
+        equipaje1.setPesoEquipaje(25.0); // Peso del equipaje en kg
+        equipaje1.setEsMascota(false); // No tiene mascota
+        equipaje1.setPesoMascota(0); // No tiene mascota, por lo que el peso es 0
+        equipaje1.setCategoriaViaje("Nacional"); // Categoría de viaje: Nacional
+        equipaje1.setClaseVuelo(ClaseVuelo.ECONOMICA); // Clase económica
+        equipaje1.setCostoAdicional(0); // Sin costo adicional
+        aerolinea.getListaEquipaje().agregar(equipaje1);
 
-     Tiquete tiquete1 = new Tiquete("123", usuario1, ruta1, ruta1.getPrecio(), ClaseVuelo.ECONOMICA, silla1, TipoViaje.idaYvuelta, LocalDate.of(2024, 12, 12), LocalDate.of(2024, 12, 20), null);
-     aerolinea.getListaTiquetes().agregar(tiquete1);
+        // Crear el segundo objeto Equipaje
+        Equipaje equipaje2 = new Equipaje();
+        equipaje2.setPesoEquipaje(45.0); // Peso del equipaje en kg
+        equipaje2.setEsMascota(true); // Tiene mascota
+        equipaje2.setPesoMascota(5.0); // Peso de la mascota
+        equipaje2.setCategoriaViaje("Internacional"); // Categoría de viaje: Internacional
+        equipaje2.setClaseVuelo(ClaseVuelo.EJECUTIVA); // Clase ejecutiva
+        equipaje2.setCostoAdicional(30.0); // Costo adicional por sobrepeso o por otros cargos
+        aerolinea.getListaEquipaje().agregar(equipaje2);
+
+        // Crear el tercer objeto Equipaje
+        Equipaje equipaje3 = new Equipaje();
+        equipaje3.setPesoEquipaje(60.0); // Peso del equipaje en kg
+        equipaje3.setEsMascota(false); // No tiene mascota
+        equipaje3.setPesoMascota(0); // No tiene mascota
+        equipaje3.setCategoriaViaje("Internacional"); // Categoría de viaje: Internacional
+        equipaje3.setClaseVuelo(ClaseVuelo.ECONOMICA); // Clase económica
+        equipaje3.setCostoAdicional(50.0);
+        aerolinea.getListaEquipaje().agregar(equipaje3);
+
+        Tiquete tiquete = new Tiquete();
+        tiquete.setUsuario(usuario);
+        tiquete.setRuta(ruta1);
+        tiquete.setNumeroVuelo("AV1234"); // Número de vuelo
+        tiquete.setPrecio(500.0); // Precio del tiquete en dólares
+        tiquete.setClaseVuelo(ClaseVuelo.ECONOMICA); // Clase del vuelo (Ejecutiva o Económica)
+        tiquete.setSilla(new Silla("16", "A")); // Asignación de silla (por ejemplo, silla 12A)
+        tiquete.setTipoViaje(TipoViaje.idaYvuelta); // Tipo de viaje (ida, vuelta, o ida y vuelta)
+        tiquete.setFechaViaje(LocalDate.of(2024, 12, 15)); // Fecha de viaje (ejemplo: 15 de diciembre de 2024)
+        tiquete.setFechaRegreso(LocalDate.of(2024, 12, 20));
+        tiquete.setEquipaje(equipaje1);
+        aerolinea.getListaTiquetes().agregar(tiquete);
+
+        Tiquete tiquete1 = new Tiquete();
+        tiquete1.setUsuario(usuario);
+        tiquete1.setRuta(ruta1);
+        tiquete1.setNumeroVuelo("AV1234"); // Número de vuelo
+        tiquete1.setPrecio(500.0); // Precio del tiquete en dólares
+        tiquete1.setClaseVuelo(ClaseVuelo.EJECUTIVA); // Clase del vuelo (Ejecutiva o Económica)
+        tiquete1.setSilla(new Silla("1", "A")); // Asignación de silla (por ejemplo, silla 12A)
+        tiquete1.setTipoViaje(TipoViaje.idaYvuelta); // Tipo de viaje (ida, vuelta, o ida y vuelta)
+        tiquete1.setFechaViaje(LocalDate.of(2024, 12, 15)); // Fecha de viaje (ejemplo: 15 de diciembre de 2024)
+        tiquete1.setFechaRegreso(LocalDate.of(2024, 12, 20));
+        tiquete1.setEquipaje(equipaje2);
+        aerolinea.getListaTiquetes().agregar(tiquete);
 
 
 

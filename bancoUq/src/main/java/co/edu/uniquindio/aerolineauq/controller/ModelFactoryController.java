@@ -8,6 +8,8 @@ import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ModelFactoryController {
     private static ModelFactoryController instance;
@@ -211,17 +213,53 @@ public class ModelFactoryController {
     }
 
 
-   public void registrarEquipaje(String numeroVuelo, double pesoEquipaje, boolean esMascota, double pesoMascota, String categoriaViaje, ClaseVuelo claseVuelo) {
-        Tiquete tiquete = buscarTiquetePorNumero(numeroVuelo);
+    public void registrarCompraTiquete(Usuario usuario, String numeroVuelo, Ruta ruta, ClaseVuelo claseVuelo,
+                                       List<Silla> sillas, TipoViaje tipoViaje, LocalDate fechaViaje, LocalDate fechaRegreso,
+                                       double pesoEquipaje, boolean esMascota, double pesoMascota, int cantidadPersonas) {
+        ListaSimple<Silla>sillasSeleccionadas=new ListaSimple<>();
+        sillasSeleccionadas.addAll((ArrayList<Silla>) sillas);
 
-        if (tiquete != null) {
-            Equipaje equipaje = new Equipaje(pesoEquipaje, esMascota, pesoMascota, categoriaViaje, claseVuelo);
-            tiquete.agregarEquipaje(equipaje);
-            guardarResourceBinario();
-            guardarResourceXML();
-        } else {
-            System.out.println("Tiquete no encontrado.");
+        // 2. Calcular el precio (esto dependerá de tu lógica de precios)
+        double precio = calcularPrecio(ruta, claseVuelo, tipoViaje, pesoEquipaje, esMascota, pesoMascota);
+
+        // 3. Crear el equipaje
+        Equipaje equipaje = new Equipaje();
+        equipaje.setPesoEquipaje(pesoEquipaje);
+        equipaje.setEsMascota(esMascota);
+        equipaje.setPesoMascota(pesoMascota);
+        equipaje.setCategoriaViaje(esInternacional(ruta) ? "Internacional" : "Nacional");
+        equipaje.setClaseVuelo(claseVuelo);
+        equipaje.setCostoAdicional(precio-costoEquipaje);
+
+        aerolinea.getListaEquipaje().agregar(equipaje);
+        for (int i = 0; i < cantidadPersonas; i++) {
+            // Asegurarse de que haya suficientes sillas
+            if (i >= sillas.size()) {
+                throw new IllegalArgumentException("No hay suficientes sillas para el número de personas");
+            }
+
+            // Crear el tiquete para esta persona
+            Tiquete tiquete = new Tiquete();
+            tiquete.setNumeroVuelo(numeroVuelo);
+            tiquete.setUsuario(usuario);
+            tiquete.setRuta(ruta);
+            tiquete.setPrecio(precio);  // El precio base podría ser ajustado dependiendo del equipaje y otros factores
+            tiquete.setClaseVuelo(claseVuelo);
+            tiquete.setSilla(sillasSeleccionadas.obtenerValorNodo(i));  // Asigna una silla única por persona
+            tiquete.setTipoViaje(tipoViaje);
+            tiquete.setFechaViaje(fechaViaje);
+            tiquete.setFechaRegreso(fechaRegreso);
+            tiquete.setEquipaje(equipaje);  // Asocia el mismo equipaje a todos los tiquetes
+
+            // Registrar el tiquete en la aerolínea
+            aerolinea.registrarTiquete(tiquete);
         }
+        // 5. Registrar el tiquete en la aerolínea
+
+
+        // 6. Guardar los cambios (en binario y XML, si es necesario)
+        guardarResourceBinario();
+        guardarResourceXML();
     }
 
 
