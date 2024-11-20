@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 
 public class Aerolinea implements Serializable {
@@ -120,6 +121,7 @@ public class Aerolinea implements Serializable {
         listaTripulantes.agregar(tripulante);
         Persistencia.guardaRegistroLog("Se ha registrado al tripulante"+tripulante.getNombre()+"con ID:"+tripulante.getId(), 1, "Registro Tripulante");
     }
+
     public boolean verificarTripuExistente(String id) throws Exception {
         if (this.tripulanteExiste(id)) {
             throw new Exception("El tripulante con cedula: " + id + " ya existe");
@@ -127,6 +129,38 @@ public class Aerolinea implements Serializable {
             return false;
         }
     }
+
+    public boolean eliminarTripulanteGlobal(String idTripulante) {
+        Predicate<Tripulante> criterio = tripulante -> tripulante.getId().equals(idTripulante);
+
+        // Eliminar de la lista principal
+        boolean eliminado = listaTripulantes.eliminarElemento(criterio);
+
+        // Eliminar de cada avión
+        for (Avion avion : listaAviones.toCollection()) {
+            avion.getListaTripulantes().eliminarElemento(criterio);
+        }
+
+        return eliminado;
+    }
+
+
+ /*
+
+    public boolean verificarTripuExistente(String id) {
+        for (Tripulante tripulante : listaTripulantes) {
+            if (tripulante.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+  */
+
+
+
+
 
     public boolean tripulanteExiste(String id) {
         boolean tripulanteEncontrado = false;
@@ -141,6 +175,38 @@ public class Aerolinea implements Serializable {
         }
 
         return tripulanteEncontrado;
+    }
+
+    public Tripulante obtenerTripulante(String id) {
+        Tripulante tripulanteEncontrado = null;
+        Iterator var3 = this.getListaTripulantes().iterator();
+
+        while(var3.hasNext()) {
+            Tripulante user = (Tripulante) var3.next();
+            if (user.getId().equalsIgnoreCase(id)) {
+                tripulanteEncontrado = user;
+                break;
+            }
+        }
+
+        return tripulanteEncontrado;
+    }
+
+    public boolean actualizarTripulante(String id, Tripulante empleado) throws Exception {
+        Tripulante empleadoActual = this.obtenerTripulante(id);
+        if (empleadoActual == null) {
+            throw new Exception("El tripulante a actualizar no existe");
+        } else {
+            empleadoActual.setId(empleado.getId());
+            empleadoActual.setNombre(empleado.getNombre());
+            empleadoActual.setApellido(empleado.getApellido());
+            empleadoActual.setDireccion(empleado.getDireccion());
+            empleadoActual.setCorreo(empleado.getCorreo());
+            empleadoActual.setEstudios(empleado.getEstudios());
+            empleadoActual.setFechaNacimiento(empleado.getFechaNacimiento());
+            empleadoActual.setRolTripulante(empleado.getRolTripulante());
+            return true;
+        }
     }
 
 

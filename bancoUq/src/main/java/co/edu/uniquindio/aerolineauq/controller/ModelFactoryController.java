@@ -8,8 +8,6 @@ import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ModelFactoryController {
     private static ModelFactoryController instance;
@@ -85,7 +83,7 @@ public class ModelFactoryController {
         }
     }
 
-    public void registrarTripulante(String id, String nombre,String apellido, String direccion, LocalDate fechaNacimiento,String correo , String estudios, RolTripulante rolTripulante) {
+    public Tripulante registrarTripulante(String id, String nombre, String apellido, String direccion, LocalDate fechaNacimiento, String correo , String estudios, RolTripulante rolTripulante) throws Exception {
         Tripulante tripulante = new Tripulante(id, nombre,apellido, direccion, fechaNacimiento, correo,estudios,rolTripulante );
         try {
             if (!aerolinea.verificarTripuExistente(tripulante.getId())) {
@@ -94,9 +92,30 @@ public class ModelFactoryController {
                 guardarResourceXML();
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+        System.err.println(e.getMessage());
+        throw e;
         }
+        return tripulante;
     }
+
+
+
+    /*
+public Tripulante registrarTripulante(String id, String nombre, String apellido, String direccion, LocalDate fechaNacimiento, String correo, String estudios, RolTripulante rolTripulante) {
+    Tripulante tripulante = new Tripulante(id, nombre, apellido, direccion, fechaNacimiento, correo, estudios, rolTripulante);
+    try {
+        aerolinea.registrarTripulante(tripulante);
+        guardarResourceBinario();
+        guardarResourceXML();
+    } catch (IllegalArgumentException e) {
+        System.err.println(e.getMessage());
+        throw e;
+    }
+    return tripulante;
+}
+
+     */
+
     public void actualizarTripulante(Tripulante tripulanteActualizado) throws Exception {
         boolean actualizado = aerolinea.getListaTripulantes().modificarElemento(
                 tripulante -> tripulante.getId().equals(tripulanteActualizado.getId()),
@@ -112,10 +131,21 @@ public class ModelFactoryController {
         }
     }
 
+    public boolean actualizarTripulante(String idActual, Tripulante tripulanteNuevo) {
+        try {
+            aerolinea.actualizarTripulante(idActual, tripulanteNuevo);
+            guardarResourceBinario();
+            guardarResourceXML();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
     public void eliminarTripulante(String idTripulante) throws Exception {
-        boolean eliminado = aerolinea.getListaTripulantes().eliminarElemento(
-                tripulante -> tripulante.getId().equals(idTripulante)
-        );
+        boolean eliminado = aerolinea.eliminarTripulanteGlobal(idTripulante);
 
         if (eliminado) {
             System.out.println("Tripulante eliminado correctamente.");
@@ -125,6 +155,7 @@ public class ModelFactoryController {
             throw new Exception("No se encontró un tripulante con el ID especificado.");
         }
     }
+
 
 
 

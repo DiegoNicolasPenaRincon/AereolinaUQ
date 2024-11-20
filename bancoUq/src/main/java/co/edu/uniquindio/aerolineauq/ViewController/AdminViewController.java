@@ -212,29 +212,13 @@ public class AdminViewController {
             }
         });
 
-
-        tableTripulantesAsignados.setRowFactory(tv -> {
-            TableRow<Tripulante> row = new TableRow<>();
-
-            row.itemProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue.getAvionAsignado().equals(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado()))
-                {
-                    row.setStyle("-fx-background-color: yellow;");
-                }
-                else
-                {
-                    row.setStyle("");
-                }
-            });
-            return row;
-        });
         tableTripulantes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 cargarDatosTripulante(newValue);
             }
         });
 
-        // Cargar los datos en la tabla
+
         cargarDatosTabla();
     }
     private void cargarDatosTripulante(Tripulante tripulante) {
@@ -251,7 +235,44 @@ public class AdminViewController {
         cbRol.setValue(tripulante.getRolTripulante());
     }
 
+    @FXML
+    void agregarTripulanteEvent(ActionEvent event) throws Exception {
+        String id = txtID.getText();
+        String nombre = txtNombre.getText();
+        String apellido = txtApellido.getText();
+        String correo = txtCorreo.getText();
+        String direccion = txtDireccion.getText();
+        LocalDate fechaNacimiento = dateNacimiento.getValue();
+        String estudios = txtEstudios.getText();
+        RolTripulante rolTripulante = cbRol.getValue();
 
+        if (id.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || direccion.isEmpty() || estudios.isEmpty() || fechaNacimiento == null) {
+            mostrarAlerta("Error", "Todos los campos son obligatorios", Alert.AlertType.ERROR);
+            return;
+        }
+        Tripulante nuevoTripulante = modelFactoryController.registrarTripulante(
+                id, nombre, apellido, direccion, fechaNacimiento, correo, estudios, rolTripulante
+        );
+
+        if (nuevoTripulante == null) {
+            mostrarAlerta("Error", "No se pudo registrar el tripulante. Verifique los datos.", Alert.AlertType.ERROR);
+            return;
+        }
+        tableTripulantes.getItems().add(nuevoTripulante);
+        tableTripulantes.refresh();
+
+
+        mostrarAlerta("Éxito", "Tripulante registrado y guardado correctamente.", Alert.AlertType.INFORMATION);
+
+        // Registrar acción en el sistema y limpiar campos
+        registrarAccionesSistema("Registro Tripulante", 1, "Se registró el tripulante " + nombre);
+        limpiarCampos();
+    }
+
+
+
+
+/*
 
     @FXML
     void agregarTripulanteEvent(ActionEvent event) {
@@ -271,13 +292,16 @@ public class AdminViewController {
         }
 
         modelFactoryController.registrarTripulante(id, nombre , apellido, direccion, fechaNacimiento, correo, estudios,rolTripulante);
+        cargarDatosTabla();
         registrarAccionesSistema("Registro Tripulante", 1, "Se registro el tripulante "+ nombre);
 
         mostrarAlerta("Éxito", "Tripulante registrado correctamente", Alert.AlertType.INFORMATION);
 
         limpiarCampos();
     }
-    
+
+
+ */
 
 
     private void limpiarCampos() {
@@ -343,6 +367,7 @@ public class AdminViewController {
         }
 
         try {
+            // Recoger los datos del formulario
             String id = txtID.getText();
             String nombre = txtNombre.getText();
             String apellido = txtApellido.getText();
@@ -352,17 +377,24 @@ public class AdminViewController {
             String estudios = txtEstudios.getText();
             RolTripulante rolTripulante = cbRol.getValue();
 
+            // Validar campos obligatorios
             if (id.isEmpty() || nombre.isEmpty() || direccion.isEmpty() || correo.isEmpty() || estudios.isEmpty() || fechaNacimiento == null || rolTripulante == null) {
                 mostrarAlerta("Error", "Todos los campos son obligatorios para modificar un tripulante.", Alert.AlertType.ERROR);
                 return;
             }
 
-            Tripulante tripulanteActualizado = new Tripulante(id, nombre,apellido, direccion, fechaNacimiento, correo, estudios, rolTripulante);
+            // Crear un nuevo tripulante con los datos
+            Tripulante tripulanteNuevo = new Tripulante(id, nombre, apellido, direccion, fechaNacimiento, correo, estudios, rolTripulante);
 
-            modelFactoryController.actualizarTripulante(tripulanteActualizado);
-            cargarDatosTabla();
+            // Llamar al método del ModelFactoryController
+            boolean actualizado = modelFactoryController.actualizarTripulante(tripulanteSeleccionado.getId(), tripulanteNuevo);
 
-            mostrarAlerta("Éxito", "El tripulante " + tripulanteSeleccionado.getNombre() + " ha sido actualizado correctamente.", Alert.AlertType.INFORMATION);
+            if (actualizado) {
+                cargarDatosTabla(); // Refrescar la tabla
+                mostrarAlerta("Éxito", "El tripulante ha sido actualizado correctamente.", Alert.AlertType.INFORMATION);
+            } else {
+                mostrarAlerta("Error", "No se pudo actualizar el tripulante.", Alert.AlertType.ERROR);
+            }
 
         } catch (Exception e) {
             mostrarAlerta("Error", e.getMessage(), Alert.AlertType.ERROR);
@@ -405,20 +437,19 @@ public class AdminViewController {
     private void cargarDatosTabla() {
         ListaSimple<Tripulante> listaTripulantes = modelFactoryController.getListaTripulantes();
 
+        // Limpiar las tablas antes de agregar nuevos datos
         tableTripulantes.getItems().clear();
-        for (Tripulante tripulante : listaTripulantes) {
-            tableTripulantes.getItems().add(tripulante);
-        }
-
         tableTripulantesAsignados.getItems().clear();
-        for (Tripulante tripulante : listaTripulantes) {
-            tableTripulantesAsignados.getItems().add(tripulante);
-        }
-        tableTripulantes.setItems(FXCollections.observableArrayList(
-                modelFactoryController.getAerolinea().getListaTripulantes().toCollection()
-        ));
+
+        // Agregar tripulantes a ambas tablas (si corresponde)
+        tableTripulantes.getItems().addAll(listaTripulantes.toCollection());
+        tableTripulantesAsignados.getItems().addAll(listaTripulantes.toCollection());
+
+        // Refrescar las tablas para que muestren los datos actualizados
         tableTripulantes.refresh();
+        tableTripulantesAsignados.refresh();
     }
+
 
 
     public void agregarTripulanteOnAction(ActionEvent actionEvent) throws TripulanteAsignadoException {
