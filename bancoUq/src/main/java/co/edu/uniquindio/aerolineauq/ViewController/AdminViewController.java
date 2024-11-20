@@ -3,6 +3,7 @@ package co.edu.uniquindio.aerolineauq.ViewController;
 import co.edu.uniquindio.aerolineauq.AerolineaApplication;
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
+import co.edu.uniquindio.aerolineauq.exceptions.ExcesoDeTripulantesException;
 import co.edu.uniquindio.aerolineauq.exceptions.TripulanteAsignadoException;
 import co.edu.uniquindio.aerolineauq.model.*;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
@@ -190,10 +191,8 @@ public class AdminViewController {
 
         //Llenar ComboBox
         Collection<Ruta> coleccionRuta=modelFactoryController.getAerolinea().getRutasAerolinea().toCollection();
-        //Collection<Avion> coleccionAviones=modelFactoryController.getAerolinea().getListaAviones().toCollection();
 
         this.rutaComboBox.setItems(FXCollections.observableArrayList(coleccionRuta));
-        avionComboBox.setDisable(true);
         tableTripulantesAsignados.setDisable(true);
 
 
@@ -202,39 +201,20 @@ public class AdminViewController {
             @Override
             public void handle(ActionEvent event) {
                 // Obtener la opción seleccionada
-                avionComboBox.getItems().clear();
                 Ruta selectedOption = rutaComboBox.getValue();
                 avionLbl.setText(selectedOption.getAvionAsignado().getNombre());
                 Collection<Avion> coleccionAviones=modelFactoryController.getAerolinea().filtrarAvionesNacionales(modelFactoryController.getAerolinea().getListaAviones(), selectedOption.getAvionAsignado().getTipoAvion());
-                avionComboBox.getItems().addAll(coleccionAviones);
-                //avionComboBox.setDisable(false);
                 tableTripulantesAsignados.setDisable(false);
             }
         });
 
-
-        tableTripulantesAsignados.setRowFactory(tv -> {
-            TableRow<Tripulante> row = new TableRow<>();
-
-            row.itemProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue.getAvionAsignado().equals(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado()))
-                {
-                    row.setStyle("-fx-background-color: yellow;");
-                }
-                else
-                {
-                    row.setStyle("");
-                }
-            });
-            return row;
-        });
         tableTripulantes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 cargarDatosTripulante(newValue);
             }
         });
 
-        // Cargar los datos en la tabla
+
         cargarDatosTabla();
     }
     private void cargarDatosTripulante(Tripulante tripulante) {
@@ -251,10 +231,8 @@ public class AdminViewController {
         cbRol.setValue(tripulante.getRolTripulante());
     }
 
-
-
     @FXML
-    void agregarTripulanteEvent(ActionEvent event) {
+    void agregarTripulanteEvent(ActionEvent event) throws Exception {
         String id = txtID.getText();
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
@@ -264,20 +242,45 @@ public class AdminViewController {
         String estudios = txtEstudios.getText();
         RolTripulante rolTripulante = cbRol.getValue();
 
-
-        if (id.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || direccion.isEmpty() || estudios.isEmpty() || fechaNacimiento == null ) {
+        if (id.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || direccion.isEmpty() || estudios.isEmpty() || fechaNacimiento == null) {
             mostrarAlerta("Error", "Todos los campos son obligatorios", Alert.AlertType.ERROR);
             return;
         }
+        if (!id.matches("\\d+")) {
+            mostrarAlerta("Error", "El ID debe contener solo números", Alert.AlertType.ERROR);
+            return;
+        }
+        if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+            mostrarAlerta("Error", "El nombre solo puede contener letras", Alert.AlertType.ERROR);
+            return;
+        }
+        if (!apellido.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+            mostrarAlerta("Error", "El apellido solo puede contener letras", Alert.AlertType.ERROR);
+            return;
+        }
+        if (!correo.matches("^[\\w.-]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,}$")) {
+            mostrarAlerta("Error", "El correo no tiene un formato válido", Alert.AlertType.ERROR);
+            return;
+        }
+       
+        Tripulante nuevoTripulante = modelFactoryController.registrarTripulante(
+                id, nombre, apellido, direccion, fechaNacimiento, correo, estudios, rolTripulante
+        );
 
-        modelFactoryController.registrarTripulante(id, nombre , apellido, direccion, fechaNacimiento, correo, estudios,rolTripulante);
-        registrarAccionesSistema("Registro Tripulante", 1, "Se registro el tripulante "+ nombre);
+        if (nuevoTripulante == null) {
+            mostrarAlerta("Error", "No se pudo registrar el tripulante. Verifique los datos.", Alert.AlertType.ERROR);
+            return;
+        }
+        tableTripulantes.getItems().add(nuevoTripulante);
+        tableTripulantes.refresh();
 
-        mostrarAlerta("Éxito", "Tripulante registrado correctamente", Alert.AlertType.INFORMATION);
 
+        mostrarAlerta("Éxito", "Tripulante registrado y guardado correctamente.", Alert.AlertType.INFORMATION);
+
+        // Registrar acción en el sistema y limpiar campos
+        registrarAccionesSistema("Registro Tripulante", 1, "Se registró el tripulante " + nombre);
         limpiarCampos();
     }
-    
 
 
     private void limpiarCampos() {
@@ -343,6 +346,7 @@ public class AdminViewController {
         }
 
         try {
+            // Recoger los datos del formulario
             String id = txtID.getText();
             String nombre = txtNombre.getText();
             String apellido = txtApellido.getText();
@@ -352,17 +356,44 @@ public class AdminViewController {
             String estudios = txtEstudios.getText();
             RolTripulante rolTripulante = cbRol.getValue();
 
+            // Validar campos obligatorios
             if (id.isEmpty() || nombre.isEmpty() || direccion.isEmpty() || correo.isEmpty() || estudios.isEmpty() || fechaNacimiento == null || rolTripulante == null) {
                 mostrarAlerta("Error", "Todos los campos son obligatorios para modificar un tripulante.", Alert.AlertType.ERROR);
                 return;
             }
+            if (!id.matches("\\d+")) {
+                mostrarAlerta("Error", "El ID debe contener solo números", Alert.AlertType.ERROR);
+                return;
+            }
+            if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+                mostrarAlerta("Error", "El nombre solo puede contener letras", Alert.AlertType.ERROR);
+                return;
+            }
+            if (!apellido.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+                mostrarAlerta("Error", "El apellido solo puede contener letras", Alert.AlertType.ERROR);
+                return;
+            }
+            if (!correo.matches("^[\\w.-]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,}$")) {
+                mostrarAlerta("Error", "El correo no tiene un formato válido", Alert.AlertType.ERROR);
+                return;
+            }
+            if (modelFactoryController.getListaTripulantes().toCollection().stream().anyMatch(t -> t.getId().equals(id))) {
+                mostrarAlerta("Error", "El ID ya está registrado para otro tripulante", Alert.AlertType.ERROR);
+                return;
+            }
 
-            Tripulante tripulanteActualizado = new Tripulante(id, nombre,apellido, direccion, fechaNacimiento, correo, estudios, rolTripulante);
+            // Crear un nuevo tripulante con los datos
+            Tripulante tripulanteNuevo = new Tripulante(id, nombre, apellido, direccion, fechaNacimiento, correo, estudios, rolTripulante);
 
-            modelFactoryController.actualizarTripulante(tripulanteActualizado);
-            cargarDatosTabla();
+            // Llamar al método del ModelFactoryController
+            boolean actualizado = modelFactoryController.actualizarTripulante(tripulanteSeleccionado.getId(), tripulanteNuevo);
 
-            mostrarAlerta("Éxito", "El tripulante " + tripulanteSeleccionado.getNombre() + " ha sido actualizado correctamente.", Alert.AlertType.INFORMATION);
+            if (actualizado) {
+                cargarDatosTabla(); // Refrescar la tabla
+                mostrarAlerta("Éxito", "El tripulante ha sido actualizado correctamente.", Alert.AlertType.INFORMATION);
+            } else {
+                mostrarAlerta("Error", "No se pudo actualizar el tripulante.", Alert.AlertType.ERROR);
+            }
 
         } catch (Exception e) {
             mostrarAlerta("Error", e.getMessage(), Alert.AlertType.ERROR);
@@ -406,27 +437,25 @@ public class AdminViewController {
         ListaSimple<Tripulante> listaTripulantes = modelFactoryController.getListaTripulantes();
 
         tableTripulantes.getItems().clear();
-        for (Tripulante tripulante : listaTripulantes) {
-            tableTripulantes.getItems().add(tripulante);
-        }
-
         tableTripulantesAsignados.getItems().clear();
-        for (Tripulante tripulante : listaTripulantes) {
-            tableTripulantesAsignados.getItems().add(tripulante);
-        }
-        tableTripulantes.setItems(FXCollections.observableArrayList(
-                modelFactoryController.getAerolinea().getListaTripulantes().toCollection()
-        ));
+
+
+        tableTripulantes.getItems().addAll(listaTripulantes.toCollection());
+        tableTripulantesAsignados.getItems().addAll(listaTripulantes.toCollection());
+
+
         tableTripulantes.refresh();
+        tableTripulantesAsignados.refresh();
     }
 
 
-    public void agregarTripulanteOnAction(ActionEvent actionEvent) throws TripulanteAsignadoException {
+
+    public void agregarTripulanteOnAction(ActionEvent actionEvent)  {
         if(tableTripulantesAsignados.getSelectionModel().getSelectedItem()!=null)
         {
             try
             {
-                if(tableTripulantesAsignados.getSelectionModel().getSelectedItem().getAvionAsignado().equals(null))
+                if(tableTripulantesAsignados.getSelectionModel().getSelectedItem().getAvionAsignado()==null)
                 {
                     throw new NullPointerException();
                 }
@@ -437,16 +466,17 @@ public class AdminViewController {
             }
             catch (NullPointerException e)
             {
-                if(modelFactoryController.getAerolinea().verificarAsignacion(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getNombre(),rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getListaTripulantes()))
+                try
                 {
+                    ListaSimple<Tripulante> listaApoyo=rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getListaTripulantes();
+                    rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().setListaTripulantes(modelFactoryController.getAerolinea().verificarAsignacionYAgregar(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getNombre(),listaApoyo,tableTripulantesAsignados.getSelectionModel().getSelectedItem()));
                     tableTripulantesAsignados.getSelectionModel().getSelectedItem().setAvionAsignado(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado());
-                    //avionComboBox.getSelectionModel().getSelectedItem().getListaTripulantes().agregar(tableTripulantesAsignados.getSelectionModel().getSelectedItem());
                     rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getListaTripulantes().agregar(tableTripulantesAsignados.getSelectionModel().getSelectedItem());
                     mostrarAlerta("Informacion","Tripulante agregado correctamente", Alert.AlertType.INFORMATION);
                 }
-                else
+                catch (Exception ex)
                 {
-                    mostrarAlerta("Informacion","el avion supero el limite de tripulantes permitidos", Alert.AlertType.ERROR);
+                    mostrarAlerta("Error",e.getMessage(),Alert.AlertType.ERROR);
                 }
             }
             catch (TripulanteAsignadoException e)
@@ -460,9 +490,7 @@ public class AdminViewController {
         }
     }
 
-    public void cambiarAvionOnAction(ActionEvent actionEvent) {
 
-    }
 
     public void eliminarOnAction(ActionEvent actionEvent) {
         if(tableTripulantesAsignados.getSelectionModel().getSelectedItem()!=null)
@@ -482,4 +510,5 @@ public class AdminViewController {
             mostrarAlerta("Error","Debe seleccionar un tripulante",Alert.AlertType.ERROR);
         }
     }
+
 }
