@@ -37,4 +37,9 @@ public class Silla implements Serializable {
     public void setPosicion(String posicion) {
         this.posicion = posicion;
     }
+
+    @Override
+    public String toString() {
+        return fila+posicion+" ";
+    }
 }
