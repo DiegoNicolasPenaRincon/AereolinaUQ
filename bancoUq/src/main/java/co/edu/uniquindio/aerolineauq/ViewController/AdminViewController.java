@@ -191,10 +191,8 @@ public class AdminViewController {
 
         //Llenar ComboBox
         Collection<Ruta> coleccionRuta=modelFactoryController.getAerolinea().getRutasAerolinea().toCollection();
-        //Collection<Avion> coleccionAviones=modelFactoryController.getAerolinea().getListaAviones().toCollection();
 
         this.rutaComboBox.setItems(FXCollections.observableArrayList(coleccionRuta));
-        avionComboBox.setDisable(true);
         tableTripulantesAsignados.setDisable(true);
 
 
@@ -203,12 +201,9 @@ public class AdminViewController {
             @Override
             public void handle(ActionEvent event) {
                 // Obtener la opción seleccionada
-                avionComboBox.getItems().clear();
                 Ruta selectedOption = rutaComboBox.getValue();
                 avionLbl.setText(selectedOption.getAvionAsignado().getNombre());
                 Collection<Avion> coleccionAviones=modelFactoryController.getAerolinea().filtrarAvionesNacionales(modelFactoryController.getAerolinea().getListaAviones(), selectedOption.getAvionAsignado().getTipoAvion());
-                avionComboBox.getItems().addAll(coleccionAviones);
-                //avionComboBox.setDisable(false);
                 tableTripulantesAsignados.setDisable(false);
             }
         });
