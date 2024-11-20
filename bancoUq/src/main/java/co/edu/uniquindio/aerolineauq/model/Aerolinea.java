@@ -1,6 +1,7 @@
 package co.edu.uniquindio.aerolineauq.model;
 
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
+import co.edu.uniquindio.aerolineauq.exceptions.ExcesoDeTripulantesException;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 
 import java.io.Serializable;
@@ -220,44 +221,55 @@ public class Aerolinea implements Serializable {
 
      */
 
-    public boolean verificarAsignacion(String nombreAvion,ListaSimple<Tripulante> listaTripulantes) {
-        int copilotos=0;
-        int pilotos=0;
-        int auxiliares=0;
-        for (Tripulante tripulante : listaTripulantes)
+    public void verificarAsignacion(String nombreAvion,ListaSimple<Tripulante> listaTripulantes) throws ExcesoDeTripulantesException {
+        int copilotos = 0;
+        int pilotos = 0;
+        int auxiliares = 0;
+        for (int i = 0; i < listaTripulantes.size(); i++)
         {
-            switch (tripulante.getRolTripulante())
-            {
-                case PILOTO: pilotos++;
-                            break;
-                case COPILOTO: copilotos++;
-                                break;
-                case AUXILIAR: auxiliares++;
-                                break;
+            switch (listaTripulantes.obtenerValorNodo(i).getRolTripulante()) {
+                case PILOTO:
+                    pilotos++;
+                    break;
+                case COPILOTO:
+                    copilotos++;
+                    break;
+                case AUXILIAR:
+                    auxiliares++;
+                    break;
             }
         }
 
-        int contador=0;
-        switch (nombreAvion)
-        {
-            case "Airbus A320": if(copilotos<=1)
-                                  contador++;
-                                if(pilotos<=1)
-                                  contador++;
-                                if(auxiliares<=3)
-                                    contador++;
-                                break;
+        switch (nombreAvion) {
+            case "Airbus A320":
+                if (copilotos > 1)
+                {
+                    throw new ExcesoDeTripulantesException("Exceso de copilotos en el avion");
+                }
+                else if (pilotos > 1)
+                {
+                    throw new ExcesoDeTripulantesException("Exceso de pilotos en el avion");
+                }
+                else if (auxiliares > 3)
+                {
+                    throw new ExcesoDeTripulantesException("Exceso de auxiliares en el avion");
+                }
+                break;
             case "Airbus A330", "Boeing 787":
-                                 if(copilotos<=1)
-                                    contador++;
-                                if(pilotos<=1)
-                                    contador++;
-                                if(auxiliares<=7)
-                                    contador++;
-                                break;
+                if (copilotos > 1)
+                {
+                    throw new ExcesoDeTripulantesException("Exceso de copilotos en el avion");
+                }
+                else if (pilotos > 1)
+                {
+                    throw new ExcesoDeTripulantesException("Exceso de pilotos en el avion");
+                }
+                else if (auxiliares > 7)
+                {
+                    throw new ExcesoDeTripulantesException("Exceso de auxiliares en el avion");
+                }
+                break;
         }
-        return false;
-
     }
 
     public boolean verificarTripulante (ListaSimple<Tripulante> listaTripulante,Tripulante tripulante) {
