@@ -500,6 +500,7 @@ public class AdminViewController {
             if(tableTripulantesAsignados.getSelectionModel().getSelectedItem().getAvionAsignado().equals(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado()))
             {
                 tableTripulantesAsignados.getSelectionModel().getSelectedItem().setAvionAsignado(null);
+                rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getListaTripulantes().eliminar(tableTripulantesAsignados.getSelectionModel().getSelectedItem());
                 mostrarAlerta("Informacion","El tripulante ya no se encuentra asignado a ese avion",Alert.AlertType.INFORMATION);
             }
             else

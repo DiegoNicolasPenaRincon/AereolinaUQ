@@ -151,4 +151,71 @@ public class ListaSimple<T> implements Iterable<T>, Serializable {
             return valor;
         }
     }
+
+    public T obtenerValorNodoPorValor(int indice) {
+
+        Nodo<T> nodoTemporal = null;
+        int contador = 0;
+
+        if(indiceValido(indice))
+        {
+            nodoTemporal = nodoPrimero;
+
+            while (contador < indice) {
+
+                nodoTemporal = nodoTemporal.getSiguienteNodo();
+                contador++;
+            }
+        }
+
+        if(nodoTemporal != null)
+            return nodoTemporal.getValorNodo();
+        else
+            return null;
+    }
+
+    private boolean indiceValido(int indice) {
+        if( indice>=0 && indice<tamanio ) {
+            return true;
+        }
+        throw new RuntimeException("�ndice no v�lido");
+    }
+
+    public T eliminar(T dato){
+        Nodo<T> nodo = nodoPrimero;
+        Nodo<T> previo = null;
+        Nodo<T> siguiente = null;
+        boolean encontrado = false;
+
+        //buscar el nodo previo
+        while(nodo!=null) {
+            if( nodo.getValorNodo() == dato ) {
+                encontrado = true;
+                break;
+            }
+            previo = nodo;
+            nodo = nodo.getSiguienteNodo();
+        }
+
+        if(encontrado) {
+            siguiente = nodo.getSiguienteNodo();
+            if( previo==null ) {
+                nodoPrimero = siguiente;
+            }else {
+                previo.setSiguienteNodo(siguiente);
+            }
+
+            if(siguiente==null) {
+//				nodoUltimo = previo;
+            }else {
+                nodo.setSiguienteNodo(null);
+            }
+
+            nodo = null;
+            tamanio--;
+            return dato;
+        }
+        throw new RuntimeException("El elemento no existe");
+    }
+
 }
