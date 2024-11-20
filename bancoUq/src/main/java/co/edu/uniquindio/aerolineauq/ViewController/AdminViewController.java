@@ -262,6 +262,11 @@ public class AdminViewController {
             mostrarAlerta("Error", "El correo no tiene un formato válido", Alert.AlertType.ERROR);
             return;
         }
+
+        if (modelFactoryController.getListaTripulantes().toCollection().stream().anyMatch(t -> t.getId().equals(id))) {
+            mostrarAlerta("Error", "El ID ya está registrado para otro tripulante", Alert.AlertType.ERROR);
+            return;
+        }
        
         Tripulante nuevoTripulante = modelFactoryController.registrarTripulante(
                 id, nombre, apellido, direccion, fechaNacimiento, correo, estudios, rolTripulante
@@ -377,10 +382,7 @@ public class AdminViewController {
                 mostrarAlerta("Error", "El correo no tiene un formato válido", Alert.AlertType.ERROR);
                 return;
             }
-            if (modelFactoryController.getListaTripulantes().toCollection().stream().anyMatch(t -> t.getId().equals(id))) {
-                mostrarAlerta("Error", "El ID ya está registrado para otro tripulante", Alert.AlertType.ERROR);
-                return;
-            }
+
 
             // Crear un nuevo tripulante con los datos
             Tripulante tripulanteNuevo = new Tripulante(id, nombre, apellido, direccion, fechaNacimiento, correo, estudios, rolTripulante);
