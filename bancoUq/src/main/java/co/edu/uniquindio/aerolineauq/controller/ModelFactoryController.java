@@ -8,8 +8,6 @@ import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ModelFactoryController {
     private static ModelFactoryController instance;
@@ -30,11 +28,11 @@ public class ModelFactoryController {
         guardarResourceBinario();
 
         //cargarResourceXML();
-        guardarResourceXML();
+        //guardarResourceXML();
 
         if (aerolinea == null) {
             cargarDatosBase();
-            guardarResourceXML();
+            guardarResourceBinario();
         }
 
     }
@@ -85,18 +83,67 @@ public class ModelFactoryController {
         }
     }
 
-    public void registrarTripulante(String id, String nombre, String direccion, LocalDate fechaNacimiento,String correo , String estudios, RolTripulante rolTripulante) {
-        Tripulante tripulante = new Tripulante(id, nombre, direccion, fechaNacimiento, correo,estudios,rolTripulante );
+    public Tripulante registrarTripulante(String id, String nombre, String apellido, String direccion, LocalDate fechaNacimiento, String correo , String estudios, RolTripulante rolTripulante) throws Exception {
+        Tripulante tripulante = new Tripulante(id, nombre,apellido, direccion, fechaNacimiento, correo,estudios,rolTripulante );
         try {
             if (!aerolinea.verificarTripuExistente(tripulante.getId())) {
+                throw new Exception("Ya existe un tripulante con la cédula (ID) ingresada: " + tripulante.getId());
+            }
                 aerolinea.registrarTripulante(tripulante);
                 guardarResourceBinario();
                 guardarResourceXML();
-            }
+
         } catch (Exception e) {
-            throw new RuntimeException(e);
+        System.err.println(e.getMessage());
+        throw e;
+        }
+        return tripulante;
+    }
+
+
+    public void actualizarTripulante(Tripulante tripulanteActualizado) throws Exception {
+        boolean actualizado = aerolinea.getListaTripulantes().modificarElemento(
+                tripulante -> tripulante.getId().equals(tripulanteActualizado.getId()),
+                tripulanteActualizado
+        );
+
+        if (actualizado) {
+            System.out.println("Tripulante actualizado correctamente.");
+            guardarResourceBinario();
+            guardarResourceXML();
+        } else {
+            throw new Exception("No se encontró un tripulante con el ID especificado.");
         }
     }
+
+    public boolean actualizarTripulante(String idActual, Tripulante tripulanteNuevo) {
+        try {
+            aerolinea.actualizarTripulante(idActual, tripulanteNuevo);
+            guardarResourceBinario();
+            guardarResourceXML();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public void eliminarTripulante(String idTripulante) throws Exception {
+        boolean eliminado = aerolinea.eliminarTripulanteGlobal(idTripulante);
+
+        if (eliminado) {
+            System.out.println("Tripulante eliminado correctamente.");
+            guardarResourceBinario();
+            guardarResourceXML();
+        } else {
+            throw new Exception("No se encontró un tripulante con el ID especificado.");
+        }
+    }
+
+
+
+
 
     public boolean validarInicioSesion(String id, String contrasenia) {
         return aerolinea.validarInicioSesion(id, contrasenia);
@@ -251,6 +298,16 @@ public class ModelFactoryController {
 
     public Ruta buscarRutaPorDestino(Destino destino){
         return aerolinea.buscarRutaPorDestino(destino);
+    }
+
+    public String buscarAvionPorDestino(Destino destino){
+        Ruta ruta=buscarRutaPorDestino(destino);
+        return ruta.getAvionAsignado().getNombre();
+    }
+
+    public ListaSimple buscarTiquetesRelacionados(Destino destino, LocalDate fechaViaje){
+        Ruta ruta=buscarRutaPorDestino(destino);
+        return aerolinea.buscarTiquetesRelacionados(ruta, fechaViaje);
     }
 
 

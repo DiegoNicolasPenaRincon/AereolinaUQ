@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.aerolineauq.ViewController.AsientosViewController">
-    <children>
-        <GridPane fx:id="gridAsientos" layoutX="50.0" layoutY="50.0" />
-    </children>
+<AnchorPane fx:id="panelPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.aerolineauq.ViewController.AsientosViewController">
+   <children>
+      <ScrollPane fitToHeight="true" hbarPolicy="AS_NEEDED" layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="600.0" vbarPolicy="AS_NEEDED" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <Pane fx:id="paneAsientos" prefHeight="400.0" prefWidth="1000.0" />
+         </content>
+      </ScrollPane>
+   </children>
 </AnchorPane>

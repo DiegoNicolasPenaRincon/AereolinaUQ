@@ -1,6 +1,7 @@
 package co.edu.uniquindio.aerolineauq.ViewController;
 
 import co.edu.uniquindio.aerolineauq.AerolineaApplication;
+import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
 import co.edu.uniquindio.aerolineauq.model.*;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
@@ -8,13 +9,19 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class MenuViewController {
@@ -113,6 +120,12 @@ public class MenuViewController {
     private Label labelRegreso;
 
     @FXML
+    private Label labelSillas;
+
+    @FXML
+    private TextField txtSillas;
+
+    @FXML
     private RadioButton radioIda;
 
     @FXML
@@ -148,11 +161,28 @@ public class MenuViewController {
 
     private ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
 
+    private List<Silla> asientosSeleccionados;
+
+
     public MenuViewController() throws IOException {
+        asientosSeleccionados = new ArrayList<>();
     }
 
     public void setAplicacion(AerolineaApplication aplicacion) {
         this.aplicacion = aplicacion;
+    }
+
+    public void actualizarAsientosSeleccionados(List<Silla> asientos) {
+        this.asientosSeleccionados = asientos;
+        // Aquí puedes hacer algo con la lista, como mostrarla en la interfaz de usuario.
+        System.out.println("Asientos seleccionados: " + asientos);
+        String sillas="";
+        for(Silla silla: asientosSeleccionados){
+            sillas+=silla.getFila()+silla.getPosicion()+", ";
+        }
+        txtSillas.setText(sillas);
+        txtSillas.setVisible(true);
+        labelSillas.setVisible(true);
     }
 
     @FXML
@@ -174,6 +204,9 @@ public class MenuViewController {
 
     @FXML
     public void initialize() {
+        labelSillas.setVisible(false);
+        txtSillas.setVisible(false);
+        txtSillas.setEditable(false);
         toggleGroupViaje = new ToggleGroup();
         radioIda.setToggleGroup(toggleGroupViaje);
         radioIdaVuelta.setToggleGroup(toggleGroupViaje);
@@ -364,4 +397,56 @@ public class MenuViewController {
         anchorHistorial.setVisible(true);
     }
 
+
+    @FXML
+    private void mostrarAsientos() {
+        if (comboDestinos.getValue() == null || comboDestinos.getValue().isEmpty()) {
+            mostrarError("Seleccione el Destino", "Por favor, selecciona un destino válido.");
+            return;
+        }
+
+        // Validar que se haya seleccionado una fecha de salida
+        LocalDate fechaSalida = dateSalidaViaje.getValue();
+        if (fechaSalida == null) {
+            mostrarError("Fecha No Valida", "Por favor, selecciona una fecha de salida.");
+            return;
+        }
+
+
+        // Validar que el número de personas sea mayor a 0
+        int cantidadPersonas = SpinPersonas.getValue();
+        if (cantidadPersonas <= 0) {
+            mostrarError("Seleccione cantidad", "Por favor, selecciona al menos una persona para el viaje.");
+            return;
+        }
+
+        // Validar que haya un avión disponible para el destino seleccionado
+        ClaseVuelo claseVuelo = ClaseVuelo.valueOf(comboClase.getValue());
+        Destino destino = Destino.valueOf(comboDestinos.getValue().replace(" ", "_"));
+        String avion = modelFactoryController.buscarAvionPorDestino(destino);
+        if (avion == null || avion.isEmpty()) {
+            mostrarError("Aviones no disponibles", "No hay aviones disponibles para el destino seleccionado.");
+            return;
+        }
+
+        // Buscar los tiquetes relacionados
+        ListaSimple<Tiquete> tiquetesRelacionados = modelFactoryController.buscarTiquetesRelacionados(destino, fechaSalida);
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/aerolineauq/AsientosView.fxml"));
+            Parent root = loader.load();
+            AsientosViewController asientosController = loader.getController();
+
+            // Pasa la referencia de este controlador al de asientos
+            asientosController.setMenuViewController(this ,avion, tiquetesRelacionados, cantidadPersonas, claseVuelo);
+
+            Stage stage = new Stage();
+            stage.setTitle("Selección de Asientos");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

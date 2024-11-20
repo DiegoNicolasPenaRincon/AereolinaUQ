@@ -5,9 +5,11 @@ import co.edu.uniquindio.aerolineauq.exceptions.ExcesoDeTripulantesException;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 
 public class Aerolinea implements Serializable {
@@ -89,7 +91,7 @@ public class Aerolinea implements Serializable {
                 return user;
             }
         }
-        return null; // Usuario no encontrado
+        return null;
     }
 
 
@@ -120,6 +122,7 @@ public class Aerolinea implements Serializable {
         listaTripulantes.agregar(tripulante);
         Persistencia.guardaRegistroLog("Se ha registrado al tripulante"+tripulante.getNombre()+"con ID:"+tripulante.getId(), 1, "Registro Tripulante");
     }
+
     public boolean verificarTripuExistente(String id) throws Exception {
         if (this.tripulanteExiste(id)) {
             throw new Exception("El tripulante con cedula: " + id + " ya existe");
@@ -127,6 +130,20 @@ public class Aerolinea implements Serializable {
             return false;
         }
     }
+
+    public boolean eliminarTripulanteGlobal(String idTripulante) {
+        Predicate<Tripulante> criterio = tripulante -> tripulante.getId().equals(idTripulante);
+
+        boolean eliminado = listaTripulantes.eliminarElemento(criterio);
+
+
+        for (Avion avion : listaAviones.toCollection()) {
+            avion.getListaTripulantes().eliminarElemento(criterio);
+        }
+
+        return eliminado;
+    }
+
 
     public boolean tripulanteExiste(String id) {
         boolean tripulanteEncontrado = false;
@@ -141,6 +158,38 @@ public class Aerolinea implements Serializable {
         }
 
         return tripulanteEncontrado;
+    }
+
+    public Tripulante obtenerTripulante(String id) {
+        Tripulante tripulanteEncontrado = null;
+        Iterator var3 = this.getListaTripulantes().iterator();
+
+        while(var3.hasNext()) {
+            Tripulante user = (Tripulante) var3.next();
+            if (user.getId().equalsIgnoreCase(id)) {
+                tripulanteEncontrado = user;
+                break;
+            }
+        }
+
+        return tripulanteEncontrado;
+    }
+
+    public boolean actualizarTripulante(String id, Tripulante empleado) throws Exception {
+        Tripulante empleadoActual = this.obtenerTripulante(id);
+        if (empleadoActual == null) {
+            throw new Exception("El tripulante a actualizar no existe");
+        } else {
+            empleadoActual.setId(empleado.getId());
+            empleadoActual.setNombre(empleado.getNombre());
+            empleadoActual.setApellido(empleado.getApellido());
+            empleadoActual.setDireccion(empleado.getDireccion());
+            empleadoActual.setCorreo(empleado.getCorreo());
+            empleadoActual.setEstudios(empleado.getEstudios());
+            empleadoActual.setFechaNacimiento(empleado.getFechaNacimiento());
+            empleadoActual.setRolTripulante(empleado.getRolTripulante());
+            return true;
+        }
     }
 
 
@@ -281,5 +330,15 @@ public class Aerolinea implements Serializable {
             }
         }
         return false;
+    }
+
+    public ListaSimple buscarTiquetesRelacionados(Ruta ruta, LocalDate fechaViaje) {
+        ListaSimple<Tiquete> listaTiquetesRelacionados=new ListaSimple<>();
+        for(Tiquete tiquete: listaTiquetes){
+            if(tiquete.getRuta().getDestino()==ruta.getDestino() && tiquete.getFechaViaje()==fechaViaje){
+                listaTiquetesRelacionados.agregar(tiquete);
+            }
+        }
+        return listaTiquetesRelacionados;
     }
 }

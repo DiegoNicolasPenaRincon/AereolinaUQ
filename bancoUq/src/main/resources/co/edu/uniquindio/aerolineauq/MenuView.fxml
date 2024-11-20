@@ -54,7 +54,7 @@
          <center>
             <AnchorPane prefHeight="600.0" prefWidth="851.0" stylesheets="@loginDesign.css" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane fx:id="AnchorCompras" prefHeight="600.0" prefWidth="850.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="AnchorCompras" prefHeight="600.0" prefWidth="850.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
 
                         <!-- Opciones de Compra -->
@@ -93,13 +93,15 @@
                         </TableView>
 
                         <!-- Botones de Acción -->
-                        <Button fx:id="btnAsientos" layoutX="200.0" layoutY="500.0" mnemonicParsing="false" styleClass="compra-btn" text="Seleccionar Asientos" />
+                        <Button fx:id="btnAsientos" layoutX="200.0" layoutY="500.0" mnemonicParsing="false" onAction="#mostrarAsientos" styleClass="compra-btn" text="Seleccionar Asientos" />
                         <Button fx:id="btnCompra" layoutX="400.0" layoutY="500.0" mnemonicParsing="false" onAction="#realizarCompra" styleClass="compra-btn" text="Realizar Compra" />
                         <Label layoutX="39.0" layoutY="42.0" styleClass="head-label" stylesheets="@loginDesign.css" text="Compra de Tiquetes" textFill="#2b7fbc">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
+                        <Label fx:id="labelSillas" layoutX="402.0" layoutY="350.0" styleClass="label-estilo" text="Sillas Seleccionadas" />
+                        <TextField fx:id="txtSillas" layoutX="541.0" layoutY="347.0" prefHeight="25.0" prefWidth="169.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="anchorPerfil" prefHeight="600.0" prefWidth="850.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -126,7 +128,7 @@
                         <Label layoutX="352.0" layoutY="260.0" prefHeight="33.0" prefWidth="167.0" styleClass="label-estilo" text="Contraseña" textFill="#1969cf" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="anchorHistorial" prefHeight="600.0" prefWidth="850.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="anchorHistorial" prefHeight="600.0" prefWidth="850.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <TableView fx:id="tableHistorial" layoutX="54.0" layoutY="123.0" prefHeight="312.0" prefWidth="697.0" stylesheets="@loginDesign.css">
                           <columns>
