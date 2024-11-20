@@ -364,3 +364,27 @@ nov. 19, 2024 8:52:43 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil gua
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-19
 nov. 19, 2024 9:02:47 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-19
+nov. 19, 2024 11:09:41 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-19
+nov. 19, 2024 11:15:00 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-19
+nov. 19, 2024 11:17:22 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-19
+nov. 19, 2024 11:21:15 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-19
+nov. 19, 2024 11:28:08 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-19
+nov. 19, 2024 11:34:33 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-19
+nov. 19, 2024 11:35:06 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Registro Tiquete,Se ha registrado un nuevo tiquete para el usuario 1234,2024-11-19
+nov. 19, 2024 11:35:06 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Registro Tiquete,Se ha registrado un nuevo tiquete para el usuario 1234,2024-11-19
+nov. 19, 2024 11:35:06 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el equipaje al vuelo  0,Registro equipaje ,2024-11-19
+nov. 19, 2024 11:47:52 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-19
+nov. 19, 2024 11:52:56 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-19
+nov. 19, 2024 11:55:29 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-19
