@@ -212,28 +212,7 @@ public class AdminViewController {
             }
         });
 
-
-        tableTripulantesAsignados.setRowFactory(tv -> {
-            TableRow<Tripulante> row = new TableRow<>();
-
-            row.itemProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue.getAvionAsignado().equals(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado()))
-                {
-                    row.setStyle("-fx-background-color: yellow;");
-                }
-                else
-                {
-                    row.setStyle("");
-                }
-            });
-            return row;
-        });
-        tableTripulantes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                cargarDatosTripulante(newValue);
-            }
-        });
-
+        
         // Cargar los datos en la tabla
         cargarDatosTabla();
     }
