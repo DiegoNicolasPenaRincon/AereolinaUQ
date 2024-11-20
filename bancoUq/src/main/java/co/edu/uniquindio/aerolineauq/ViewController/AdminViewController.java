@@ -3,6 +3,7 @@ package co.edu.uniquindio.aerolineauq.ViewController;
 import co.edu.uniquindio.aerolineauq.AerolineaApplication;
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
+import co.edu.uniquindio.aerolineauq.exceptions.ExcesoDeTripulantesException;
 import co.edu.uniquindio.aerolineauq.exceptions.TripulanteAsignadoException;
 import co.edu.uniquindio.aerolineauq.model.*;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
@@ -454,12 +455,12 @@ public class AdminViewController {
 
 
 
-    public void agregarTripulanteOnAction(ActionEvent actionEvent) throws TripulanteAsignadoException {
+    public void agregarTripulanteOnAction(ActionEvent actionEvent)  {
         if(tableTripulantesAsignados.getSelectionModel().getSelectedItem()!=null)
         {
             try
             {
-                if(tableTripulantesAsignados.getSelectionModel().getSelectedItem().getAvionAsignado().equals(null))
+                if(tableTripulantesAsignados.getSelectionModel().getSelectedItem().getAvionAsignado()==null)
                 {
                     throw new NullPointerException();
                 }
@@ -470,16 +471,18 @@ public class AdminViewController {
             }
             catch (NullPointerException e)
             {
-                if(modelFactoryController.getAerolinea().verificarAsignacion(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getNombre(),rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getListaTripulantes()))
+                ListaSimple<Tripulante> listaApoyo=rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getListaTripulantes();
+                listaApoyo.agregar(tableTripulantesAsignados.getSelectionModel().getSelectedItem());
+                try
                 {
+                    modelFactoryController.getAerolinea().verificarAsignacion(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getNombre(),listaApoyo);
                     tableTripulantesAsignados.getSelectionModel().getSelectedItem().setAvionAsignado(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado());
-                    //avionComboBox.getSelectionModel().getSelectedItem().getListaTripulantes().agregar(tableTripulantesAsignados.getSelectionModel().getSelectedItem());
                     rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getListaTripulantes().agregar(tableTripulantesAsignados.getSelectionModel().getSelectedItem());
                     mostrarAlerta("Informacion","Tripulante agregado correctamente", Alert.AlertType.INFORMATION);
                 }
-                else
+                catch (ExcesoDeTripulantesException ex)
                 {
-                    mostrarAlerta("Informacion","el avion supero el limite de tripulantes permitidos", Alert.AlertType.ERROR);
+                    mostrarAlerta("Error",e.getMessage(),Alert.AlertType.ERROR);
                 }
             }
             catch (TripulanteAsignadoException e)
@@ -492,6 +495,7 @@ public class AdminViewController {
             mostrarAlerta("Error","Debe seleccionar un tripulante",Alert.AlertType.ERROR);
         }
     }
+
 
     public void cambiarAvionOnAction(ActionEvent actionEvent) {
 

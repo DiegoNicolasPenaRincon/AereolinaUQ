@@ -227,25 +227,6 @@ public class Aerolinea implements Serializable {
         return null; // Retorna null si no se encuentra la ruta
     }
 
-    /*public ListaSimple<String> llenarListaSimpleStringAviones(ListaSimple<Avion> listaAviones) {
-        ListaSimple<String> listaSimpleString = new ListaSimple<>();
-        for(int i=0;i<listaAviones.size();i++)
-        {
-            listaSimpleString.agregar(listaAviones.obtenerValorNodo(i).getNombre());
-        }
-        return listaSimpleString;
-    }
-
-    public ListaSimple<String> llenarListaSimpleStringRutas(ListaSimple<Ruta> listaRutas) {
-        ListaSimple<String> listaSimpleString = new ListaSimple<>();
-        for(int i=0;i<listaRutas.size();i++)
-        {
-            listaSimpleString.agregar(listaRutas.obtenerValorNodo(i).getDestino().toString());
-        }
-        return listaSimpleString;
-    }
-
-     */
 
     public Collection<Avion> filtrarAvionesNacionales(ListaSimple<Avion> coleccionAviones,TipoAvion tipo) {
         ListaSimple<Avion> filtrarAvionesNacionales= new ListaSimple<>();
@@ -260,15 +241,6 @@ public class Aerolinea implements Serializable {
         return filtrarAvionesNacionales.toCollection();
     }
 
-    /*public TipoAvion determinarElTipoAvion(Ruta ruta) {
-        if(ruta.getOrigen()!=Destino.Cancún&&ruta.getOrigen()!=Destino.Monterrey)
-        {
-            return TipoAvion.INTERNACIONAL;
-        }
-        return TipoAvion.NACIONAL;
-    }
-
-     */
 
     public void verificarAsignacion(String nombreAvion,ListaSimple<Tripulante> listaTripulantes) throws ExcesoDeTripulantesException {
         int copilotos = 0;
