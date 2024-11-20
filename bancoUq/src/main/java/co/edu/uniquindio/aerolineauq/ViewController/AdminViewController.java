@@ -250,6 +250,23 @@ public class AdminViewController {
             mostrarAlerta("Error", "Todos los campos son obligatorios", Alert.AlertType.ERROR);
             return;
         }
+        if (!id.matches("\\d+")) {
+            mostrarAlerta("Error", "El ID debe contener solo números", Alert.AlertType.ERROR);
+            return;
+        }
+        if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+            mostrarAlerta("Error", "El nombre solo puede contener letras", Alert.AlertType.ERROR);
+            return;
+        }
+        if (!apellido.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+            mostrarAlerta("Error", "El apellido solo puede contener letras", Alert.AlertType.ERROR);
+            return;
+        }
+        if (!correo.matches("^[\\w.-]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,}$")) {
+            mostrarAlerta("Error", "El correo no tiene un formato válido", Alert.AlertType.ERROR);
+            return;
+        }
+       
         Tripulante nuevoTripulante = modelFactoryController.registrarTripulante(
                 id, nombre, apellido, direccion, fechaNacimiento, correo, estudios, rolTripulante
         );
@@ -268,40 +285,6 @@ public class AdminViewController {
         registrarAccionesSistema("Registro Tripulante", 1, "Se registró el tripulante " + nombre);
         limpiarCampos();
     }
-
-
-
-
-/*
-
-    @FXML
-    void agregarTripulanteEvent(ActionEvent event) {
-        String id = txtID.getText();
-        String nombre = txtNombre.getText();
-        String apellido = txtApellido.getText();
-        String correo = txtCorreo.getText();
-        String direccion = txtDireccion.getText();
-        LocalDate fechaNacimiento = dateNacimiento.getValue();
-        String estudios = txtEstudios.getText();
-        RolTripulante rolTripulante = cbRol.getValue();
-
-
-        if (id.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || direccion.isEmpty() || estudios.isEmpty() || fechaNacimiento == null ) {
-            mostrarAlerta("Error", "Todos los campos son obligatorios", Alert.AlertType.ERROR);
-            return;
-        }
-
-        modelFactoryController.registrarTripulante(id, nombre , apellido, direccion, fechaNacimiento, correo, estudios,rolTripulante);
-        cargarDatosTabla();
-        registrarAccionesSistema("Registro Tripulante", 1, "Se registro el tripulante "+ nombre);
-
-        mostrarAlerta("Éxito", "Tripulante registrado correctamente", Alert.AlertType.INFORMATION);
-
-        limpiarCampos();
-    }
-
-
- */
 
 
     private void limpiarCampos() {
@@ -382,6 +365,26 @@ public class AdminViewController {
                 mostrarAlerta("Error", "Todos los campos son obligatorios para modificar un tripulante.", Alert.AlertType.ERROR);
                 return;
             }
+            if (!id.matches("\\d+")) {
+                mostrarAlerta("Error", "El ID debe contener solo números", Alert.AlertType.ERROR);
+                return;
+            }
+            if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+                mostrarAlerta("Error", "El nombre solo puede contener letras", Alert.AlertType.ERROR);
+                return;
+            }
+            if (!apellido.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+                mostrarAlerta("Error", "El apellido solo puede contener letras", Alert.AlertType.ERROR);
+                return;
+            }
+            if (!correo.matches("^[\\w.-]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,}$")) {
+                mostrarAlerta("Error", "El correo no tiene un formato válido", Alert.AlertType.ERROR);
+                return;
+            }
+            if (modelFactoryController.getListaTripulantes().toCollection().stream().anyMatch(t -> t.getId().equals(id))) {
+                mostrarAlerta("Error", "El ID ya está registrado para otro tripulante", Alert.AlertType.ERROR);
+                return;
+            }
 
             // Crear un nuevo tripulante con los datos
             Tripulante tripulanteNuevo = new Tripulante(id, nombre, apellido, direccion, fechaNacimiento, correo, estudios, rolTripulante);
@@ -437,15 +440,14 @@ public class AdminViewController {
     private void cargarDatosTabla() {
         ListaSimple<Tripulante> listaTripulantes = modelFactoryController.getListaTripulantes();
 
-        // Limpiar las tablas antes de agregar nuevos datos
         tableTripulantes.getItems().clear();
         tableTripulantesAsignados.getItems().clear();
 
-        // Agregar tripulantes a ambas tablas (si corresponde)
+
         tableTripulantes.getItems().addAll(listaTripulantes.toCollection());
         tableTripulantesAsignados.getItems().addAll(listaTripulantes.toCollection());
 
-        // Refrescar las tablas para que muestren los datos actualizados
+
         tableTripulantes.refresh();
         tableTripulantesAsignados.refresh();
     }
@@ -513,4 +515,5 @@ public class AdminViewController {
             mostrarAlerta("Error","Debe seleccionar un tripulante",Alert.AlertType.ERROR);
         }
     }
+
 }

@@ -87,10 +87,12 @@ public class ModelFactoryController {
         Tripulante tripulante = new Tripulante(id, nombre,apellido, direccion, fechaNacimiento, correo,estudios,rolTripulante );
         try {
             if (!aerolinea.verificarTripuExistente(tripulante.getId())) {
+                throw new Exception("Ya existe un tripulante con la cédula (ID) ingresada: " + tripulante.getId());
+            }
                 aerolinea.registrarTripulante(tripulante);
                 guardarResourceBinario();
                 guardarResourceXML();
-            }
+
         } catch (Exception e) {
         System.err.println(e.getMessage());
         throw e;
@@ -98,23 +100,6 @@ public class ModelFactoryController {
         return tripulante;
     }
 
-
-
-    /*
-public Tripulante registrarTripulante(String id, String nombre, String apellido, String direccion, LocalDate fechaNacimiento, String correo, String estudios, RolTripulante rolTripulante) {
-    Tripulante tripulante = new Tripulante(id, nombre, apellido, direccion, fechaNacimiento, correo, estudios, rolTripulante);
-    try {
-        aerolinea.registrarTripulante(tripulante);
-        guardarResourceBinario();
-        guardarResourceXML();
-    } catch (IllegalArgumentException e) {
-        System.err.println(e.getMessage());
-        throw e;
-    }
-    return tripulante;
-}
-
-     */
 
     public void actualizarTripulante(Tripulante tripulanteActualizado) throws Exception {
         boolean actualizado = aerolinea.getListaTripulantes().modificarElemento(

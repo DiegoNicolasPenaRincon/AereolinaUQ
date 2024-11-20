@@ -90,7 +90,7 @@ public class Aerolinea implements Serializable {
                 return user;
             }
         }
-        return null; // Usuario no encontrado
+        return null;
     }
 
 
@@ -133,33 +133,15 @@ public class Aerolinea implements Serializable {
     public boolean eliminarTripulanteGlobal(String idTripulante) {
         Predicate<Tripulante> criterio = tripulante -> tripulante.getId().equals(idTripulante);
 
-        // Eliminar de la lista principal
         boolean eliminado = listaTripulantes.eliminarElemento(criterio);
 
-        // Eliminar de cada avión
+
         for (Avion avion : listaAviones.toCollection()) {
             avion.getListaTripulantes().eliminarElemento(criterio);
         }
 
         return eliminado;
     }
-
-
- /*
-
-    public boolean verificarTripuExistente(String id) {
-        for (Tripulante tripulante : listaTripulantes) {
-            if (tripulante.getId().equals(id)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-  */
-
-
-
 
 
     public boolean tripulanteExiste(String id) {
