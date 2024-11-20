@@ -490,3 +490,17 @@ nov. 19, 2024 10:07:12 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil gu
 INFORMACIÓN: Compra Tiquete,Compra realizada para el usuario: 1234,2024-11-19
 nov. 19, 2024 10:11:38 P. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
 INFORMACIÓN: Se ingreso ,Ingresar,2024-11-19
+nov. 20, 2024 1:03:09 A. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-20
+nov. 20, 2024 1:04:02 A. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Registro Tiquete,Se ha registrado un nuevo tiquete para el usuario 1234,2024-11-20
+nov. 20, 2024 1:04:02 A. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Registro Tiquete,Se ha registrado un nuevo tiquete para el usuario 1234,2024-11-20
+nov. 20, 2024 1:04:02 A. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el equipaje al vuelo  0,Registro equipaje ,2024-11-20
+nov. 20, 2024 1:06:00 A. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se ingreso ,Ingresar,2024-11-20
+nov. 20, 2024 1:06:44 A. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Registro Tiquete,Se ha registrado un nuevo tiquete para el usuario 1234,2024-11-20
+nov. 20, 2024 1:06:45 A. M. co.edu.uniquindio.aerolineauq.utils.ArchivoUtil guardarRegistroLog
+INFORMACIÓN: Se registro el equipaje al vuelo  0,Registro equipaje ,2024-11-20
