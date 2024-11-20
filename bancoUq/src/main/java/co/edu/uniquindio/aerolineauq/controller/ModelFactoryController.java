@@ -9,24 +9,25 @@ import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ModelFactoryController {
     private static ModelFactoryController instance;
     private Aerolinea aerolinea;
+    private double costoEquipaje=0;
 
     public ModelFactoryController() throws IOException {
         System.out.println("Datos inicializados");// Inicializa la clase de lógica de negocio
-
         //1. carga los datos del utils
-        //cargarDatosBase();
+        cargarDatosBase();
         //salvarDatosPrueba();
 
         //2. cargar desde los archivos
         //cargarDatosDesdeArchivos();
 
         // Guardar y cargar desde el binario
-        cargarResourceBinario();
+        //cargarResourceBinario();
         guardarResourceBinario();
 
         //cargarResourceXML();
@@ -36,7 +37,6 @@ public class ModelFactoryController {
             cargarDatosBase();
             guardarResourceBinario();
         }
-
     }
     public Aerolinea getAerolinea() {
         return aerolinea;
@@ -193,18 +193,53 @@ public class ModelFactoryController {
         thread.start();
     }
 
+    public void registrarCompraTiquete(Usuario usuario, String numeroVuelo, Ruta ruta, ClaseVuelo claseVuelo,
+                                          List<Silla> sillas, TipoViaje tipoViaje, LocalDate fechaViaje, LocalDate fechaRegreso,
+                                          double pesoEquipaje, boolean esMascota, double pesoMascota, int cantidadPersonas) {
+        ListaSimple<Silla>sillasSeleccionadas=new ListaSimple<>();
+        sillasSeleccionadas.addAll((ArrayList<Silla>) sillas);
 
-   public void registrarEquipaje(String numeroVuelo, double pesoEquipaje, boolean esMascota, double pesoMascota, String categoriaViaje, ClaseVuelo claseVuelo) {
-        Tiquete tiquete = buscarTiquetePorNumero(numeroVuelo);
+        // 2. Calcular el precio (esto dependerá de tu lógica de precios)
+        double precio = calcularPrecio(ruta, claseVuelo, tipoViaje, pesoEquipaje, esMascota, pesoMascota);
 
-        if (tiquete != null) {
-            Equipaje equipaje = new Equipaje(pesoEquipaje, esMascota, pesoMascota, categoriaViaje, claseVuelo);
-            tiquete.agregarEquipaje(equipaje);
-            guardarResourceBinario();
-            guardarResourceXML();
-        } else {
-            System.out.println("Tiquete no encontrado.");
+        // 3. Crear el equipaje
+        Equipaje equipaje = new Equipaje();
+        equipaje.setPesoEquipaje(pesoEquipaje);
+        equipaje.setEsMascota(esMascota);
+        equipaje.setPesoMascota(pesoMascota);
+        equipaje.setCategoriaViaje(esInternacional(ruta) ? "Internacional" : "Nacional");
+        equipaje.setClaseVuelo(claseVuelo);
+        equipaje.setCostoAdicional(precio-costoEquipaje);
+
+        aerolinea.registrarEquipaje(equipaje);
+        for (int i = 0; i < cantidadPersonas; i++) {
+            // Asegurarse de que haya suficientes sillas
+            if (i >= sillas.size()) {
+                throw new IllegalArgumentException("No hay suficientes sillas para el número de personas");
+            }
+
+            // Crear el tiquete para esta persona
+            Tiquete tiquete = new Tiquete();
+            tiquete.setNumeroVuelo(numeroVuelo);
+            tiquete.setUsuario(usuario);
+            tiquete.setRuta(ruta);
+            tiquete.setPrecio(precio);  // El precio base podría ser ajustado dependiendo del equipaje y otros factores
+            tiquete.setClaseVuelo(claseVuelo);
+            tiquete.setSilla(sillasSeleccionadas.obtenerValorNodo(i));  // Asigna una silla única por persona
+            tiquete.setTipoViaje(tipoViaje);
+            tiquete.setFechaViaje(fechaViaje);
+            tiquete.setFechaRegreso(fechaRegreso);
+            tiquete.setEquipaje(equipaje);  // Asocia el mismo equipaje a todos los tiquetes
+
+            // Registrar el tiquete en la aerolínea
+            aerolinea.registrarTiquete(tiquete);
         }
+        // 5. Registrar el tiquete en la aerolínea
+
+
+        // 6. Guardar los cambios (en binario y XML, si es necesario)
+        guardarResourceBinario();
+        guardarResourceXML();
     }
 
 
@@ -217,47 +252,72 @@ public class ModelFactoryController {
         return null;
     }
 
-    public Tiquete registrarCompra(String numeroVuelo, Usuario usuario, Ruta ruta, double precio, ClaseVuelo claseVuelo, Silla silla, TipoViaje tipoViaje, LocalDate fechaViaje, LocalDate fechaRegreso, Equipaje equipaje) {
-        if (!validarDatosCompra(usuario, ruta, claseVuelo)) {
-            throw new IllegalArgumentException("Datos de compra inválidos.");
-        }
-
-        // Calcula el precio
-       // double precio = calcularPrecio(ruta, claseVuelo, tipoViaje, pesoEquipaje, esMascota);
-
-        // Crea el tiquete y equipaje
-        //Equipaje equipaje = new Equipaje(pesoEquipaje, esMascota, pesoMascota, tipoViaje.toString(), claseVuelo);
-        // Silla silla = asignarSilla(claseVuelo);
-        Tiquete tiquete = new Tiquete(numeroVuelo, usuario, ruta, precio,claseVuelo,silla,tipoViaje, fechaViaje,fechaRegreso,equipaje);
-
-        // Asigna el equipaje al tiquete
-        tiquete.setEquipaje(equipaje);
-        aerolinea.registrarTiquete(tiquete); // Añade el tiquete a la aerolínea
-
-        // Registra la acción en el log
-        registrarAccionesSistema("Compra realizada para el usuario: " + usuario.getId(), 1, "Compra Tiquete");
-
-        return tiquete;
-    }
-
-    /**
-     * Método para validar datos de la compra.
-     */
-    private boolean validarDatosCompra(Usuario usuario, Ruta ruta, ClaseVuelo claseVuelo) {
-        return usuario != null && ruta != null && claseVuelo != null;
-    }
-
     /**
      * Método para calcular el precio del tiquete según la ruta, clase, tipo de viaje y equipaje.
      */
-    private double calcularPrecio(Ruta ruta, ClaseVuelo claseVuelo, TipoViaje tipoViaje, double pesoEquipaje, boolean esMascota) {
-        //double precioBase = ruta.getDistancia() * 0.1; // Supón que el precio base depende de la distancia
-        double precioBase=0;
-        precioBase += claseVuelo == ClaseVuelo.EJECUTIVA ? 50 : claseVuelo == ClaseVuelo.ECONOMICA ? 20 : 30;
-        precioBase += (tipoViaje == TipoViaje.idaYvuelta ? 0.8 * precioBase : 0);
-        precioBase += pesoEquipaje * 2.0; // Añade un costo por peso del equipaje
-        precioBase += esMascota ? 30 : 0; // Añade un costo si hay una mascota
+    public double calcularPrecio(Ruta ruta, ClaseVuelo claseVuelo, TipoViaje tipoViaje, double pesoEquipaje, boolean esMascota, double pesoMascota) {
+        double precioBase = ruta.getPrecio();
+
+// Ajustar el precio base según la clase de vuelo
+        precioBase += claseVuelo == ClaseVuelo.EJECUTIVA ? 300 : 0;
+        if (esInternacional(ruta)) {
+            precioBase += precioBase * 0.0097; // 0.97% adicional si es internacional
+        } else {
+            precioBase += precioBase * 0.008; // 0.8% adicional si es nacional
+        }
+
+        precioBase *= (tipoViaje == TipoViaje.idaYvuelta ? 2 : 1);
+        int piezasPermitidas;
+        double pesoMaximoPorPieza;
+        if (esInternacional(ruta)) {
+            if (claseVuelo == ClaseVuelo.EJECUTIVA) {
+                piezasPermitidas = 2;
+                pesoMaximoPorPieza = 34.0;
+            } else { // Clase económica
+                piezasPermitidas = 2;
+                pesoMaximoPorPieza = 24.0;
+            }
+        } else { // Nacional
+            if (claseVuelo == ClaseVuelo.EJECUTIVA) {
+                piezasPermitidas = 2;
+                pesoMaximoPorPieza = 34.0;
+            } else { // Clase económica
+                piezasPermitidas = 1;
+                pesoMaximoPorPieza = 24.0;
+            }
+        }
+
+// Calcular el peso adicional y su costo
+        double pesoPermitidoTotal = piezasPermitidas * pesoMaximoPorPieza;
+        double sobrepeso = Math.max(0, pesoEquipaje - pesoPermitidoTotal); // Peso que excede el límite permitido
+
+        if (sobrepeso > 0) {
+            double costoSobrepeso = sobrepeso * 8.0; // Cada kilo extra cuesta 8 dólares
+            costoSobrepeso += costoSobrepeso * 0.0675; // Aplicar impuesto del 6.75% sobre el costo de sobrepeso
+            precioBase += costoSobrepeso;
+            costoEquipaje+=costoSobrepeso;
+        }
+
+        if(esMascota){
+            if(pesoMascota>=3 && pesoMascota<=9){
+                precioBase+=48;
+                costoEquipaje+=48;
+            }
+            else if(pesoMascota>9){
+                precioBase+=48+(2*pesoMascota);
+                costoEquipaje+=48+(2*pesoMascota);
+            }
+        }
         return precioBase;
+    }
+
+    private boolean esInternacional(Ruta ruta) {
+        if(ruta.getDestino()==Destino.Monterrey || ruta.getDestino()==Destino.Cancún){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     /**
