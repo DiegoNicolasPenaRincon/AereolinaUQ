@@ -3,6 +3,7 @@ package co.edu.uniquindio.aerolineauq;
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
 import co.edu.uniquindio.aerolineauq.ViewController.*;
 import co.edu.uniquindio.aerolineauq.model.Tiquete;
+import co.edu.uniquindio.aerolineauq.model.ClaseVuelo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -99,13 +100,13 @@ public class AerolineaApplication extends Application {
         primaryStage.centerOnScreen();
     }
 
-    public void mostrarAsientos(String avion, ListaSimple<Tiquete> tiquetesRelacionados, int cantidadPersonas) {
+    public void mostrarAsientos(String avion, ListaSimple<Tiquete> tiquetesRelacionados, int cantidadPersonas, ClaseVuelo claseVuelo) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/aerolineauq/AsientosView.fxml"));
             Parent root = loader.load();
 
             AsientosViewController asientosViewController = loader.getController();
-            asientosViewController.setAplicacion(this, avion, tiquetesRelacionados, cantidadPersonas);
+            //asientosViewController.setAplicacion(this, avion, tiquetesRelacionados, cantidadPersonas, claseVuelo);
 
             // Crear un nuevo Stage
             Stage nuevoStage = new Stage();
