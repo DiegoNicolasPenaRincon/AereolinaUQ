@@ -2,16 +2,13 @@ package co.edu.uniquindio.aerolineauq.ViewController;
 
 import co.edu.uniquindio.aerolineauq.AerolineaApplication;
 import co.edu.uniquindio.aerolineauq.controller.ModelFactoryController;
-import co.edu.uniquindio.aerolineauq.model.*;
+import co.edu.uniquindio.aerolineauq.model.ClaseVuelo;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class EquipajeViewController {
@@ -33,50 +30,24 @@ public class EquipajeViewController {
 
     private AerolineaApplication aplicacion;
 
-    private Usuario usuario;
-    private Ruta rutaSeleccionada;
-    private double precio;
-    private ClaseVuelo claseVuelo;
-    private List<Silla> sillas=new ArrayList<>();
-    private TipoViaje tipoViaje;
-    private LocalDate fechaViaje, fechaRegreso;
-    private int cantidadPersonas;
-
-
     public EquipajeViewController() throws IOException {
     }
 
-    public void setAplicacion(AerolineaApplication aplicacion, Usuario usuarioActual, Ruta rutaSeleccionada, double precio, ClaseVuelo claseVuelo, List<Silla> asientosSeleccionados, TipoViaje tipoViaje, LocalDate fechaSalida, LocalDate fechaRegreso, int cantidadPersonas) {
+    public void setAplicacion(AerolineaApplication aplicacion) {
         this.aplicacion = aplicacion;
-        this.usuario=usuarioActual;
-        System.out.println(usuarioActual.getId());
-        this.rutaSeleccionada=rutaSeleccionada;
-        this.precio=precio;
-        this.claseVuelo=claseVuelo;
-        this.sillas=asientosSeleccionados;
-        this.tipoViaje=tipoViaje;
-        this.fechaViaje=fechaSalida;
-        this.fechaRegreso=fechaRegreso;
-        this.cantidadPersonas=cantidadPersonas;
-        inicializar();
-
     }
 
-    private void inicializar() {
+    private final ModelFactoryController modelFactory = ModelFactoryController.getInstance();
+
+    @FXML
+    public void initialize() {
         txtPesoMascota.setDisable(true); // Por defecto, no se muestra
         ckMascotaSi.setOnAction(event -> toggleMascota(true));
         ckMascotaNo.setOnAction(event -> toggleMascota(false));
 
         // Añadir opciones al ComboBox
-        cbTipoEquipaje.getItems().add(claseVuelo.toString());
-        cbTipoEquipaje.setEditable(false);
-        txtNumeroVuelo.setText("0");
-        txtNumeroVuelo.setVisible(false);
+        cbTipoEquipaje.getItems().addAll("Economica", "Ejecutiva");
     }
-
-    private final ModelFactoryController modelFactory = ModelFactoryController.getInstance();
-
-
 
     private void toggleMascota(boolean isMascota) {
         txtPesoMascota.setDisable(!isMascota);
@@ -85,6 +56,12 @@ public class EquipajeViewController {
     @FXML
     private void registrarEquipaje(ActionEvent event) {
         try {
+            String numeroVuelo = txtNumeroVuelo.getText();
+
+            if (!verificarVuelo(numeroVuelo)) {
+                mostrarError("El número de vuelo ingresado no existe.");
+                return;
+            }
 
             double pesoEquipaje = Double.parseDouble(txtPesoEquipaje.getText());
             boolean esMascota = ckMascotaSi.isSelected();
@@ -93,12 +70,14 @@ public class EquipajeViewController {
             String tipoEquipaje = cbTipoEquipaje.getValue();
             ClaseVuelo claseVuelo = ClaseVuelo.valueOf(tipoEquipaje.toUpperCase());
 
-            modelFactory.registrarCompraTiquete(usuario, "", rutaSeleccionada, claseVuelo, sillas, tipoViaje, fechaViaje, fechaRegreso, pesoEquipaje, esMascota, pesoMascota, cantidadPersonas);
-            registrarAccionesSistema("Registro equipaje ", 1, "Se registro el equipaje al vuelo  " +"0");
+            String categoriaViaje = tipoEquipaje.equals("Ejecutiva") ? "Internacional" : "Nacional";
 
-            double precioFinal = modelFactory.calcularPrecio(rutaSeleccionada, claseVuelo, tipoViaje, pesoEquipaje, esMascota, pesoMascota);
-            mostrarConfirmacion(usuario.getId(), claseVuelo, rutaSeleccionada, sillas, pesoEquipaje, esMascota , pesoMascota, precioFinal);
-            aplicacion.mostrarVentanaMenu();
+            modelFactory.registrarEquipaje(numeroVuelo, pesoEquipaje, esMascota, pesoMascota, categoriaViaje, claseVuelo);
+            registrarAccionesSistema("Registro equipaje ", 1, "Se registro el equipaje al vuelo  " + numeroVuelo);
+
+            double precioFinal = calcularPrecioFinal(claseVuelo, pesoEquipaje, esMascota, pesoMascota);
+            mostrarConfirmacion(numeroVuelo, pesoEquipaje, esMascota, pesoMascota, claseVuelo, precioFinal);
+
         } catch (NumberFormatException e) {
             mostrarError("Error en el formato de peso.");
         }
@@ -108,15 +87,19 @@ public class EquipajeViewController {
         return modelFactory.buscarTiquetePorNumero(numeroVuelo) != null;
     }
 
+    private double calcularPrecioFinal(ClaseVuelo claseVuelo, double pesoEquipaje, boolean esMascota, double pesoMascota) {
+        double precioBase = claseVuelo == ClaseVuelo.ECONOMICA ? 100 : 200;
+        double cargoPorEquipaje = pesoEquipaje * 2;
+        double cargoPorMascota = esMascota ? pesoMascota * 5 : 0;
+        return precioBase + cargoPorEquipaje + cargoPorMascota;
+    }
 
-    private void mostrarConfirmacion(String idUsuario, ClaseVuelo claseVuelo, Ruta rutaSeleccionada, List<Silla> sillas, double pesoEquipaje, boolean esMascota, double pesoMascota, double precioFinal) {
+    private void mostrarConfirmacion(String numeroVuelo, double pesoEquipaje, boolean esMascota, double pesoMascota, ClaseVuelo claseVuelo, double precioFinal) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Compra realizada con exito");
-        alert.setHeaderText("Compra realizada con exito");
-        alert.setContentText("Id de Usuario: " + idUsuario +
+        alert.setTitle("Confirmación de Equipaje");
+        alert.setHeaderText("Equipaje registrado exitosamente");
+        alert.setContentText("Número de Vuelo: " + numeroVuelo +
                 "\nClase de Vuelo: " + claseVuelo +
-                "\nRuta de Vuelo:"+ rutaSeleccionada.getOrigen()+"-"+rutaSeleccionada.getDestino()+
-                "\nSillas Seleccionadas:"+sillas.toString()+
                 "\nPeso del equipaje: " + pesoEquipaje + " kg" +
                 "\nMascota: " + (esMascota ? "Sí" : "No") +
                 (esMascota ? "\nPeso de la mascota: " + pesoMascota + " kg" : "") +

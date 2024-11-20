@@ -14,13 +14,13 @@ public class Equipaje implements Serializable {
     public Equipaje() {
     }
 
-    public Equipaje(double pesoEquipaje, boolean esMascota, double pesoMascota, String categoriaViaje, ClaseVuelo claseVuelo, double costoAdicional) {
+    public Equipaje(double pesoEquipaje, boolean esMascota, double pesoMascota, String categoriaViaje, ClaseVuelo claseVuelo) {
         this.pesoEquipaje = pesoEquipaje;
         this.esMascota = esMascota;
         this.pesoMascota = pesoMascota;
         this.categoriaViaje = categoriaViaje;
         this.claseVuelo = claseVuelo;
-        this.costoAdicional=costoAdicional;
+        calcularCostoAdicional();
     }
 
     public double getPesoEquipaje() {

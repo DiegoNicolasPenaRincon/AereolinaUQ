@@ -281,8 +281,4 @@ public class Aerolinea implements Serializable {
         }
         return listaTiquetesRelacionados;
     }
-
-    public void registrarEquipaje(Equipaje equipaje) {
-        listaEquipaje.agregar(equipaje);
-    }
 }
