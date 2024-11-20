@@ -1,7 +1,6 @@
 package co.edu.uniquindio.aerolineauq.model;
 
 import co.edu.uniquindio.aerolineauq.Listas.ListaSimple;
-import co.edu.uniquindio.aerolineauq.exceptions.ExcesoDeTripulantesException;
 import co.edu.uniquindio.aerolineauq.utils.Persistencia;
 
 import java.io.Serializable;
@@ -9,7 +8,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.function.Predicate;
 
 
 public class Aerolinea implements Serializable {
@@ -91,7 +89,7 @@ public class Aerolinea implements Serializable {
                 return user;
             }
         }
-        return null;
+        return null; // Usuario no encontrado
     }
 
 
@@ -122,7 +120,6 @@ public class Aerolinea implements Serializable {
         listaTripulantes.agregar(tripulante);
         Persistencia.guardaRegistroLog("Se ha registrado al tripulante"+tripulante.getNombre()+"con ID:"+tripulante.getId(), 1, "Registro Tripulante");
     }
-
     public boolean verificarTripuExistente(String id) throws Exception {
         if (this.tripulanteExiste(id)) {
             throw new Exception("El tripulante con cedula: " + id + " ya existe");
@@ -130,20 +127,6 @@ public class Aerolinea implements Serializable {
             return false;
         }
     }
-
-    public boolean eliminarTripulanteGlobal(String idTripulante) {
-        Predicate<Tripulante> criterio = tripulante -> tripulante.getId().equals(idTripulante);
-
-        boolean eliminado = listaTripulantes.eliminarElemento(criterio);
-
-
-        for (Avion avion : listaAviones.toCollection()) {
-            avion.getListaTripulantes().eliminarElemento(criterio);
-        }
-
-        return eliminado;
-    }
-
 
     public boolean tripulanteExiste(String id) {
         boolean tripulanteEncontrado = false;
@@ -158,38 +141,6 @@ public class Aerolinea implements Serializable {
         }
 
         return tripulanteEncontrado;
-    }
-
-    public Tripulante obtenerTripulante(String id) {
-        Tripulante tripulanteEncontrado = null;
-        Iterator var3 = this.getListaTripulantes().iterator();
-
-        while(var3.hasNext()) {
-            Tripulante user = (Tripulante) var3.next();
-            if (user.getId().equalsIgnoreCase(id)) {
-                tripulanteEncontrado = user;
-                break;
-            }
-        }
-
-        return tripulanteEncontrado;
-    }
-
-    public boolean actualizarTripulante(String id, Tripulante empleado) throws Exception {
-        Tripulante empleadoActual = this.obtenerTripulante(id);
-        if (empleadoActual == null) {
-            throw new Exception("El tripulante a actualizar no existe");
-        } else {
-            empleadoActual.setId(empleado.getId());
-            empleadoActual.setNombre(empleado.getNombre());
-            empleadoActual.setApellido(empleado.getApellido());
-            empleadoActual.setDireccion(empleado.getDireccion());
-            empleadoActual.setCorreo(empleado.getCorreo());
-            empleadoActual.setEstudios(empleado.getEstudios());
-            empleadoActual.setFechaNacimiento(empleado.getFechaNacimiento());
-            empleadoActual.setRolTripulante(empleado.getRolTripulante());
-            return true;
-        }
     }
 
 
@@ -227,6 +178,25 @@ public class Aerolinea implements Serializable {
         return null; // Retorna null si no se encuentra la ruta
     }
 
+    /*public ListaSimple<String> llenarListaSimpleStringAviones(ListaSimple<Avion> listaAviones) {
+        ListaSimple<String> listaSimpleString = new ListaSimple<>();
+        for(int i=0;i<listaAviones.size();i++)
+        {
+            listaSimpleString.agregar(listaAviones.obtenerValorNodo(i).getNombre());
+        }
+        return listaSimpleString;
+    }
+
+    public ListaSimple<String> llenarListaSimpleStringRutas(ListaSimple<Ruta> listaRutas) {
+        ListaSimple<String> listaSimpleString = new ListaSimple<>();
+        for(int i=0;i<listaRutas.size();i++)
+        {
+            listaSimpleString.agregar(listaRutas.obtenerValorNodo(i).getDestino().toString());
+        }
+        return listaSimpleString;
+    }
+
+     */
 
     public Collection<Avion> filtrarAvionesNacionales(ListaSimple<Avion> coleccionAviones,TipoAvion tipo) {
         ListaSimple<Avion> filtrarAvionesNacionales= new ListaSimple<>();
@@ -241,82 +211,66 @@ public class Aerolinea implements Serializable {
         return filtrarAvionesNacionales.toCollection();
     }
 
+    /*public TipoAvion determinarElTipoAvion(Ruta ruta) {
+        if(ruta.getOrigen()!=Destino.Cancún&&ruta.getOrigen()!=Destino.Monterrey)
+        {
+            return TipoAvion.INTERNACIONAL;
+        }
+        return TipoAvion.NACIONAL;
+    }
 
-    public ListaSimple<Tripulante> verificarAsignacionYAgregar(String nombreAvion, ListaSimple<Tripulante> listaTripulantes, Tripulante tripulante) throws Exception {
-        int copilotos = 0;
-        int pilotos = 0;
-        int auxiliares = 0;
-        if(tripulante.getRolTripulante().equals(RolTripulante.AUXILIAR))
+     */
+
+    public boolean verificarAsignacion(String nombreAvion,ListaSimple<Tripulante> listaTripulantes) {
+        int copilotos=0;
+        int pilotos=0;
+        int auxiliares=0;
+        for (Tripulante tripulante : listaTripulantes)
         {
-            auxiliares++;
-        }
-        else if(tripulante.getRolTripulante().equals(RolTripulante.COPILOTO))
-        {
-            copilotos++;
-        }
-        else if(tripulante.getRolTripulante().equals(RolTripulante.PILOTO))
-        {
-            pilotos++;
-        }
-        for (int i = 0; i < listaTripulantes.size(); i++)
-        {
-            switch (listaTripulantes.obtenerValorNodo(i).getRolTripulante()) {
-                case PILOTO:
-                    pilotos++;
-                    break;
-                case COPILOTO:
-                    copilotos++;
-                    break;
-                case AUXILIAR:
-                    auxiliares++;
-                    break;
+            switch (tripulante.getRolTripulante())
+            {
+                case PILOTO: pilotos++;
+                            break;
+                case COPILOTO: copilotos++;
+                                break;
+                case AUXILIAR: auxiliares++;
+                                break;
             }
         }
 
-
-        switch (nombreAvion) {
-            case "Airbus A320":
-                if (copilotos < 1&&pilotos < 1&&auxiliares < 3)
-                {
-                    listaTripulantes.agregar(tripulante);
-                }
-                else if(copilotos > 1)
-                {
-                    throw new Exception("Exceso de copilotos en el avion");
-                }
-                else if(pilotos > 1)
-                {
-                    throw new Exception("Exceso de pilotos en el avion");
-                }
-                else if(auxiliares > 3)
-                {
-                    throw new Exception("Exceso de auxiliares en el avion");
-                }
-                break;
+        int contador=0;
+        switch (nombreAvion)
+        {
+            case "Airbus A320": if(copilotos<=1)
+                                  contador++;
+                                if(pilotos<=1)
+                                  contador++;
+                                if(auxiliares<=3)
+                                    contador++;
+                                break;
             case "Airbus A330", "Boeing 787":
-                if (copilotos < 1&&pilotos < 1&&auxiliares < 7)
-                {
-                    listaTripulantes.agregar(tripulante);
-                }
-                else if(copilotos > 1)
-                {
-                    throw new Exception("Exceso de copilotos en el avion");
-                }
-                else if(pilotos > 1)
-                {
-                    throw new Exception("Exceso de pilotos en el avion");
-                }
-                else if(auxiliares > 3)
-                {
-                    throw new Exception("Exceso de auxiliares en el avion");
-                }
-                break;
+                                 if(copilotos<=1)
+                                    contador++;
+                                if(pilotos<=1)
+                                    contador++;
+                                if(auxiliares<=7)
+                                    contador++;
+                                break;
         }
-        return listaTripulantes;
-
+        return false;
 
     }
 
+    public boolean verificarTripulante (ListaSimple<Tripulante> listaTripulante,Tripulante tripulante) {
+        for(int i=0;i<listaTripulante.size();i++)
+        {
+            if(listaTripulante.obtenerValorNodo(i).equals(tripulante))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public ListaSimple buscarTiquetesRelacionados(Ruta ruta, LocalDate fechaViaje) {
         ListaSimple<Tiquete> listaTiquetesRelacionados=new ListaSimple<>();

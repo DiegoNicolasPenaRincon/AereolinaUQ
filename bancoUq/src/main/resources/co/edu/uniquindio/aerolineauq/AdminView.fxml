@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.aerolineauq.ViewController.AdminViewController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.aerolineauq.ViewController.AdminViewController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="1100.0" stylesheets="@loginDesign.css">
          <left>
@@ -82,6 +91,8 @@
                         <ComboBox fx:id="rutaComboBox" layoutX="225.0" layoutY="123.0" prefHeight="25.0" prefWidth="320.0" styleClass="control-estilo" />
                         <Button fx:id="btnAgregarAsignacion" layoutX="225.0" layoutY="530.0" mnemonicParsing="false" onAction="#agregarTripulanteOnAction" styleClass="compra-btn" text="Agregar" />
                         <Button fx:id="btnEliminarAsignacion" layoutX="449.0" layoutY="530.0" mnemonicParsing="false" onAction="#eliminarOnAction" styleClass="compra-btn" text="Eliminar" />
+                        <Label fx:id="avionlbl" layoutX="107.0" layoutY="218.0" styleClass="label-estilo" text="Avion" />
+                        <ComboBox fx:id="avionComboBox" layoutX="225.0" layoutY="214.0" prefHeight="25.0" prefWidth="320.0" styleClass="control-estilo" />
                         <TableView fx:id="tableTripulantesAsignados" layoutX="103.0" layoutY="306.0" prefHeight="200.0" prefWidth="535.0">
                            <columns>
                               <TableColumn fx:id="columnNombreAsignado" prefWidth="136.0" text="Nombre" />
@@ -92,6 +103,7 @@
                         </TableView>
                         <Label fx:id="avionMostrarlbl" layoutX="19.0" layoutY="170.0" prefHeight="20.0" prefWidth="220.0" styleClass="label-estilo" text="El avion asignado a esta ruta es:" />
                         <Label fx:id="avionLbl" layoutX="385.0" layoutY="171.0" prefHeight="17.0" prefWidth="87.0" text="????" />
+                        <Button fx:id="cambiarAvionButton" layoutX="331.0" layoutY="262.0" mnemonicParsing="false" onAction="#cambiarAvionOnAction" text="Cambiar Avion" />
                      </children>
                   </AnchorPane>
                </children>
