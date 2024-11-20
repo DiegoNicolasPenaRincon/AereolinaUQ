@@ -13,6 +13,7 @@ public class Tripulante  implements Serializable {
     private static final long serialVersionUID = 1L;
     private String id;
     private String nombre;
+    private String apellido;
     private String direccion;
     private LocalDate fechaNacimiento;
     private String correo;
@@ -20,9 +21,10 @@ public class Tripulante  implements Serializable {
     private RolTripulante rolTripulante;
     private Avion avionAsignado;
 
-    public Tripulante(String id, String nombre, String direccion, LocalDate fechaNacimiento, String correo, String estudios, RolTripulante rolTripulante) {
+    public Tripulante(String id, String nombre, String apellido ,String direccion, LocalDate fechaNacimiento, String correo, String estudios, RolTripulante rolTripulante) {
         this.id = id;
         this.nombre = nombre;
+        this.apellido= apellido;
         this.direccion = direccion;
         this.fechaNacimiento = fechaNacimiento;
         this.correo = correo;
@@ -31,6 +33,14 @@ public class Tripulante  implements Serializable {
     }
 
     public Tripulante() {
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getId() {

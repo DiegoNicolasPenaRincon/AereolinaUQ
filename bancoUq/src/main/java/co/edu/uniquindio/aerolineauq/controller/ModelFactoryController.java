@@ -85,8 +85,8 @@ public class ModelFactoryController {
         }
     }
 
-    public void registrarTripulante(String id, String nombre, String direccion, LocalDate fechaNacimiento,String correo , String estudios, RolTripulante rolTripulante) {
-        Tripulante tripulante = new Tripulante(id, nombre, direccion, fechaNacimiento, correo,estudios,rolTripulante );
+    public void registrarTripulante(String id, String nombre,String apellido, String direccion, LocalDate fechaNacimiento,String correo , String estudios, RolTripulante rolTripulante) {
+        Tripulante tripulante = new Tripulante(id, nombre,apellido, direccion, fechaNacimiento, correo,estudios,rolTripulante );
         try {
             if (!aerolinea.verificarTripuExistente(tripulante.getId())) {
                 aerolinea.registrarTripulante(tripulante);
@@ -97,6 +97,37 @@ public class ModelFactoryController {
             throw new RuntimeException(e);
         }
     }
+    public void actualizarTripulante(Tripulante tripulanteActualizado) throws Exception {
+        boolean actualizado = aerolinea.getListaTripulantes().modificarElemento(
+                tripulante -> tripulante.getId().equals(tripulanteActualizado.getId()),
+                tripulanteActualizado
+        );
+
+        if (actualizado) {
+            System.out.println("Tripulante actualizado correctamente.");
+            guardarResourceBinario();
+            guardarResourceXML();
+        } else {
+            throw new Exception("No se encontró un tripulante con el ID especificado.");
+        }
+    }
+
+    public void eliminarTripulante(String idTripulante) throws Exception {
+        boolean eliminado = aerolinea.getListaTripulantes().eliminarElemento(
+                tripulante -> tripulante.getId().equals(idTripulante)
+        );
+
+        if (eliminado) {
+            System.out.println("Tripulante eliminado correctamente.");
+            guardarResourceBinario();
+            guardarResourceXML();
+        } else {
+            throw new Exception("No se encontró un tripulante con el ID especificado.");
+        }
+    }
+
+
+
 
     public boolean validarInicioSesion(String id, String contrasenia) {
         return aerolinea.validarInicioSesion(id, contrasenia);

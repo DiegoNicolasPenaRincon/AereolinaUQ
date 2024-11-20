@@ -162,6 +162,8 @@ public class AdminViewController {
                 new SimpleStringProperty(cellData.getValue().getId()));
         columnNombre.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getNombre()));
+        columnApellido.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getApellido()));
         columnCorreo.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getCorreo()));
         columnDireccion.setCellValueFactory(cellData ->
@@ -170,7 +172,7 @@ public class AdminViewController {
                 new SimpleStringProperty(cellData.getValue().getEstudios()));
         columnFecha.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getFechaNacimiento().toString()));
-        columnRolAsignado.setCellValueFactory(cellData -> {
+        columnRol.setCellValueFactory(cellData -> {
             RolTripulante rol = cellData.getValue().getRolTripulante();
             return new SimpleStringProperty(rol != null ? rol.toString() : "Sin asignar");
         });
@@ -226,10 +228,30 @@ public class AdminViewController {
             });
             return row;
         });
+        tableTripulantes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                cargarDatosTripulante(newValue);
+            }
+        });
 
         // Cargar los datos en la tabla
         cargarDatosTabla();
     }
+    private void cargarDatosTripulante(Tripulante tripulante) {
+        if (tripulante == null) return;
+
+        txtID.setText(tripulante.getId());
+        txtID.setText(tripulante.getId());
+        txtNombre.setText(tripulante.getNombre());
+        txtApellido.setText(tripulante.getApellido());
+        txtCorreo.setText(tripulante.getCorreo());
+        txtDireccion.setText(tripulante.getDireccion());
+        txtEstudios.setText(tripulante.getEstudios());
+        dateNacimiento.setValue(tripulante.getFechaNacimiento());
+        cbRol.setValue(tripulante.getRolTripulante());
+    }
+
+
 
     @FXML
     void agregarTripulanteEvent(ActionEvent event) {
@@ -248,7 +270,7 @@ public class AdminViewController {
             return;
         }
 
-        modelFactoryController.registrarTripulante(id, nombre , direccion, fechaNacimiento, correo, estudios,rolTripulante);
+        modelFactoryController.registrarTripulante(id, nombre , apellido, direccion, fechaNacimiento, correo, estudios,rolTripulante);
         registrarAccionesSistema("Registro Tripulante", 1, "Se registro el tripulante "+ nombre);
 
         mostrarAlerta("Éxito", "Tripulante registrado correctamente", Alert.AlertType.INFORMATION);
@@ -268,6 +290,18 @@ public class AdminViewController {
         dateNacimiento.setValue(null);
         registrarAccionesSistema("Limpiar campos", 1, "Se limpiaron los campos ");
     }
+    private void limpiarCampos1() {
+        txtID.clear();
+        txtID.setDisable(false); // Habilitar nuevamente el campo ID
+        txtNombre.clear();
+        txtApellido.clear();
+        txtCorreo.clear();
+        txtDireccion.clear();
+        txtEstudios.clear();
+        dateNacimiento.setValue(null);
+        cbRol.setValue(null);
+    }
+
 
     private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
         Alert alerta = new Alert(tipo);
@@ -282,13 +316,60 @@ public class AdminViewController {
 
     @FXML
     void eliminarTripulanteEvent(ActionEvent event) {
+        Tripulante tripulanteSeleccionado = tableTripulantes.getSelectionModel().getSelectedItem();
+        if (tripulanteSeleccionado == null) {
+            mostrarAlerta("Error", "Debe seleccionar un tripulante para eliminar.", Alert.AlertType.ERROR);
+            return;
+        }
 
+        try {
+            String id = tripulanteSeleccionado.getId();
+            modelFactoryController.eliminarTripulante(id);
+            cargarDatosTabla();
+
+            mostrarAlerta("Éxito", "El tripulante " + tripulanteSeleccionado.getNombre() + " ha sido eliminado correctamente.", Alert.AlertType.INFORMATION);
+
+        } catch (Exception e) {
+            mostrarAlerta("Error", e.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
-    void modificarTripulanteEvent(ActionEvent event) {
+    void actualizarTripulanteEvent(ActionEvent event) {
+        Tripulante tripulanteSeleccionado = tableTripulantes.getSelectionModel().getSelectedItem();
+        if (tripulanteSeleccionado == null) {
+            mostrarAlerta("Error", "Debe seleccionar un tripulante para modificar.", Alert.AlertType.ERROR);
+            return;
+        }
 
+        try {
+            String id = txtID.getText();
+            String nombre = txtNombre.getText();
+            String apellido = txtApellido.getText();
+            String direccion = txtDireccion.getText();
+            String correo = txtCorreo.getText();
+            LocalDate fechaNacimiento = dateNacimiento.getValue();
+            String estudios = txtEstudios.getText();
+            RolTripulante rolTripulante = cbRol.getValue();
+
+            if (id.isEmpty() || nombre.isEmpty() || direccion.isEmpty() || correo.isEmpty() || estudios.isEmpty() || fechaNacimiento == null || rolTripulante == null) {
+                mostrarAlerta("Error", "Todos los campos son obligatorios para modificar un tripulante.", Alert.AlertType.ERROR);
+                return;
+            }
+
+            Tripulante tripulanteActualizado = new Tripulante(id, nombre,apellido, direccion, fechaNacimiento, correo, estudios, rolTripulante);
+
+            modelFactoryController.actualizarTripulante(tripulanteActualizado);
+            cargarDatosTabla();
+
+            mostrarAlerta("Éxito", "El tripulante " + tripulanteSeleccionado.getNombre() + " ha sido actualizado correctamente.", Alert.AlertType.INFORMATION);
+
+        } catch (Exception e) {
+            mostrarAlerta("Error", e.getMessage(), Alert.AlertType.ERROR);
+        }
     }
+
+
 
 
 
@@ -333,6 +414,10 @@ public class AdminViewController {
         for (Tripulante tripulante : listaTripulantes) {
             tableTripulantesAsignados.getItems().add(tripulante);
         }
+        tableTripulantes.setItems(FXCollections.observableArrayList(
+                modelFactoryController.getAerolinea().getListaTripulantes().toCollection()
+        ));
+        tableTripulantes.refresh();
     }
 
 
