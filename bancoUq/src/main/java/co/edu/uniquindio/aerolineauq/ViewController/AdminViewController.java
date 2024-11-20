@@ -466,16 +466,15 @@ public class AdminViewController {
             }
             catch (NullPointerException e)
             {
-                ListaSimple<Tripulante> listaApoyo=rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getListaTripulantes();
-                listaApoyo.agregar(tableTripulantesAsignados.getSelectionModel().getSelectedItem());
                 try
                 {
-                    modelFactoryController.getAerolinea().verificarAsignacion(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getNombre(),listaApoyo);
+                    ListaSimple<Tripulante> listaApoyo=rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getListaTripulantes();
+                    rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().setListaTripulantes(modelFactoryController.getAerolinea().verificarAsignacionYAgregar(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getNombre(),listaApoyo,tableTripulantesAsignados.getSelectionModel().getSelectedItem()));
                     tableTripulantesAsignados.getSelectionModel().getSelectedItem().setAvionAsignado(rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado());
                     rutaComboBox.getSelectionModel().getSelectedItem().getAvionAsignado().getListaTripulantes().agregar(tableTripulantesAsignados.getSelectionModel().getSelectedItem());
                     mostrarAlerta("Informacion","Tripulante agregado correctamente", Alert.AlertType.INFORMATION);
                 }
-                catch (ExcesoDeTripulantesException ex)
+                catch (Exception ex)
                 {
                     mostrarAlerta("Error",e.getMessage(),Alert.AlertType.ERROR);
                 }
@@ -492,9 +491,6 @@ public class AdminViewController {
     }
 
 
-    public void cambiarAvionOnAction(ActionEvent actionEvent) {
-
-    }
 
     public void eliminarOnAction(ActionEvent actionEvent) {
         if(tableTripulantesAsignados.getSelectionModel().getSelectedItem()!=null)

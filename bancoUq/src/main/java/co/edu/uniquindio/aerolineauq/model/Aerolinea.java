@@ -242,10 +242,22 @@ public class Aerolinea implements Serializable {
     }
 
 
-    public void verificarAsignacion(String nombreAvion,ListaSimple<Tripulante> listaTripulantes) throws ExcesoDeTripulantesException {
+    public ListaSimple<Tripulante> verificarAsignacionYAgregar(String nombreAvion, ListaSimple<Tripulante> listaTripulantes, Tripulante tripulante) throws Exception {
         int copilotos = 0;
         int pilotos = 0;
         int auxiliares = 0;
+        if(tripulante.getRolTripulante().equals(RolTripulante.AUXILIAR))
+        {
+            auxiliares++;
+        }
+        else if(tripulante.getRolTripulante().equals(RolTripulante.COPILOTO))
+        {
+            copilotos++;
+        }
+        else if(tripulante.getRolTripulante().equals(RolTripulante.PILOTO))
+        {
+            pilotos++;
+        }
         for (int i = 0; i < listaTripulantes.size(); i++)
         {
             switch (listaTripulantes.obtenerValorNodo(i).getRolTripulante()) {
@@ -261,48 +273,50 @@ public class Aerolinea implements Serializable {
             }
         }
 
+
         switch (nombreAvion) {
             case "Airbus A320":
-                if (copilotos > 1)
+                if (copilotos < 1&&pilotos < 1&&auxiliares < 3)
                 {
-                    throw new ExcesoDeTripulantesException("Exceso de copilotos en el avion");
+                    listaTripulantes.agregar(tripulante);
                 }
-                else if (pilotos > 1)
+                else if(copilotos > 1)
                 {
-                    throw new ExcesoDeTripulantesException("Exceso de pilotos en el avion");
+                    throw new Exception("Exceso de copilotos en el avion");
                 }
-                else if (auxiliares > 3)
+                else if(pilotos > 1)
                 {
-                    throw new ExcesoDeTripulantesException("Exceso de auxiliares en el avion");
+                    throw new Exception("Exceso de pilotos en el avion");
+                }
+                else if(auxiliares > 3)
+                {
+                    throw new Exception("Exceso de auxiliares en el avion");
                 }
                 break;
             case "Airbus A330", "Boeing 787":
-                if (copilotos > 1)
+                if (copilotos < 1&&pilotos < 1&&auxiliares < 7)
                 {
-                    throw new ExcesoDeTripulantesException("Exceso de copilotos en el avion");
+                    listaTripulantes.agregar(tripulante);
                 }
-                else if (pilotos > 1)
+                else if(copilotos > 1)
                 {
-                    throw new ExcesoDeTripulantesException("Exceso de pilotos en el avion");
+                    throw new Exception("Exceso de copilotos en el avion");
                 }
-                else if (auxiliares > 7)
+                else if(pilotos > 1)
                 {
-                    throw new ExcesoDeTripulantesException("Exceso de auxiliares en el avion");
+                    throw new Exception("Exceso de pilotos en el avion");
+                }
+                else if(auxiliares > 3)
+                {
+                    throw new Exception("Exceso de auxiliares en el avion");
                 }
                 break;
         }
+        return listaTripulantes;
+
+
     }
 
-    public boolean verificarTripulante (ListaSimple<Tripulante> listaTripulante,Tripulante tripulante) {
-        for(int i=0;i<listaTripulante.size();i++)
-        {
-            if(listaTripulante.obtenerValorNodo(i).equals(tripulante))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public ListaSimple buscarTiquetesRelacionados(Ruta ruta, LocalDate fechaViaje) {
         ListaSimple<Tiquete> listaTiquetesRelacionados=new ListaSimple<>();
